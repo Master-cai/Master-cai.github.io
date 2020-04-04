@@ -24,7 +24,29 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
-  precacheUrls.push('/posts/6.html');
+  precacheUrls.push('/posts/52811.html');
+
+  precacheUrls.push('/posts/8852.html');
+
+  precacheUrls.push('/posts/1767.html');
+
+  precacheUrls.push('/posts/33062.html');
+
+  precacheUrls.push('/posts/14386.html');
+
+  precacheUrls.push('/posts/60634.html');
+
+  precacheUrls.push('/posts/59750.html');
+
+  precacheUrls.push('/posts/36743.html');
+
+  precacheUrls.push('/posts/61809.html');
+
+  precacheUrls.push('/posts/55741.html');
+
+  precacheUrls.push('/posts/49199.html');
+
+  precacheUrls.push('/posts/30317.html');
 
 toolbox.precache(precacheUrls);
 toolbox.options = {"networkTimeoutSeconds":30};
