@@ -557,7 +557,7 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-04-04
+                        2020-05-04
                     </div>
                 
 
@@ -649,7 +649,7 @@ ans <span class="token operator">=</span> <span class="token number">0</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>一拿到这道题，我的第一想法就是dfs，也是一个很常见的dfs问题。但是为了降低时间复杂度，我突然想到了利用动态规划来解决这个问题（💩最近做多了有点上头），最后一顿分析+瞎写代码成功的未解决问题。仔细一想其实根本不是动态规划问题，并没有出现明显的递推关系。</p>
 <h2 id="2-跳蚱蜢"><a href="#2-跳蚱蜢" class="headerlink" title="2. 跳蚱蜢"></a>2. 跳蚱蜢</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><pre><code>有9只盘子，排成1个圆圈。其中8只盘子内装着8只蚱蜢，有一个是空盘。我们把这些蚱蜢顺时针编号为 1~8每只蚱蜢都可以跳到相邻的空盘中，也可以再用点力，越过一个相邻的蚱蜢跳到空盘中。请你计算一下，如果要使得蚱蜢们的队形改为按照逆时针排列，并且保持空盘的位置不变（也就是1-8换位，2-7换位,...），至少要经过多少次跳跃？
-注意：要求提交的是一个整数，请不要填写任何多余内容或说明文字。</code></pre><p><img src="D:%5Cblog%5Chexo-matery-modified%5Csource_posts%5Cwrite-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp2-1.png" alt="p2-1"></p>
+注意：要求提交的是一个整数，请不要填写任何多余内容或说明文字。</code></pre><p><img src="write-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp2-1.png" alt="p2-1"></p>
 <h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>这道题是一个bfs的问题，乍一看，这个问题好像dfs也可以解决，但是由于求的是最小的跳跃次数，所以最终来说还是要用bfs来解决。将空白处记为0号点，我们每次都可以选择其相邻的左右各两位。如图，也就是0号可以和1， 2， 7， 8号互换位置。我们的初始状态记为“012345678”，目标状态记为“087654321”，只要有一个情况达到了目标状态，返回当前步数即可。</p>
 <p>另外，因为题目给出的是一个圆环，也就意味着0和8是相邻的，这里只要用取余的技巧处理一下即可。</p>
 <h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-python"><code class="language-python">start <span class="token operator">=</span> <span class="token string">'012345678'</span>
@@ -1615,7 +1615,7 @@ f <span class="token operator">=</span> <span class="token punctuation">[</span>
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">31k</span>&nbsp;字
+                class="white-color">31.8k</span>&nbsp;字
             
             
             <script>
@@ -1807,7 +1807,7 @@ f <span class="token operator">=</span> <span class="token punctuation">[</span>
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1587625347075')
+  navigator.serviceWorker.register('/sw.js?t=1588597543784')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
