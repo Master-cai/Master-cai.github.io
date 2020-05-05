@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.master-cai.xyz/"/>
-  <updated>2020-05-04T13:05:11.166Z</updated>
+  <updated>2020-05-05T05:04:18.979Z</updated>
   <id>http://blog.master-cai.xyz/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>1155_Heap_Paths</title>
+    <link href="http://blog.master-cai.xyz/posts/26286.html"/>
+    <id>http://blog.master-cai.xyz/posts/26286.html</id>
+    <published>2020-05-04T13:12:45.000Z</published>
+    <updated>2020-05-05T05:04:18.979Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1155-Heap-Paths"><a href="#1155-Heap-Paths" class="headerlink" title="1155:Heap Paths"></a><strong>1155</strong>:<strong>Heap Paths</strong></h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>In computer science, a heap is a specialized tree-based data structure that satisfies the heap property: if P is a parent node of C, then the key (the value) of P is either greater than or equal to (in a max heap) or less than or equal to (in a min heap) the key of C. A common implementation of a heap is the binary heap, in which the tree is a complete binary tree. (Quoted from Wikipedia at https://en.wikipedia.org/wiki/Heap_(data_structure))One thing for sure is that all the keys along any path from the root to a leaf in a max/min heap must be in non-increasing/non-decreasing order.Your job is to check every path in a given complete binary tree, in order to tell if it is a heap or not.Input Specification:Each input file contains one test case. For each case, the first line gives a positive integer N (1&lt;N≤1,000), the number of keys in the tree. Then the next line contains N distinct integer keys (all in the range of int), which gives the level order traversal sequence of a complete binary tree.Output Specification:For each given tree, first print all the paths from the root to the leaves. Each path occupies a line, with all the numbers separated by a space, and no extra space at the beginning or the end of the line. The paths must be printed in the following order: for each node in the tree, all the paths in its right subtree must be printed before those in its left subtree.Finally print in a line Max Heap if it is a max heap, or Min Heap for a min heap, or Not Heap if it is not a heap at all.Sample Input 1:898 72 86 60 65 12 23 50    Sample Output 1:98 86 2398 86 1298 72 6598 72 60 50Max Heap   Sample Input 2:88 38 25 58 52 82 70 60  Sample Output 2:8 25 708 25 828 38 528 38 58 60Min Heap  Sample Input 3:810 28 15 12 34 9 8 56Sample Output 3:10 15 810 15 910 28 3410 28 12 56Not Heap</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>题目虽然和堆有关系，但实际上只是一个深度搜索然后回溯就可以解决的问题。最开始的想法是在深搜的同时就判断一下是否满足条件，但是总是出一些奇怪的bug，递归的问题也不太好调试，就参照题解，先遍历出所有的路径情况，然后再单独判断是否符合条件。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-c++"><code class="language-c++">#include<iostream>#include<vector>using namespace std;int n;vector<int> heap; // 数组形式存储堆vector<int> path; // 存储路径 用于回溯void dfs(int pos){ // 回溯    if(pos >= n){        return;    }    if (pos >= n/2){ // 在数组堆中 大于n/2一定是叶子结点 打印结果即可        for(int i = 0; i<path.size(); i++){            printf("%d%c", path[i], i==path.size()-1?'\n': ' ');        }    } else{ // 不是叶子结点 继续遍历        int left = i*2+1;        int right = i*2+2;        // 下面是回溯 对于每一种可做的选择都进行尝试 相当于 for        path.push_back(heap[right]);        dfs(right);        path.pop_back();        path.push_back(heap[left]);        dfs(left);        path.pop_back();    }}int main(){    cin >> n;    for(int i=0; i<n; i++){        scanf("%d", &heap[i]);    }    path.push_back(heap[0]); // 根据dfs函数的逻辑 需要进行初始化    dfs(0);    bool min = true;    bool max = true;    for(int i = 0; i<n/2; i++){ //单独再判断是否符合条件        if ((i*2+1<n && heap[i]<heap[i*2+1]) || (i*2+2 < n && heap[i] < heap[i*2+2])){            max = false;        }        if ((i*2+1<n && heap[i]>heap[i*2+1]) || (i*2+2 < n && heap[i] > heap[i*2+2])){            min = false;        }    }    if(min){        printf("Min Heap");    } else if(max){        printf("Max Heap");    } else{        printf("Not Heap");    }    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1155-Heap-Paths&quot;&gt;&lt;a href=&quot;#1155-Heap-Paths&quot; class=&quot;headerlink&quot; title=&quot;1155:Heap Paths&quot;&gt;&lt;/a&gt;&lt;strong&gt;1155&lt;/strong&gt;:&lt;strong&gt;Heap Paths&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="pat" scheme="http://blog.master-cai.xyz/categories/pat/"/>
+    
+    
+      <category term="pat" scheme="http://blog.master-cai.xyz/tags/pat/"/>
+    
+      <category term="algorithm" scheme="http://blog.master-cai.xyz/tags/algorithm/"/>
+    
+      <category term="堆" scheme="http://blog.master-cai.xyz/tags/%E5%A0%86/"/>
+    
+      <category term="深度搜索" scheme="http://blog.master-cai.xyz/tags/%E6%B7%B1%E5%BA%A6%E6%90%9C%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>1154-vertex-coloring</title>
     <link href="http://blog.master-cai.xyz/posts/61450.html"/>
     <id>http://blog.master-cai.xyz/posts/61450.html</id>
     <published>2020-05-04T12:11:45.000Z</published>
-    <updated>2020-05-04T13:05:11.166Z</updated>
+    <updated>2020-05-04T13:05:44.299Z</updated>
     
     <content type="html"><![CDATA[<h1 id="1154-vertex-coloring"><a href="#1154-vertex-coloring" class="headerlink" title="1154_vertex_coloring"></a>1154_vertex_coloring</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近开始做pat的题目了，题目感觉和leetcode还是区别比较大的，和蓝桥杯有一定的相似点。主要是对于输入输出的要求比较严格，我所报名的甲级是英文题目，其中部分单词还是不太熟悉，意思只能看靠猜测了，这方面还需要积累。关于语言方面，我觉得pat方面是有点坑的，它对于所有语言的时间要求是一样的，这对于用python（或者说非C++）选手来说很不友好。很简单的题目，用python语言实现和C++一样的算法，总是会有部分用例超时，所以我又被迫捡起了C++。但是好像目前各种机试的语言主要还是C++，也算是提前熟悉一下吧（有一般的报错是格式问题）。pat甲级目前题库一共有150+题目，感觉还是有希望熟悉一遍的（flag），其他的也不多说了，在家虽然没用那么舒服，还是要🐛🐛🐛。</p><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>A proper vertex coloring is a labeling of the graph's vertices with colors such that no two vertices sharing the same edge have the same color. A coloring using at most k colors is called a (proper) k-coloring.Now you are supposed to tell if a given coloring is a proper k-coloring.Input Specification:Each input file contains one test case. For each case, the first line gives two positive integers N and M (both no more than 10^4), being the total numbers of vertices and edges, respectively. Then M lines follow, each describes an edge by giving the indices (from 0 to N−1) of the two ends of the edge.After the graph, a positive integer K (≤ 100) is given, which is the number of colorings you are supposed to check. Then K lines follow, each contains N colors which are represented by non-negative integers in the range of int. The i-th color is the color of the i-th vertex.Output Specification:For each coloring, print in a line k-coloring if it is a proper k-coloring for some positive k, or No if not.Sample Input:10 118 76 84 58 48 11 21 49 89 11 02 440 1 0 1 4 1 0 1 3 00 1 0 1 4 1 0 1 0 08 1 0 1 4 1 0 5 3 01 2 3 4 5 6 7 8 8 9Sample Output:4-coloringNo6-coloringNo</code></pre><h3 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h3><p>Vertex: 顶点</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>刚读到这个题目，一开始以为是一个图色问题，这方面还是不太熟悉。但是仔细读了一下，发现只需要判断一下就好了。一开始按照我的思路，我是用邻接表来存每条边，最后总是时间超时。参考了一下题解，发现题解直接存储了每条边。。其实这样效率更高，还是我把问题复杂化了。对于算法题来说，其实还是只要能够达到效果即可，不必要一定要复杂化问题。</p><p>本题的思路其实还是很简单，根据给出的每条边，对于其两个顶点，判断一下颜色是否相同即可。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-c++"><code class="language-c++">#include<iostream>#include<vector>#include<unordered_set>using namespace std;struct node{ //存储边    int x, y;};int main(){    int N, M;    cin >> N >> M;     vector<node> v(M); //存储所有的边    for(int i=0; i<M; ++i){ // 输入所有边的信息        scanf("%d %d", &v[i].x, &v[i].y);    }    int n;    scanf("%d", &n); // n种情况    for(int i=0; i<n; ++i){        // 对于每一种情况        unordered_set<int> s; // 使用set统计颜色数量        vector<int> a(N); // 存储每种图色方案        for(int j=0; j<N; j++){            scanf("%d", &a[j]);            s.insert(a[j]);        }        bool flag = true; //判断是否符合条件        for(int j = 0; j<M; ++j){             // 对于每条边的端点，进行判断            if(a[v[j].x]==a[v[j].y]){                flag = false;                break;            }        }        if(flag){            printf("%d-coloring\n", s.size());        }else{            printf("No\n");        }    }    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在做题中，其实还有一些小技巧，比如，使用scanf替代cin（cout同理）；不需要排序的时候，可以使用unordered_set和unorderd_map代替；</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
@@ -38,9 +70,9 @@
       <category term="pat" scheme="http://blog.master-cai.xyz/categories/pat/"/>
     
     
-      <category term="algorithm" scheme="http://blog.master-cai.xyz/tags/algorithm/"/>
-    
       <category term="pat" scheme="http://blog.master-cai.xyz/tags/pat/"/>
+    
+      <category term="algorithm" scheme="http://blog.master-cai.xyz/tags/algorithm/"/>
     
       <category term="图" scheme="http://blog.master-cai.xyz/tags/%E5%9B%BE/"/>
     
@@ -51,7 +83,7 @@
     <link href="http://blog.master-cai.xyz/posts/2547.html"/>
     <id>http://blog.master-cai.xyz/posts/2547.html</id>
     <published>2020-04-24T14:21:12.000Z</published>
-    <updated>2020-04-24T14:21:12.370Z</updated>
+    <updated>2020-05-04T13:05:44.303Z</updated>
     
     <content type="html"><![CDATA[<script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
@@ -326,11 +358,11 @@
     
       <category term="蓝桥杯" scheme="http://blog.master-cai.xyz/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/"/>
     
-      <category term="数据结构" scheme="http://blog.master-cai.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
       <category term="并查集" scheme="http://blog.master-cai.xyz/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
       <category term="dfs" scheme="http://blog.master-cai.xyz/tags/dfs/"/>
+    
+      <category term="数据结构" scheme="http://blog.master-cai.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="无向图" scheme="http://blog.master-cai.xyz/tags/%E6%97%A0%E5%90%91%E5%9B%BE/"/>
     
@@ -394,9 +426,9 @@
     
       <category term="蓝桥杯" scheme="http://blog.master-cai.xyz/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/"/>
     
-      <category term="数据结构" scheme="http://blog.master-cai.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
       <category term="并查集" scheme="http://blog.master-cai.xyz/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    
+      <category term="数据结构" scheme="http://blog.master-cai.xyz/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -572,37 +604,6 @@
     
       <category term="动态规划" scheme="http://blog.master-cai.xyz/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
-    
-      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
-    
-      <category term="动态规划" scheme="http://blog.master-cai.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动态规划复习小结</title>
-    <link href="http://blog.master-cai.xyz/posts/60634.html"/>
-    <id>http://blog.master-cai.xyz/posts/60634.html</id>
-    <published>2020-02-16T12:05:48.000Z</published>
-    <updated>2020-04-04T02:51:38.450Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li><h1 id="动态规划复习小结"><a href="#动态规划复习小结" class="headerlink" title="动态规划复习小结"></a>动态规划复习小结</h1><p>最早系统的学习动态规划还是在大二算法课上，当时因为仓促应付考试的原因，学的也是一些皮毛，并没有真正理解动态规划的精髓所在。后来才发现，动态规划在算法方面的应用实在是太多了，很多hard题目都是动态规划相关。动态规划非常的灵活，可以说没有任何套路可循。给你一个动态规划的问题，能否很好的解决出来真的就是靠感觉和经验。</p><p>在最近做leetcode期间，我再一次被动态规划相关问题所困扰。因此便想好好联系一下相关题目，同时也找了很多网上的教程学习参考。在此对这一阶段学习的内容做一个小小的复习。</p><h2 id="动态规划问题的特点"><a href="#动态规划问题的特点" class="headerlink" title="动态规划问题的特点"></a>动态规划问题的特点</h2><p>我们在解决问题的时候，很少会告诉你这就是一个动态规划的问题，更多的是直接让你去解决。那么如何去判断一个问题是不是动态规划问题呢？</p><p>其实也很简单，动态规划的目的，或者说作用就是用已有结果计算当前问题，已达到避免重复计算的目的。在做了一些题目以后发现，动态规划问题一般都是求最值的问题。当你拿到一个问题后，可以先尝试着用暴力方法来解决这个问题，找到问题的暴力解之后， 仔细分析这个解法，如果出现了很多重复计算的子问题，并且子问题之间互不相关，那么这就是动态规划的问题了。再者，还有一个办法就是对于原问题dp[i] [j]，有不止一条路径可以到达dp[i-1] [j-1]，一旦有一条路径是重复的，就是说明存在重复的子问题了，也就是说这是一个动态规划的问题了。</p><h3 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h3><p>刚才提到的很多重复计算的子问题，也不是所有的这样的情况都是动态规划问题。动态规划中提到的子问题称为  <strong>最优子结构</strong> ,其实就是子问题之间只要没有直接关联，不会相互影响就是最优子结构，只要带入几个具体实例尝试一下便知道了。<br>但是不是所有问题都会有最优子结构，这不是说这个问题就一定不能用动态规划的思路来解决，而是需要对子问题进行优化和等价转化。通过将不是最优子结构的问题转化为另一个等价的问题来构造最优子结构</p><h2 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h2><p>虽然说动态规划问题非常灵活，这是指动态规划问题的dp table的设计非常灵活，但是总的解决问题的方向还是有的。在参考了很多思想之后，我发现了一种理解起来比较好的解决问题的思路。</p><p>首先明确一个概念：动态规划的核心还是穷举。其实在计算机中，所有的解决问题的方法都是穷举，只是问题的关键在于如何更加聪明的穷举，这是很多算法研究的方向。在动态规划中，穷举是通过<strong>dp table</strong>+<strong>状态转移方程</strong> 完成的。在动态规划的问题中，这两点各占问题的50%。</p><p>如果要将动态规划问题的解决路线模式化，我认为如下模式比较合适：</p><ol><li>明确问题的状态</li><li>确定dp tatble的含义</li><li>明确当前的选择</li><li>写出状态转移方程</li><li>初始化base case</li></ol><h3 id="1-明确问题的状态"><a href="#1-明确问题的状态" class="headerlink" title="1. 明确问题的状态"></a>1. 明确问题的状态</h3><p>何为问题的状态？这个定义很抽象。状态就是问题中的变化的量，或者可以类比为自动机中的状态的感觉。</p><h3 id="2-确定dp-table的含义"><a href="#2-确定dp-table的含义" class="headerlink" title="2. 确定dp table的含义"></a>2. 确定dp table的含义</h3><p>dp table是解决动态规划问题的两个关键之一。dp table通常是一维，二维数组或者一个字典。关于如何定义dp table，我认为没有什么技巧，只能通过不断的积累经验。下面记录几个最近常用的定义方式（后面不断补充）：</p><ul><li>字符串相关的问题：<br>一般是定义一个二维数组，dp[i][j] 为s1[0…i] 到s2[0…j]的最大值（示具体情况而定）<br>定义完dp table，动态规划问题就解决了一半，最终答案一般为dp[n]。</li></ul><h3 id="3-明确当前选择"><a href="#3-明确当前选择" class="headerlink" title="3.明确当前选择"></a>3.明确当前选择</h3><p>什么又是选择？选择是在当前状态下，可以做出的改变，是状态转移方程的基础。动态规划问题就是在当前状态下，在可选的选择中择优选择。越来越发现动态规划问题和有限状态机有一定的相似之处：<img src="1.png" alt=""><br>这个图明确了状态和选择之间的关系，状态转移方程只不过是将这个图用数学方式描述出来，仅此而已。</p><h3 id="4-写出状态转移方程"><a href="#4-写出状态转移方程" class="headerlink" title="4.写出状态转移方程"></a>4.写出状态转移方程</h3><p>有了上面的工作做铺垫，写出状态方程则是水到渠成的事情。其实前面4步没有特别严格的顺序。通常情况下不能直接看出问题的状态转移方程，可以先写出问题的暴力解法，然后一步步的从中分析出问题的状态方程。<br>另一个角度，在定义了dp table后，可以考虑一下如何推导出dp[i] [j]，这也就是状态转移方程的另一种表现形式，也就是数学归纳法。</p><h3 id="5-初始化base-case"><a href="#5-初始化base-case" class="headerlink" title="5. 初始化base case"></a>5. 初始化base case</h3><p>可以说这一步是整个动态规划解题过程中最简单的一步了，但也是同样重要的一步。这一步只需要根据dp table的定义，确定base case即可</p><h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><h3 id="dp数组的遍历顺序问题"><a href="#dp数组的遍历顺序问题" class="headerlink" title="dp数组的遍历顺序问题"></a>dp数组的遍历顺序问题</h3><p>如何遍历一个dp数组？到底是正着遍历还是反着遍历？其实只要遵循一个原则：只要能够从base case根据状态转移方程推导到最终答案即可。<br>再次记录一下斜着遍历数组的实现：</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">for</span> p <span class="token keyword">in</span> range<span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">:</span>    <span class="token keyword">for</span> q <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>        i <span class="token operator">=</span> q        j <span class="token operator">=</span> p<span class="token operator">+</span>q        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>目前我对动态规划的理解就是这样一个程度，后续随着不断的学习会继续补充，也会选择几个个人非常喜欢和经典的题目进行解析。</p></li></ol><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;&lt;h1 id=&quot;动态规划复习小结&quot;&gt;&lt;a href=&quot;#动态规划复习小结&quot; class=&quot;headerlink&quot; title=&quot;动态规划复习小结&quot;&gt;&lt;/a&gt;动态规划复习小结&lt;/h1&gt;&lt;p&gt;最早系统的学习动态规划还是在大二算法课上，当时因为仓促应付考试的原因，学的
-      
-    
-    </summary>
-    
-    
-      <category term="动态规划" scheme="http://blog.master-cai.xyz/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    
-      <category term="总结" scheme="http://blog.master-cai.xyz/tags/%E6%80%BB%E7%BB%93/"/>
     
       <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
     
