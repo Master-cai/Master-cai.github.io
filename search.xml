@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>1148:Werewolf-Simple Version</title>
+      <link href="/posts/63151.html"/>
+      <url>/posts/63151.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="1148-Werewolf-Simple-Version"><a href="#1148-Werewolf-Simple-Version" class="headerlink" title="1148:Werewolf-Simple Version"></a>1148:Werewolf-Simple Version</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>Werewolf（狼人杀） is a game in which the players are partitioned into two parties: the werewolves and the human beings. Suppose that in a game,player #1 said: "Player #2 is a werewolf.";player #2 said: "Player #3 is a human.";player #3 said: "Player #4 is a werewolf.";player #4 said: "Player #5 is a human."; andplayer #5 said: "Player #4 is a human.".Given that there were 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liars. Can you point out the werewolves?Now you are asked to solve a harder version of this problem: given that there were N players, with 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liars. You are supposed to point out the werewolves.Input Specification:Each input file contains one test case. For each case, the first line gives a positive integer N (5≤N≤100). Then N lines follow and the i-th line gives the statement of the i-th player (1≤i≤N), which is represented by the index of the player with a positive sign for a human and a negative sign for a werewolf.Output Specification:If a solution exists, print in a line in ascending order the indices of the two werewolves. The numbers must be separated by exactly one space with no extra spaces at the beginning or the end of the line. If there are more than one solution, you must output the smallest solution sequence -- that is, for two sequences A=a[1],...,a[M] and B=b[1],...,b[M], if there exists 0≤k&lt;M such that a[i]=b[i] (i≤k) and a[k+1]&lt;b[k+1], then A is said to be smaller than B. In case there is no solution, simply print No Solution.Sample Input 1:5-2+3-4+5+4Sample Output 1:1 4    Sample Input 2:6+6+3+1-5-2+4Sample Output 2 (the solution is not unique):1 5Sample Input 3:5-2-3-4-5-1Sample Output 3:No Solution</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题的难点不在于解法，读完题目后在加上题中给出的N&lt; 100，基本上可以确定是一道直接模拟所有情况来求解的问题。对于确定的两种状态，可以用全排列的方式进行模拟，在C++中直接调用next_permutation即可。但是对于每种情况，我们都需要进行check，这也是本题稍微绕了一点的地方。</p><p>题目叙述稍微有点啰嗦，或者说是设置了障碍，一开始的想法是直接根据题意，用最直接的方法来check，结果总是会出bug，并且部分超时；后来参考了一下题解，发现题解的解法非常巧妙，充分的利用了题目给出的数据的正负关系，在设置全排列的元素时使用的就是‘1’和‘-1’（而不是0），然后利用当前位的标记状态以及其实际状态进行乘积来判断（详情见代码注释）。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ol><li>参考代码版本</li></ol><pre class="line-numbers language-c++"><code class="language-c++">//// Created by masterCai on 2020/5/5.//#include <iostream>#include <vector>#include <algorithm>#include <cstring>using namespace std;int main(){    int n;    cin >> n;    vector<int> v(n+1); // v中存储所有人的陈述    for (int i = 1; i <= n; ++i) {//        scanf("%d", &v[i]);        cin >> v[i];    }    for(int i=1; i<=n; i++){        for(int j=i+1; j<=n; j++){ // i j 枚举 i和j为狼的情况            vector<int> lie, a(n+1, 1); // 将撒谎情况记录到lie中 a作为枚举的载体 初始化为全人            a[i] = a[j] = -1; // 开始枚举 -1为狼 1为人            for(int k = 1; k <= n; k++){                // 这里判断撒谎情况很巧妙                // 之前设定的-1为狼 如果玩家说i号为狼，则陈述为负，若实际情况为狼 为-1，负负得正 没有撒谎 以此类推                if(v[k] * a[abs(v[k])]<0){                    lie.push_back(k);// 将撒谎情况记录下来                }            }            if (lie.size() == 2 && a[lie[0]] + a[lie[1]] == 0){                // 判断是否为题中要求的一狼一人                cout << i << ' ' << j;                return 0;            }        }    }    cout << "No Solution";    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="2"><li>next_permutation实现版本</li></ol><pre class="line-numbers language-c++"><code class="language-c++">//// Created by masterCai on 2020/5/5.//#include <iostream>#include <vector>#include <algorithm>using namespace std;int main(){    int n;    cin >> n;    vector<int> statement(n+1); // 从1开始    for(int i = 1; i<=n; i++){        scanf("%d", &statement[i]);    }    vector<int> status = {-1, -1}; //从0开始    for(int i = 2; i<n; i++){        status.push_back(1);    }    do {        vector<int> lie;        for(int i = 1; i<=n; i++){            if(statement[i] * status[abs(statement[i])-1] < 0){                lie.push_back(i-1);            }        }        if (lie.size() == 2 && status[lie[0]]+status[lie[1]] == 0){            int cnt = 0;            for (int i = 0; i < n + 1; ++i) {                if(status[i] == -1){                    cnt == 0? printf("%d ", i+1):printf("%d", i+1);                    cnt += 1;                }            }            return 0;        }    } while (next_permutation(status.begin(), status.end()));    printf("No Solution");    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这道题其实做了好久。。还只是第一题。。这个check函数在考试还是不太容易想出来，还是继续锤吧</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> pat </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> pat </tag>
+            
+            <tag> algorithm </tag>
+            
+            <tag> 全排列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>1155_Heap_Paths</title>
       <link href="/posts/26286.html"/>
       <url>/posts/26286.html</url>
@@ -191,9 +220,9 @@
       
         <tags>
             
-            <tag> 小结 </tag>
-            
             <tag> 全排列 </tag>
+            
+            <tag> 小结 </tag>
             
         </tags>
       
@@ -421,9 +450,9 @@
       
         <tags>
             
-            <tag> leetcode </tag>
-            
             <tag> 动态规划 </tag>
+            
+            <tag> leetcode </tag>
             
             <tag> KMP算法 </tag>
             
@@ -481,9 +510,9 @@
       
         <tags>
             
-            <tag> leetcode </tag>
-            
             <tag> 动态规划 </tag>
+            
+            <tag> leetcode </tag>
             
             <tag> 博弈问题 </tag>
             
@@ -510,9 +539,9 @@
       
         <tags>
             
-            <tag> leetcode </tag>
-            
             <tag> 动态规划 </tag>
+            
+            <tag> leetcode </tag>
             
             <tag> 备忘录递归 </tag>
             
@@ -539,9 +568,9 @@
       
         <tags>
             
-            <tag> leetcode </tag>
-            
             <tag> 动态规划 </tag>
+            
+            <tag> leetcode </tag>
             
         </tags>
       
@@ -568,9 +597,9 @@
             
             <tag> 总结 </tag>
             
-            <tag> leetcode </tag>
-            
             <tag> 动态规划 </tag>
+            
+            <tag> leetcode </tag>
             
         </tags>
       

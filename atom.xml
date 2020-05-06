@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.master-cai.xyz/"/>
-  <updated>2020-05-05T05:04:18.979Z</updated>
+  <updated>2020-05-06T01:30:24.016Z</updated>
   <id>http://blog.master-cai.xyz/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>1148:Werewolf-Simple Version</title>
+    <link href="http://blog.master-cai.xyz/posts/63151.html"/>
+    <id>http://blog.master-cai.xyz/posts/63151.html</id>
+    <published>2020-05-06T00:01:41.000Z</published>
+    <updated>2020-05-06T01:30:24.016Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1148-Werewolf-Simple-Version"><a href="#1148-Werewolf-Simple-Version" class="headerlink" title="1148:Werewolf-Simple Version"></a>1148:Werewolf-Simple Version</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>Werewolf（狼人杀） is a game in which the players are partitioned into two parties: the werewolves and the human beings. Suppose that in a game,player #1 said: "Player #2 is a werewolf.";player #2 said: "Player #3 is a human.";player #3 said: "Player #4 is a werewolf.";player #4 said: "Player #5 is a human."; andplayer #5 said: "Player #4 is a human.".Given that there were 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liars. Can you point out the werewolves?Now you are asked to solve a harder version of this problem: given that there were N players, with 2 werewolves among them, at least one but not all the werewolves were lying, and there were exactly 2 liars. You are supposed to point out the werewolves.Input Specification:Each input file contains one test case. For each case, the first line gives a positive integer N (5≤N≤100). Then N lines follow and the i-th line gives the statement of the i-th player (1≤i≤N), which is represented by the index of the player with a positive sign for a human and a negative sign for a werewolf.Output Specification:If a solution exists, print in a line in ascending order the indices of the two werewolves. The numbers must be separated by exactly one space with no extra spaces at the beginning or the end of the line. If there are more than one solution, you must output the smallest solution sequence -- that is, for two sequences A=a[1],...,a[M] and B=b[1],...,b[M], if there exists 0≤k&lt;M such that a[i]=b[i] (i≤k) and a[k+1]&lt;b[k+1], then A is said to be smaller than B. In case there is no solution, simply print No Solution.Sample Input 1:5-2+3-4+5+4Sample Output 1:1 4    Sample Input 2:6+6+3+1-5-2+4Sample Output 2 (the solution is not unique):1 5Sample Input 3:5-2-3-4-5-1Sample Output 3:No Solution</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题的难点不在于解法，读完题目后在加上题中给出的N&lt; 100，基本上可以确定是一道直接模拟所有情况来求解的问题。对于确定的两种状态，可以用全排列的方式进行模拟，在C++中直接调用next_permutation即可。但是对于每种情况，我们都需要进行check，这也是本题稍微绕了一点的地方。</p><p>题目叙述稍微有点啰嗦，或者说是设置了障碍，一开始的想法是直接根据题意，用最直接的方法来check，结果总是会出bug，并且部分超时；后来参考了一下题解，发现题解的解法非常巧妙，充分的利用了题目给出的数据的正负关系，在设置全排列的元素时使用的就是‘1’和‘-1’（而不是0），然后利用当前位的标记状态以及其实际状态进行乘积来判断（详情见代码注释）。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ol><li>参考代码版本</li></ol><pre class="line-numbers language-c++"><code class="language-c++">//// Created by masterCai on 2020/5/5.//#include <iostream>#include <vector>#include <algorithm>#include <cstring>using namespace std;int main(){    int n;    cin >> n;    vector<int> v(n+1); // v中存储所有人的陈述    for (int i = 1; i <= n; ++i) {//        scanf("%d", &v[i]);        cin >> v[i];    }    for(int i=1; i<=n; i++){        for(int j=i+1; j<=n; j++){ // i j 枚举 i和j为狼的情况            vector<int> lie, a(n+1, 1); // 将撒谎情况记录到lie中 a作为枚举的载体 初始化为全人            a[i] = a[j] = -1; // 开始枚举 -1为狼 1为人            for(int k = 1; k <= n; k++){                // 这里判断撒谎情况很巧妙                // 之前设定的-1为狼 如果玩家说i号为狼，则陈述为负，若实际情况为狼 为-1，负负得正 没有撒谎 以此类推                if(v[k] * a[abs(v[k])]<0){                    lie.push_back(k);// 将撒谎情况记录下来                }            }            if (lie.size() == 2 && a[lie[0]] + a[lie[1]] == 0){                // 判断是否为题中要求的一狼一人                cout << i << ' ' << j;                return 0;            }        }    }    cout << "No Solution";    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ol start="2"><li>next_permutation实现版本</li></ol><pre class="line-numbers language-c++"><code class="language-c++">//// Created by masterCai on 2020/5/5.//#include <iostream>#include <vector>#include <algorithm>using namespace std;int main(){    int n;    cin >> n;    vector<int> statement(n+1); // 从1开始    for(int i = 1; i<=n; i++){        scanf("%d", &statement[i]);    }    vector<int> status = {-1, -1}; //从0开始    for(int i = 2; i<n; i++){        status.push_back(1);    }    do {        vector<int> lie;        for(int i = 1; i<=n; i++){            if(statement[i] * status[abs(statement[i])-1] < 0){                lie.push_back(i-1);            }        }        if (lie.size() == 2 && status[lie[0]]+status[lie[1]] == 0){            int cnt = 0;            for (int i = 0; i < n + 1; ++i) {                if(status[i] == -1){                    cnt == 0? printf("%d ", i+1):printf("%d", i+1);                    cnt += 1;                }            }            return 0;        }    } while (next_permutation(status.begin(), status.end()));    printf("No Solution");    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>这道题其实做了好久。。还只是第一题。。这个check函数在考试还是不太容易想出来，还是继续锤吧</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1148-Werewolf-Simple-Version&quot;&gt;&lt;a href=&quot;#1148-Werewolf-Simple-Version&quot; class=&quot;headerlink&quot; title=&quot;1148:Werewolf-Simple Version&quot;&gt;&lt;/a&gt;11
+      
+    
+    </summary>
+    
+    
+      <category term="pat" scheme="http://blog.master-cai.xyz/categories/pat/"/>
+    
+    
+      <category term="pat" scheme="http://blog.master-cai.xyz/tags/pat/"/>
+    
+      <category term="algorithm" scheme="http://blog.master-cai.xyz/tags/algorithm/"/>
+    
+      <category term="全排列" scheme="http://blog.master-cai.xyz/tags/%E5%85%A8%E6%8E%92%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>1155_Heap_Paths</title>
     <link href="http://blog.master-cai.xyz/posts/26286.html"/>
     <id>http://blog.master-cai.xyz/posts/26286.html</id>
     <published>2020-05-04T13:12:45.000Z</published>
-    <updated>2020-05-05T05:04:18.979Z</updated>
+    <updated>2020-05-05T05:04:41.502Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1155-Heap-Paths"><a href="#1155-Heap-Paths" class="headerlink" title="1155:Heap Paths"></a><strong>1155</strong>:<strong>Heap Paths</strong></h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>In computer science, a heap is a specialized tree-based data structure that satisfies the heap property: if P is a parent node of C, then the key (the value) of P is either greater than or equal to (in a max heap) or less than or equal to (in a min heap) the key of C. A common implementation of a heap is the binary heap, in which the tree is a complete binary tree. (Quoted from Wikipedia at https://en.wikipedia.org/wiki/Heap_(data_structure))One thing for sure is that all the keys along any path from the root to a leaf in a max/min heap must be in non-increasing/non-decreasing order.Your job is to check every path in a given complete binary tree, in order to tell if it is a heap or not.Input Specification:Each input file contains one test case. For each case, the first line gives a positive integer N (1&lt;N≤1,000), the number of keys in the tree. Then the next line contains N distinct integer keys (all in the range of int), which gives the level order traversal sequence of a complete binary tree.Output Specification:For each given tree, first print all the paths from the root to the leaves. Each path occupies a line, with all the numbers separated by a space, and no extra space at the beginning or the end of the line. The paths must be printed in the following order: for each node in the tree, all the paths in its right subtree must be printed before those in its left subtree.Finally print in a line Max Heap if it is a max heap, or Min Heap for a min heap, or Not Heap if it is not a heap at all.Sample Input 1:898 72 86 60 65 12 23 50    Sample Output 1:98 86 2398 86 1298 72 6598 72 60 50Max Heap   Sample Input 2:88 38 25 58 52 82 70 60  Sample Output 2:8 25 708 25 828 38 528 38 58 60Min Heap  Sample Input 3:810 28 15 12 34 9 8 56Sample Output 3:10 15 810 15 910 28 3410 28 12 56Not Heap</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>题目虽然和堆有关系，但实际上只是一个深度搜索然后回溯就可以解决的问题。最开始的想法是在深搜的同时就判断一下是否满足条件，但是总是出一些奇怪的bug，递归的问题也不太好调试，就参照题解，先遍历出所有的路径情况，然后再单独判断是否符合条件。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-c++"><code class="language-c++">#include<iostream>#include<vector>using namespace std;int n;vector<int> heap; // 数组形式存储堆vector<int> path; // 存储路径 用于回溯void dfs(int pos){ // 回溯    if(pos >= n){        return;    }    if (pos >= n/2){ // 在数组堆中 大于n/2一定是叶子结点 打印结果即可        for(int i = 0; i<path.size(); i++){            printf("%d%c", path[i], i==path.size()-1?'\n': ' ');        }    } else{ // 不是叶子结点 继续遍历        int left = i*2+1;        int right = i*2+2;        // 下面是回溯 对于每一种可做的选择都进行尝试 相当于 for        path.push_back(heap[right]);        dfs(right);        path.pop_back();        path.push_back(heap[left]);        dfs(left);        path.pop_back();    }}int main(){    cin >> n;    for(int i=0; i<n; i++){        scanf("%d", &heap[i]);    }    path.push_back(heap[0]); // 根据dfs函数的逻辑 需要进行初始化    dfs(0);    bool min = true;    bool max = true;    for(int i = 0; i<n/2; i++){ //单独再判断是否符合条件        if ((i*2+1<n && heap[i]<heap[i*2+1]) || (i*2+2 < n && heap[i] < heap[i*2+2])){            max = false;        }        if ((i*2+1<n && heap[i]>heap[i*2+1]) || (i*2+2 < n && heap[i] > heap[i*2+2])){            min = false;        }    }    if(min){        printf("Min Heap");    } else if(max){        printf("Max Heap");    } else{        printf("Not Heap");    }    return 0;}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
     
@@ -237,9 +267,9 @@
       <category term="算法" scheme="http://blog.master-cai.xyz/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="小结" scheme="http://blog.master-cai.xyz/tags/%E5%B0%8F%E7%BB%93/"/>
-    
       <category term="全排列" scheme="http://blog.master-cai.xyz/tags/%E5%85%A8%E6%8E%92%E5%88%97/"/>
+    
+      <category term="小结" scheme="http://blog.master-cai.xyz/tags/%E5%B0%8F%E7%BB%93/"/>
     
   </entry>
   
@@ -483,9 +513,9 @@
       <category term="动态规划" scheme="http://blog.master-cai.xyz/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
-    
       <category term="动态规划" scheme="http://blog.master-cai.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
     
       <category term="KMP算法" scheme="http://blog.master-cai.xyz/tags/KMP%E7%AE%97%E6%B3%95/"/>
     
@@ -545,9 +575,9 @@
       <category term="动态规划" scheme="http://blog.master-cai.xyz/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
-    
       <category term="动态规划" scheme="http://blog.master-cai.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
     
       <category term="博弈问题" scheme="http://blog.master-cai.xyz/tags/%E5%8D%9A%E5%BC%88%E9%97%AE%E9%A2%98/"/>
     
@@ -575,39 +605,11 @@
       <category term="动态规划" scheme="http://blog.master-cai.xyz/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
     
-      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
-    
       <category term="动态规划" scheme="http://blog.master-cai.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
     
       <category term="备忘录递归" scheme="http://blog.master-cai.xyz/tags/%E5%A4%87%E5%BF%98%E5%BD%95%E9%80%92%E5%BD%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最长递增子序列</title>
-    <link href="http://blog.master-cai.xyz/posts/49199.html"/>
-    <id>http://blog.master-cai.xyz/posts/49199.html</id>
-    <published>2020-02-17T13:10:19.000Z</published>
-    <updated>2020-04-04T02:51:38.460Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="最长递增子序列之动态规划解法"><a href="#最长递增子序列之动态规划解法" class="headerlink" title="最长递增子序列之动态规划解法"></a>最长递增子序列之动态规划解法</h1><p>最近在leetcode 做了这样一道动态规划的题目，看了答案以后发现并不是非常的困难，但是也困扰了我好久（属实垃圾。。）。过了几天以后再次看这道题，虽说有了一定思路，但是依然没有解决出来（垃圾实锤），特此记录一下这道题的解决过程，应用一下前文所述的框架。</p><p>先看题目：<img src="1.png" alt=""></p><p>题目描述本身并没有什么坑点，也算是一道很典型的动态规划问题（子序列+最大值）。</p><h2 id="1-确定问题的状态和dp数组"><a href="#1-确定问题的状态和dp数组" class="headerlink" title="1. 确定问题的状态和dp数组"></a>1. 确定问题的状态和dp数组</h2><p>首先由于这道题目只是求自身的最长递增子序列，并没有设计到和其他序列进行比较，所以暂时可以确定dp数组是一个一维数组。在这个问题中，没有特别明显的状态，不太方便从这个角度分析。接下来就是考虑dp数据的含义了，既然是一维数组，那么最直接的想法就是dp[i]就表示从nums[0…i]的最大长度（不是说一定从0开始），因为最终的答案肯定是在dp数组中，再结合题目，很容易得出这个定义。带入尝试一下发现没有问题，继续分析。</p><h2 id="2-确定当前的选择"><a href="#2-确定当前的选择" class="headerlink" title="2. 确定当前的选择"></a>2. 确定当前的选择</h2><p>我们假设这样一种情况：现在我们通过某种方式已经求出了dp[i-1]的值，现在我们想要求dp[i]的值。面对这样的情况，我们可以有哪几种选择或者说操作呢？</p><p>首先，求出了dp[i-1]就说明nums[0…i-1]中的最长长度以及有了。现在我们遍历到了nums[i]的位置，那么最直接的想法就是判断是否将nums[i]接到前面的最长序列上。又由于子序列不一定是连续的（即dp[i-1]和dp[i-2]的情况可能不一样），所以到底接在哪个最大子序列上也是一个选择。综合起来，选择就是是否将nums[i]接在nums[0…i-1]中的最长子序列中以及接在哪个一最长子序列中。</p><h2 id="3-写出状态转移方程"><a href="#3-写出状态转移方程" class="headerlink" title="3. 写出状态转移方程"></a>3. 写出状态转移方程</h2><p>明确了dp数组的含义和选择，再结合数学归纳法分析一下，很容易得出该问题的状态转移方程：</p><pre class="line-numbers language-python"><code class="language-python">dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="4-初始话base-case"><a href="#4-初始话base-case" class="headerlink" title="4. 初始话base case"></a>4. 初始话base case</h2><p>本题的base case很好得出，子序列最少也需要包含自己，所以base case就是1。由于dp数组为一维，每次求dp[i] 都需要 dp[0…i]，故按照正序遍历即可解决问题。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>到此，这个问题已经圆满解决了，但是还是有一些小瑕疵：对于dp数组的定义。在本问题中，将dp数组定义为nums[0…i]的最长子序列长度其实并不太合适，但是这样定义又是我自己的第一反应，这也是我在第二次解题时仍然遇到困难的主要原因。事后我在查看题解时发现了一种更加合理的定义方式：dp[i]的含义时以nums[i] 结尾的最长子序列长度。由于这个定义明确了每个最长子序列的末尾，很巧妙的契合了我们的“选择”，即到底接在哪个最长子序列的末尾，那么解决接下来的问题就势如破竹了。</p><p>从这里也可以看出dp数组的定义真的对于动态规划问题的解决十分的关键。可以说一个好的dp数组的定义是解决动态规划问题的关键所在。dp数组定义的好，推导状态转移方程也是水到渠成的事情。但是这种在我看来比较巧妙地dp数组的定义方式，只能靠不断积累（智商有限）。</p><p>下面附上完整代码：</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">lengthOfLIS</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>int<span class="token punctuation">:</span>    n <span class="token operator">=</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>    <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>        <span class="token keyword">return</span> <span class="token number">0</span>       dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> n <span class="token comment" spellcheck="true"># 初始化</span>    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>        <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>    <span class="token keyword">return</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;最长递增子序列之动态规划解法&quot;&gt;&lt;a href=&quot;#最长递增子序列之动态规划解法&quot; class=&quot;headerlink&quot; title=&quot;最长递增子序列之动态规划解法&quot;&gt;&lt;/a&gt;最长递增子序列之动态规划解法&lt;/h1&gt;&lt;p&gt;最近在leetcode 做了这样一道动态规划
-      
-    
-    </summary>
-    
-    
-      <category term="动态规划" scheme="http://blog.master-cai.xyz/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    
-    
-      <category term="leetcode" scheme="http://blog.master-cai.xyz/tags/leetcode/"/>
-    
-      <category term="动态规划" scheme="http://blog.master-cai.xyz/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
