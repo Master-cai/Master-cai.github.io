@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.master-cai.xyz/posts/43043.html</loc>
+    
+    <lastmod>2020-05-12T09:16:00.953Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.master-cai.xyz/posts/27259.html</loc>
+    
+    <lastmod>2020-05-12T07:19:40.566Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.master-cai.xyz/posts/63151.html</loc>
     
-    <lastmod>2020-05-06T01:30:24.016Z</lastmod>
+    <lastmod>2020-05-06T01:31:14.472Z</lastmod>
     
   </url>
   
@@ -184,7 +198,7 @@
   </url>
   
   <url>
-    <loc>http://blog.master-cai.xyz/categories/index.html</loc>
+    <loc>http://blog.master-cai.xyz/archives/index.html</loc>
     
     <lastmod>2020-04-03T11:27:31.855Z</lastmod>
     
@@ -198,7 +212,7 @@
   </url>
   
   <url>
-    <loc>http://blog.master-cai.xyz/archives/index.html</loc>
+    <loc>http://blog.master-cai.xyz/categories/index.html</loc>
     
     <lastmod>2020-04-03T11:27:31.855Z</lastmod>
     
