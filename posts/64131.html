@@ -4,8 +4,8 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="动态规划解KMP算法, 博客 计算机 算法 python">
-    <meta name="description" content="动态规划解KMP算法KMP算法是一个非常经典的字符串匹配算法，效率很高，其原因也在于使用了动态规划的设计思想，但是着实复杂。。为了更加便于理解，本文采用的是一种二维dp数组的方式，而不是一般资料里非常神奇的一维数组（水平有限，菜），但是问题">
+    <meta name="keywords" content="1046 Shortest Distance, 博客 计算机 算法 python">
+    <meta name="description" content="1046 Shortest Distance题目The task is really simple: given N exits on a highway which forms a simple cycle, you are suppos">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
     <meta name="referrer" content="no-referrer">
-    <title>动态规划解KMP算法 | Master-cai</title>
+    <title>1046 Shortest Distance | Master-cai</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -406,12 +406,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">动态规划解KMP算法</h1>
+                    <h1 class="description center-align post-title">1046 Shortest Distance</h1>
                 </div>
             </div>
         </div>
@@ -521,16 +521,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
+                                <a href="/tags/pat/">
+                                    <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
-                                <a href="/tags/KMP%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">KMP算法</span>
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -541,8 +537,8 @@
                         <div class="post-cate">
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-category">
-                                    动态规划
+                                <a href="/categories/pat/" class="post-category">
+                                    pat
                                 </a>
                             
                         </div>
@@ -554,28 +550,28 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2020-02-24
+                        2020-05-17
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-04-04
+                        2020-05-17
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.3k
+                        645
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        3 分
                     </div>
                 
 
@@ -590,44 +586,51 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="动态规划解KMP算法"><a href="#动态规划解KMP算法" class="headerlink" title="动态规划解KMP算法"></a>动态规划解KMP算法</h1><p>KMP算法是一个非常经典的字符串匹配算法，效率很高，其原因也在于使用了动态规划的设计思想，但是着实复杂。。为了更加便于理解，本文采用的是一种二维dp数组的方式，而不是一般资料里非常神奇的一维数组（水平有限，菜），但是问题的复杂度并没有上升。下面看问题描述：</p>
-<pre><code>pat 表示模式串，长度为 M，txt 表示文本串，长度为 N。KMP 算法是在 txt 中查找子串 pat，如果存在，返回这个子串的起始索引，否则返回 -1。</code></pre><p>问题倒是很简单，如果用暴力算法解决，时间复杂度则是 $$ O(M*N)$$,  显然不现实。在解决这个问题的过程中，我发现这个问题对状态分析的过程非常经典，其他资料更加直接，直接使用DFA来解决这个问题。在我看来动态规划和DFA有着异曲同工之妙，也可以说本题就是DFA的代码实现，其他类似问题完全可以套用。废话不多说，下面开始分析。</p>
-<h2 id="1-确定问题的状态与dp数组"><a href="#1-确定问题的状态与dp数组" class="headerlink" title="1. 确定问题的状态与dp数组"></a>1. 确定问题的状态与dp数组</h2><p>在暴力解法中，影响时间复杂度的最大原因就是搜索指针只是在盲目的穷举所有的情况，其中包括一些没有意义的情况。如果能解决这个问题，那么算法的时间复杂度就会很大的提高。</p>
-<p>对于pat和txt来说，pat是固定的，而txt却是任意的。他们的共同点就是要在txt里匹配出pat，因此我们选择用相对固定的pat来设计有限的状态（好吧其实是书上说要用DFA的我也不太明白为啥就不瞎BB了）。</p>
-<p>回想计算理论学习的DFA设计正规文法，我们可以用类似的思路来设计这个问题的状态。即按照pat的字符串的顺序,每一个字符都是一个状态(即当txt每多匹配一个字符，就是一个不同的状态)。那么按照这个思路，dp数组里记录的就是各个状态之间的转移关系了。要确定状态转移的行为，得明确两个变量，一个是当前的匹配状态，另一个是遇到的字符。因此，我们定义dp数组为：<code>dp[j][c] = next</code>，其中j代表当前状态，C代表当前的字符（用asc码表示，或者用字典实现）。举例来说，<code>dp[4]['A'] = 3</code>含义就是，在状态4时，匹配到了字符A，于是要跳转到状态３即可。有了这个定义，我们可以很容易的实现搜索操作。</p>
-<h2 id="2-明确当前的选择"><a href="#2-明确当前的选择" class="headerlink" title="2. 明确当前的选择"></a>2. 明确当前的选择</h2><p>从暴力解法来看，如果当前字符c和pat[i]是匹配的，那就转移到下一个状态；如果不匹配，那么就转移到另一个状态。因此选择就是根据当前字符串c进行状态的转移。</p>
-<h2 id="3-构建状态方程（DFA）"><a href="#3-构建状态方程（DFA）" class="headerlink" title="3. 构建状态方程（DFA）"></a>3. 构建状态方程（DFA）</h2><p>在前面的分析中，当c和pat[i]不匹配时，我们说应该转移到另一个状态，那么这个状态到底应该如何确定呢？</p>
-<p>这里就涉及到一个编程的小技巧。当遇到不匹配的情况时，搜索指针就要进行回退，在暴力算法中会同时回退pat指针和txt指针。为了减少时间复杂度，我们可以利用dp数组中存储的信息，来确定回退的具体位置。具体来说，就是用一个变量来记录当前状态的上一个相同前缀的状态即可，记为X。当前状态如果不能匹配的话，就去询问状态X ，应该如何跳转即可。因为状态X在之前已经计算过了（动态规划）。</p>
-<h2 id="4-base-case分析"><a href="#4-base-case分析" class="headerlink" title="4. base case分析"></a>4. base case分析</h2><p>本问题中，当任何字符都没有匹配的时候，我们设定为状态0，那么在状态0下，只有匹配到pat的第一个字符才能继续推进状态，即base case就是<code>dp[0][pat[0]]=1;</code></p>
-<h2 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h2><p>下面给出具体的完整代码：</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">KMP</span><span class="token punctuation">:</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> pat<span class="token punctuation">:</span> str<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>pat <span class="token operator">=</span> pat
-        M <span class="token operator">=</span> len<span class="token punctuation">(</span>pat<span class="token punctuation">)</span>
-        self<span class="token punctuation">.</span>dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">256</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>M<span class="token punctuation">)</span><span class="token punctuation">]</span>
-        self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>ord<span class="token punctuation">(</span>pat<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
-        X <span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> M<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token comment" spellcheck="true"># for c in range(256):</span>
-                <span class="token comment" spellcheck="true"># if ord(pat[j]) == c:</span>
-                   <span class="token comment" spellcheck="true"># self.dp[j][c] = j+1</span>
-                   <span class="token comment" spellcheck="true">#else:</span>
-                <span class="token comment" spellcheck="true">#    self.dp[j][c] = self.dp[X][c]</span>
-            <span class="token comment" spellcheck="true">#X = self.dp[X][ord(pat[j])]</span>
-               <span class="token keyword">for</span> c <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token operator">=</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>X<span class="token punctuation">]</span><span class="token punctuation">[</span>c<span class="token punctuation">]</span>
-            self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>ord<span class="token punctuation">(</span>pat<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> j<span class="token operator">+</span><span class="token number">1</span>
-            X <span class="token operator">=</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>X<span class="token punctuation">]</span><span class="token punctuation">[</span>ord<span class="token punctuation">(</span>pat<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+                <h1 id="1046-Shortest-Distance"><a href="#1046-Shortest-Distance" class="headerlink" title="1046 Shortest Distance"></a><strong>1046</strong> <strong>Shortest Distance</strong></h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>The task is really simple: given <em>N</em> exits on a highway which forms a simple cycle, you are supposed to tell the shortest distance between any pair of exits.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each case, the first line contains an integer <em>N</em> (in [3,105]), followed by <em>N</em> integer distances <em>D</em>1 <em>D</em>2 ⋯ <em>D**N</em>, where <em>D**i</em> is the distance between the <em>i</em>-th and the (<em>i</em>+1)-st exits, and <em>D**N</em> is between the <em>N</em>-th and the 1st exits. All the numbers in a line are separated by a space. The second line gives a positive integer <em>M</em> (≤104), with <em>M</em> lines follow, each contains a pair of exit numbers, provided that the exits are numbered from 1 to <em>N</em>. It is guaranteed that the total round trip distance is no more than 107.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each test case, print your results in <em>M</em> lines, each contains the shortest distance between the corresponding given pair of exits.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><pre class="line-numbers language-in"><code class="language-in">5 1 2 4 14 9
+3
+1 3
+2 5
+4 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><pre class="line-numbers language-out"><code class="language-out">3
+10
+7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>题目本身没有什么难度，最暴力的做法就是对于每一个起点，同时从两个方向进行搜索，然后对结果进行比较。但是这样的话时间复杂度比较高，最后一个测试样例无法通过。题解中的方法比较巧妙，可以说是利用了动态规划的思想来解决的。将dis数组定义为从点1到点i的下一个节点的距离，这里定义为点i的下一个节点而不是到点i的距离，原因是如果那样表示的话，就无法表示从点N到点1了（中间没有点0），因此这样定义方便一些。另一种结局思路就是加上一个“点0“，点0到点1距离为0也可。如果要求点i到点j的距离，那么就是<code>dis[j-1]-dis[i-1]</code>。那么另一个方向的走法要怎么计算呢？因为题中给出的是一个环，即距离总长度是不变的，所以我们只需要用总长度减去这个距离，就是从另一个方向走需要的距离了（这两个点将圆分成了两半）。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">// Created by masterCai on 2020/5/15.</span>
+<span class="token comment" spellcheck="true">//</span>
 
-    <span class="token keyword">def</span> <span class="token function">search</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> txt<span class="token punctuation">:</span> str<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        M <span class="token operator">=</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>pat<span class="token punctuation">)</span>
-        N <span class="token operator">=</span> len<span class="token punctuation">(</span>txt<span class="token punctuation">)</span>
-        j <span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>N<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            j <span class="token operator">=</span> self<span class="token punctuation">.</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>ord<span class="token punctuation">(</span>txt<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-            <span class="token keyword">if</span> j <span class="token operator">==</span> M<span class="token punctuation">:</span>
-                <span class="token keyword">return</span> i <span class="token operator">-</span> M <span class="token operator">+</span> <span class="token number">1</span>
-        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> N<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> N<span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">dis</span><span class="token punctuation">(</span>N<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> left<span class="token punctuation">,</span> right<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> tmp<span class="token punctuation">;</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sum <span class="token operator">+</span><span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+        dis<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">int</span> M<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> M<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> M<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>left<span class="token punctuation">,</span> <span class="token operator">&amp;</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>left <span class="token operator">></span> right<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token function">swap</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> tmp <span class="token operator">=</span> dis<span class="token punctuation">[</span>right<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">-</span> dis<span class="token punctuation">[</span>left<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token function">min</span><span class="token punctuation">(</span>tmp<span class="token punctuation">,</span> sum<span class="token operator">-</span>tmp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -659,16 +662,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
+                                <a href="/tags/pat/">
+                                    <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
-                                <a href="/tags/KMP%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">KMP算法</span>
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -977,51 +976,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
-                    <a href="/posts/52811.html">
+                    <a href="/posts/64131.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="python import用法总结">
+                                <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="1046 Shortest Distance">
                             
-                            <span class="card-title">python import用法总结</span>
+                            <span class="card-title">1046 Shortest Distance</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                最近写代码的时候又遇到了Import出错的问题，以前遇到这类问题总是赶紧Google一下，尽快找到解决方案，最近又遇到了这个问题，小小的研究了一下，借这个机会稍微总结一下import的用法。
-python import原理要想用根本上解决这
+                                1046 Shortest Distance题目The task is really simple: given N exits on a highway which forms a simple cycle, you are suppos
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-17
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/python/" class="post-category">
-                                    python
+                                        <a href="/categories/pat/" class="post-category">
+                                    pat
                                 </a>
                                     
                                 
                             </span>
                         </div>
                     </div>
+
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/python/">
-                                    <span class="chip bg-color">python</span>
+                                <a href="/tags/pat/">
+                                    <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/%E6%80%BB%E7%BB%93/">
-                                    <span class="chip bg-color">总结</span>
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
@@ -1035,32 +1035,31 @@ python import原理要想用根本上解决这
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/55741.html">
+                    <a href="/posts/63296.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="区间调度">
+                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="1143 Lowest Common Ancestor">
                             
-                            <span class="card-title">区间调度</span>
+                            <span class="card-title">1143 Lowest Common Ancestor</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                区间调度之贪心算法解法区间调度问题，或者说是活动安排问题，在实际中用途非常广泛。解决这个问题的核心思想其实比较简单，可以说是一种贪心算法的思想，是贪心算法的一个很典型的应用。这里主要记录一些和解决这个问题相关的问题。
-问题分析首先看一下问题
+                                1143 Lowest Common Ancestor题目The lowest common ancestor (LCA) of two nodes U and V in a tree is the deepest node that ha
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-15
                             </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" class="post-category">
-                                    贪心算法
+                                        <a href="/categories/pat/" class="post-category">
+                                    pat
                                 </a>
                                     
                                 
@@ -1070,20 +1069,16 @@ python import原理要想用根本上解决这
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
+                                <a href="/tags/pat/">
+                                    <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8C%BA%E9%97%B4%E8%B0%83%E5%BA%A6/">
-                                    <span class="chip bg-color">区间调度</span>
+                                <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
+                                    <span class="chip bg-color">二叉搜索树</span>
                                 </a>
                             
-                                <a href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">贪心算法</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92/">
-                                    <span class="chip bg-color">活动安排</span>
+                                <a href="/tags/LCA/">
+                                    <span class="chip bg-color">LCA</span>
                                 </a>
                             
                         </div>
