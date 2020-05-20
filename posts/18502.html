@@ -4,8 +4,8 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="1155_Heap_Paths, 博客 计算机 算法 python">
-    <meta name="description" content="1155:Heap Paths题目In computer science, a heap is a specialized tree-based data structure that satisfies the heap property">
+    <meta name="keywords" content="1012 The Best Rank, 博客 计算机 算法 python">
+    <meta name="description" content="1012 The Best Rank题目To evaluate the performance of our first year CS majored students, we consider their grades of three">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
     <meta name="referrer" content="no-referrer">
-    <title>1155_Heap_Paths | Master-cai</title>
+    <title>1012 The Best Rank | Master-cai</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -406,12 +406,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">1155_Heap_Paths</h1>
+                    <h1 class="description center-align post-title">1012 The Best Rank</h1>
                 </div>
             </div>
         </div>
@@ -525,16 +525,8 @@
                                     <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%A0%86/">
-                                    <span class="chip bg-color">堆</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%90%9C%E7%B4%A2/">
-                                    <span class="chip bg-color">深度搜索</span>
+                                <a href="/tags/sort/">
+                                    <span class="chip bg-color">sort</span>
                                 </a>
                             
                         </div>
@@ -558,28 +550,28 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2020-05-04
+                        2020-05-20
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-05-05
+                        2020-05-20
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        585
+                        990
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        5 分
                     </div>
                 
 
@@ -594,98 +586,85 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1155-Heap-Paths"><a href="#1155-Heap-Paths" class="headerlink" title="1155:Heap Paths"></a><strong>1155</strong>:<strong>Heap Paths</strong></h2><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>In computer science, a heap is a specialized tree-based data structure that satisfies the heap property: if P is a parent node of C, then the key (the value) of P is either greater than or equal to (in a max heap) or less than or equal to (in a min heap) the key of C. A common implementation of a heap is the binary heap, in which the tree is a complete binary tree. (Quoted from Wikipedia at https://en.wikipedia.org/wiki/Heap_(data_structure))
-One thing for sure is that all the keys along any path from the root to a leaf in a max/min heap must be in non-increasing/non-decreasing order.
-Your job is to check every path in a given complete binary tree, in order to tell if it is a heap or not.
-Input Specification:
-Each input file contains one test case. For each case, the first line gives a positive integer N (1&lt;N≤1,000), the number of keys in the tree. Then the next line contains N distinct integer keys (all in the range of int), which gives the level order traversal sequence of a complete binary tree.
-Output Specification:
-For each given tree, first print all the paths from the root to the leaves. Each path occupies a line, with all the numbers separated by a space, and no extra space at the beginning or the end of the line. The paths must be printed in the following order: for each node in the tree, all the paths in its right subtree must be printed before those in its left subtree.
-Finally print in a line Max Heap if it is a max heap, or Min Heap for a min heap, or Not Heap if it is not a heap at all.
-Sample Input 1:
-8
-98 72 86 60 65 12 23 50    
-Sample Output 1:
-98 86 23
-98 86 12
-98 72 65
-98 72 60 50
-Max Heap   
-Sample Input 2:
-8
-8 38 25 58 52 82 70 60  
-Sample Output 2:
-8 25 70
-8 25 82
-8 38 52
-8 38 58 60
-Min Heap  
-Sample Input 3:
-8
-10 28 15 12 34 9 8 56
-Sample Output 3:
-10 15 8
-10 15 9
-10 28 34
-10 28 12 56
-Not Heap</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>题目虽然和堆有关系，但实际上只是一个深度搜索然后回溯就可以解决的问题。最开始的想法是在深搜的同时就判断一下是否满足条件，但是总是出一些奇怪的bug，递归的问题也不太好调试，就参照题解，先遍历出所有的路径情况，然后再单独判断是否符合条件。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-c++"><code class="language-c++">#include<iostream>
-#include<vector>
-
-using namespace std;
-
-int n;
-vector<int> heap; // 数组形式存储堆
-vector<int> path; // 存储路径 用于回溯
-
-void dfs(int pos){ // 回溯
-    if(pos >= n){
-        return;
-    }
-    if (pos >= n/2){ // 在数组堆中 大于n/2一定是叶子结点 打印结果即可
-        for(int i = 0; i<path.size(); i++){
-            printf("%d%c", path[i], i==path.size()-1?'\n': ' ');
-        }
-    } else{ // 不是叶子结点 继续遍历
-        int left = i*2+1;
-        int right = i*2+2;
-
-        // 下面是回溯 对于每一种可做的选择都进行尝试 相当于 for
-        path.push_back(heap[right]);
-        dfs(right);
-        path.pop_back();
-        path.push_back(heap[left]);
-        dfs(left);
-        path.pop_back();
-    }
-}
-
-int main(){
-    cin >> n;
-    for(int i=0; i<n; i++){
-        scanf("%d", &heap[i]);
-    }
-    path.push_back(heap[0]); // 根据dfs函数的逻辑 需要进行初始化
-    dfs(0);
-    bool min = true;
-    bool max = true;
-    for(int i = 0; i<n/2; i++){ //单独再判断是否符合条件
-        if ((i*2+1<n && heap[i]<heap[i*2+1]) || (i*2+2 < n && heap[i] < heap[i*2+2])){
-            max = false;
-        }
-        if ((i*2+1<n && heap[i]>heap[i*2+1]) || (i*2+2 < n && heap[i] > heap[i*2+2])){
-            min = false;
-        }
-    }
-    if(min){
-        printf("Min Heap");
-    } else if(max){
-        printf("Max Heap");
-    } else{
-        printf("Not Heap");
-    }
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="1012-The-Best-Rank"><a href="#1012-The-Best-Rank" class="headerlink" title="1012 The Best Rank"></a>1012 The Best Rank</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>To evaluate the performance of our first year CS majored students, we consider their grades of three courses only: <code>C</code> - C Programming Language, <code>M</code> - Mathematics (Calculus or Linear Algrbra), and <code>E</code> - English. At the mean time, we encourage students by emphasizing on their best ranks – that is, among the four ranks with respect to the three courses and the average grade, we print the best rank for each student.</p>
+<p>For example, The grades of <code>C</code>, <code>M</code>, <code>E</code> and <code>A</code> - Average of 4 students are given as the following:</p>
+<pre><code>StudentID  C  M  E  A
+310101     98 85 88 90
+310102     70 95 88 84
+310103     82 87 94 88
+310104     91 91 91 91</code></pre><p>Then the best ranks for all the students are No.1 since the 1st one has done the best in C Programming Language, while the 2nd one in Mathematics, the 3rd one in English, and the last one in average.</p>
+<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. Each case starts with a line containing 2 numbers <em>N</em> and <em>M</em> (≤2000), which are the total number of students, and the number of students who would check their ranks, respectively. Then <em>N</em> lines follow, each contains a student ID which is a string of 6 digits, followed by the three integer grades (in the range of [0, 100]) of that student in the order of <code>C</code>, <code>M</code> and <code>E</code>. Then there are <em>M</em> lines, each containing a student ID.</p>
+<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each of the <em>M</em> students, print in one line the best rank for him/her, and the symbol of the corresponding rank, separated by a space.</p>
+<p>The priorities of the ranking methods are ordered as <code>A</code> &gt; <code>C</code> &gt; <code>M</code> &gt; <code>E</code>. Hence if there are two or more ways for a student to obtain the same best rank, output the one with the highest priority.</p>
+<p>If a student is not on the grading list, simply output <code>N/A</code>.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><pre class="line-numbers language-in"><code class="language-in">5 6
+310101 98 85 88
+310102 70 95 88
+310103 82 87 94
+310104 91 91 91
+310105 85 90 90
+310101
+310102
+310103
+310104
+310105
+999999<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><pre class="line-numbers language-out"><code class="language-out">1 C
+1 M
+1 E
+1 A
+3 A
+N/A<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题的基本思路其实不太难，就是对数据按照要求进行排序即可。但是细节部分问题比较多，不注意的话无法拿到所有分数。首先，对于A，题目中没有说明是否需要四舍五入，因此有一个很巧妙的处理方法，就是只存储总分不计算平均值（题目中只要求排名），这样得出的排名必然是对的。如果一定要计算平均分，可以使用库函数或者加0.5再直接取整。第二就是这个排名，如果有并列的情况，排名不能顺延而是直接按照人数排名，即：<code>1 1 3 4 5</code>。最后就是这个变量的存储问题，本题设计的变量较多，4个分数，4个排名，可以直接存储在数组中，如果单独明明代码重复太大（前两天我还说别人来着。。。）本题就是麻烦点，注意细节。（但我确实没调出来。。）</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> node <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">,</span> best<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// best存储最优排名的下标</span>
+    <span class="token keyword">int</span> score<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> rank<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// A C M E</span>
+<span class="token punctuation">}</span>stu<span class="token punctuation">[</span><span class="token number">2005</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> exist<span class="token punctuation">[</span><span class="token number">1000000</span><span class="token punctuation">]</span><span class="token punctuation">,</span> flag <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// exist 用来判断是否存在</span>
+<span class="token keyword">bool</span> <span class="token function">cmp1</span><span class="token punctuation">(</span>node a<span class="token punctuation">,</span> node b<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> a<span class="token punctuation">.</span>score<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">></span> b<span class="token punctuation">.</span>score<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span> m<span class="token punctuation">,</span> id<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>n<span class="token punctuation">,</span> <span class="token operator">&amp;</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d %d %d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token operator">&amp;</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+</span> stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">3.0</span> <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> flag <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">;</span> flag<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// flag用来确定当前排序的是哪个分数</span>
+        <span class="token function">sort</span><span class="token punctuation">(</span>stu<span class="token punctuation">,</span> stu <span class="token operator">+</span> n<span class="token punctuation">,</span> cmp1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stu<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">==</span> stu<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>score<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>flag<span class="token punctuation">]</span> <span class="token operator">=</span> stu<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>flag<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        exist<span class="token punctuation">[</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>best <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> minn <span class="token operator">=</span> stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//这里是求排名的最小值</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> minn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                minn <span class="token operator">=</span> stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                stu<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>best <span class="token operator">=</span> j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">char</span> c<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token string">'M'</span><span class="token punctuation">,</span> <span class="token string">'E'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> temp <span class="token operator">=</span> exist<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>temp<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> best <span class="token operator">=</span> stu<span class="token punctuation">[</span>temp<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>best<span class="token punctuation">;</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d %c\n"</span><span class="token punctuation">,</span> stu<span class="token punctuation">[</span>temp<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>rank<span class="token punctuation">[</span>best<span class="token punctuation">]</span><span class="token punctuation">,</span> c<span class="token punctuation">[</span>best<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"N/A\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -721,16 +700,8 @@ int main(){
                                     <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%A0%86/">
-                                    <span class="chip bg-color">堆</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%90%9C%E7%B4%A2/">
-                                    <span class="chip bg-color">深度搜索</span>
+                                <a href="/tags/sort/">
+                                    <span class="chip bg-color">sort</span>
                                 </a>
                             
                         </div>
@@ -1039,29 +1010,30 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
-                    <a href="/posts/63151.html">
+                    <a href="/posts/18502.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="1148:Werewolf-Simple Version">
+                                <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="1012 The Best Rank">
                             
-                            <span class="card-title">1148:Werewolf-Simple Version</span>
+                            <span class="card-title">1012 The Best Rank</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1148:Werewolf-Simple Version题目Werewolf（狼人杀） is a game in which the players are partitioned into two parties: the werewol
+                                1012 The Best Rank题目To evaluate the performance of our first year CS majored students, we consider their grades of three
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-20
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1074,6 +1046,7 @@ int main(){
                             </span>
                         </div>
                     </div>
+
                     
                         <div class="card-action article-tags">
                             
@@ -1081,12 +1054,8 @@ int main(){
                                     <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%85%A8%E6%8E%92%E5%88%97/">
-                                    <span class="chip bg-color">全排列</span>
+                                <a href="/tags/sort/">
+                                    <span class="chip bg-color">sort</span>
                                 </a>
                             
                         </div>
@@ -1100,24 +1069,24 @@ int main(){
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/61450.html">
+                    <a href="/posts/64131.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="1154-vertex-coloring">
+                                <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="1046 Shortest Distance">
                             
-                            <span class="card-title">1154-vertex-coloring</span>
+                            <span class="card-title">1046 Shortest Distance</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1154_vertex_coloring前言最近开始做pat的题目了，题目感觉和leetcode还是区别比较大的，和蓝桥杯有一定的相似点。主要是对于输入输出的要求比较严格，我所报名的甲级是英文题目，其中部分单词还是不太熟悉，意思只能看靠猜测
+                                1046 Shortest Distance题目The task is really simple: given N exits on a highway which forms a simple cycle, you are suppos
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-17
                             </span>
                             <span class="publish-author">
                                 
@@ -1138,12 +1107,8 @@ int main(){
                                     <span class="chip bg-color">pat</span>
                                 </a>
                             
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%9B%BE/">
-                                    <span class="chip bg-color">图</span>
+                                <a href="/tags/%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">算法</span>
                                 </a>
                             
                         </div>
