@@ -565,7 +565,7 @@ sock">
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.3k
+                        2.2k
                     </div>
                 
 
@@ -598,28 +598,32 @@ sock">
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;netinet/in.h></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">int</span> serv_sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> IPPROTO_TCP<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> sockaddr_in serv_addr<span class="token punctuation">;</span>
+  <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  serv_addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+  serv_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  serv_addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">1234</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">bind</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">listen</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> sockaddr_in clnt_addr<span class="token punctuation">;</span>
+  socklen_t clnt_addr_size <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>clnt_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> clnt_sock <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>clnt_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clnt_addr_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello World!"</span><span class="token punctuation">;</span>
+  <span class="token function">send</span><span class="token punctuation">(</span>clnt_sock<span class="token punctuation">,</span> str<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">close</span><span class="token punctuation">(</span>clnt_sock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">close</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<p>int main(){<br>    int serv_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);<br>    struct sockaddr_in serv_addr;<br>    memset(&amp;serv_addr, 0, sizeof(serv_addr));<br>    serv_addr.sin_family = AF_INET;<br>    serv_addr.sin_addr.s_addr = inet_addr(“127.0.0.1”);<br>    serv_addr.sin_port = htons(1234);<br>    bind(serv_sock, (struct sockaddr*) &amp;serv_addr, sizeof(serv_addr));<br>    listen(serv_sock, 20);</p>
-<pre><code>struct sockaddr_in clnt_addr;
-socklen_t clnt_addr_size = sizeof(clnt_addr);
-int clnt_sock = accept(serv_sock, (struct sockaddr*) &amp;clnt_addr, &amp;clnt_addr_size);
-char str[] = "hello World!";
-send(clnt_sock, str, sizeof(str), 0);
-close(clnt_sock);
-close(serv_sock);</code></pre><p>}</p>
-<pre><code>
-`int serv_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);`
-    首先通过socket函数定义了一个本地的socket：serv_sock。由于在Linux系统中万物皆文件，socket也不例外，socket函数返回值就是创建好的socket的文件描述符，是一个整数。后面我们就通过这个文件描述符来操作serv _sock这个socket。
-    然后看socket函数的参数：AF_INET表示使用ipv4地址；SOCK _STREAM表示使用面向连接的数据传输方式；IPPROTO _TCP表示使用TCP协议。同理对于UDP协议也有相应的参数。
-    但是现在我们只有一个socket，并不知道他的地址，端口号，也就没法和外间进行连接。在C++中专门有一个数据结构来存储socket的各个属性值，看如下代码段：
-```cpp
-    struct sockaddr_in serv_addr;
-    memset(&amp;serv_addr, 0, sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    serv_addr.sin_port = htons(1234);</code></pre><p>sockaddr_ in 便是这个数据结构，其中定义了socket使用的协议，地址和端口号。<br>    单独定义这些也不够，这只是一条数据，需要和一个特定的socket绑定起来才能构成一个完整的socket。在C++中使用bind()函数进行绑定操作。<br><code>bind(serv_sock,(struct sockaddr*)&amp;serv_addr,sizeof(serv_addr));</code><br>    到这就构成了一个完整的socket。然后使用listen()函数使其进入监听状态，就可以被别的socket连接了。<code>listen(serv_sock, 20);</code>第一个参数指定了哪个socket进入监听状态；第二个参数设定了socket连接请求队列的长度。但是listen函数并不是真正的和某个socket进行了连接，它只是将socket的状态进行了转变。<br>    socket()函数创建的socket默认处于“主动连接”状态，并不会接收别的socket的连接请求。为了能够接收别的进程发来的请求，就需要单独指定一下这个socket的状态，即listen()函数的功能。<br>    然后我们要接受其他进程的连接请求，我们需要创建一个socket作为这个链接的载体。就好比是你在网络中设置了一块共享硬盘，然后将其映射到本地的过程。这个新创建的socket就是你给这个网络硬盘分配的盘号（文件名，挂载点），发起网络连接的进程就相当于网络硬盘。接下来执行真正的连接操作。</p>
+<p><code>int serv_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);</code><br>    首先通过socket函数定义了一个本地的socket：serv_sock。由于在Linux系统中万物皆文件，socket也不例外，socket函数返回值就是创建好的socket的文件描述符，是一个整数。后面我们就通过这个文件描述符来操作serv _sock这个socket。<br>    然后看socket函数的参数：AF_INET表示使用ipv4地址；SOCK _STREAM表示使用面向连接的数据传输方式；IPPROTO _TCP表示使用TCP协议。同理对于UDP协议也有相应的参数。<br>    但是现在我们只有一个socket，并不知道他的地址，端口号，也就没法和外间进行连接。在C++中专门有一个数据结构来存储socket的各个属性值，看如下代码段：</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">    <span class="token keyword">struct</span> sockaddr_in serv_addr<span class="token punctuation">;</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    serv_addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">1234</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>sockaddr_ in 便是这个数据结构，其中定义了socket使用的协议，地址和端口号。<br>    单独定义这些也不够，这只是一条数据，需要和一个特定的socket绑定起来才能构成一个完整的socket。在C++中使用bind()函数进行绑定操作。<br><code>bind(serv_sock,(struct sockaddr*)&amp;serv_addr,sizeof(serv_addr));</code><br>    到这就构成了一个完整的socket。然后使用listen()函数使其进入监听状态，就可以被别的socket连接了。<code>listen(serv_sock, 20);</code>第一个参数指定了哪个socket进入监听状态；第二个参数设定了socket连接请求队列的长度。但是listen函数并不是真正的和某个socket进行了连接，它只是将socket的状态进行了转变。<br>    socket()函数创建的socket默认处于“主动连接”状态，并不会接收别的socket的连接请求。为了能够接收别的进程发来的请求，就需要单独指定一下这个socket的状态，即listen()函数的功能。<br>    然后我们要接受其他进程的连接请求，我们需要创建一个socket作为这个链接的载体。就好比是你在网络中设置了一块共享硬盘，然后将其映射到本地的过程。这个新创建的socket就是你给这个网络硬盘分配的盘号（文件名，挂载点），发起网络连接的进程就相当于网络硬盘。接下来执行真正的连接操作。</p>
 <pre class="line-numbers language-cpp"><code class="language-cpp">    <span class="token keyword">struct</span> sockaddr_in clnt_addr<span class="token punctuation">;</span>
     socklen_t clnt_addr_size <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>clnt_addr<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> clnt_sock <span class="token operator">=</span> <span class="token function">accept</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>clnt_addr<span class="token punctuation">,</span> <span class="token operator">&amp;</span>clnt_addr_size<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -636,66 +640,64 @@ close(serv_sock);</code></pre><p>}</p>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">int</span> sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">struct</span> sockaddr_in serv_addr<span class="token punctuation">;</span>
+  <span class="token function">memset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  serv_addr<span class="token punctuation">.</span>sin_family <span class="token operator">=</span> AF_INET<span class="token punctuation">;</span> 
+  serv_addr<span class="token punctuation">.</span>sin_addr<span class="token punctuation">.</span>s_addr <span class="token operator">=</span> <span class="token function">inet_addr</span><span class="token punctuation">(</span><span class="token string">"127.0.0.1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  serv_addr<span class="token punctuation">.</span>sin_port <span class="token operator">=</span> <span class="token function">htons</span><span class="token punctuation">(</span><span class="token number">1234</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  <span class="token function">connect</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">struct</span> sockaddr<span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>serv_addr<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>serv_addr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">char</span> buffer<span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token function">recv</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> buffer<span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Message form server: %s\n"</span><span class="token punctuation">,</span> buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">close</span><span class="token punctuation">(</span>sock<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<p>int main(){<br>    int sock = socket(AF_INET, SOCK_STREAM, 0);<br>    struct sockaddr_in serv_addr;<br>    memset(&amp;serv_addr, 0, sizeof(serv_addr));<br>    serv_addr.sin_family = AF_INET;<br>    serv_addr.sin_addr.s_addr = inet_addr(“127.0.0.1”);<br>    serv_addr.sin_port = htons(1234);<br>    connect(sock, (struct sockaddr*)&amp;serv_addr, sizeof(serv_addr));</p>
-<pre><code>char buffer[40];
-recv(sock, buffer, sizeof(buffer)-1, 0);
-printf("Message form server: %s\n", buffer);
-close(sock);
-return 0;</code></pre><p>}</p>
-<pre><code>
-接收端和发送端比较类似，这里就挑不同的地方来说。
-    首先是接收端作为发起连接的一方，不需要设置listen()函数，socket默认就是主动连接状态。在确定了要连接的socket的ip和端口号之后，通过connect()进行连接即可。这里不需要为socket绑定一个端口号，因为用户并不会关心哪个端口和服务器建立了连接，系统会自动进行分配，只需要知道目的地址和端口就可以达到连接的目的。简单来说就是如果需要在连接建立之前，知道具体的端口号的话就需要使用bind()函数确定一下。如果一定要指定一个端口号也是可以的。
-    如果要读取消息，使用recv()函数即可。当然在Linux系统中，socket既然作为文件，当然也可以使用write/read函数了。当然这里由于协议的现实，如果数据过大可能不能一次性接收完全，就需要单独处理。
+<p>接收端和发送端比较类似，这里就挑不同的地方来说。<br>    首先是接收端作为发起连接的一方，不需要设置listen()函数，socket默认就是主动连接状态。在确定了要连接的socket的ip和端口号之后，通过connect()进行连接即可。这里不需要为socket绑定一个端口号，因为用户并不会关心哪个端口和服务器建立了连接，系统会自动进行分配，只需要知道目的地址和端口就可以达到连接的目的。简单来说就是如果需要在连接建立之前，知道具体的端口号的话就需要使用bind()函数确定一下。如果一定要指定一个端口号也是可以的。<br>    如果要读取消息，使用recv()函数即可。当然在Linux系统中，socket既然作为文件，当然也可以使用write/read函数了。当然这里由于协议的现实，如果数据过大可能不能一次性接收完全，就需要单独处理。</p>
+<h2 id="几个小坑"><a href="#几个小坑" class="headerlink" title="几个小坑"></a>几个小坑</h2><ol>
+<li> 最开始在做的时候，为了测试send函数的发送机制，尝试了连续两次send消息“hello world”然后使用一个recv接收，但是一直只能收到一个，误以为一个recv只能接收一个send发出的消息。但是这个结论和网上所有对于socket的讲解都不符合，也和我自己对网络协议的认知不符合，最后多次调试才发现原来是c++字符串中的结束字符的原因。recv实际上是收到了两个send发出的消息，但是在printf的时候，遇到了\0’就自动停止了，后面的消息没有被打印出来。所以在发送字符串的时候只需要发送实际的字符数据即可，不需要发送’\0’。<br> Server端连续发送两次“hello” receiver接收一次只能显示一个“hello”原因：<br>Server每次发送的number为6 即包含了结束字符，实际上receiver接收到了两次“hello”，但是后一次因为第一个“hello”的结束字符而无法被解析出来。</li>
+<li>接着上一个问题，我之所以会发出带有结束符的字符串消息，是因为我在确定消息长度的时候使用了sizeof()函数。但是这个函数实际上返回的是你开辟的空间的大小，不管你是否填充了实际的内容；对于字符串，想要得到实际的字符串长度，需要使用strlen()函数。具体的两个函数的效果演示如果。</li>
+</ol>
+<img src="/Users/mastercai/Desktop/blog/source/_posts/C-socket编程小结/67EA50FB-C013-4E70-91CE-428FDA01C44E.png" alt="67EA50FB-C013-4E70-91CE-428FDA01C44E" style="zoom: 67%;">
 
-## 几个小坑
-1. 
-    最开始在做的时候，为了测试send函数的发送机制，尝试了连续两次send消息“hello world”然后使用一个recv接收，但是一直只能收到一个，误以为一个recv只能接收一个send发出的消息。但是这个结论和网上所有对于socket的讲解都不符合，也和我自己对网络协议的认知不符合，最后多次调试才发现原来是c++字符串中的结束字符的原因。recv实际上是收到了两个send发出的消息，但是在printf的时候，遇到了\0’就自动停止了，后面的消息没有被打印出来。所以在发送字符串的时候只需要发送实际的字符数据即可，不需要发送’\0’。
-    Server端连续发送两次“hello” receiver接收一次只能显示一个“hello”原因：
-Server每次发送的number为6 即包含了结束字符，实际上receiver接收到了两次“hello”，但是后一次因为第一个“hello”的结束字符而无法被解析出来。
-2. 接着上一个问题，我之所以会发出带有结束符的字符串消息，是因为我在确定消息长度的时候使用了sizeof()函数。但是这个函数实际上返回的是你开辟的空间的大小，不管你是否填充了实际的内容；对于字符串，想要得到实际的字符串长度，需要使用strlen()函数。具体的两个函数的效果演示如果。
-
-&lt;img src="/Users/mastercai/Desktop/blog/source/_posts/C-socket编程小结/67EA50FB-C013-4E70-91CE-428FDA01C44E.png" alt="67EA50FB-C013-4E70-91CE-428FDA01C44E" style="zoom: 67%;" /&gt;
-
-3.  对于发送/接收不完全的数据，需要特别的处理，这里给出两个比较通用的函数实现。
-
-```cpp
-int RecvAll(int &amp;sock, unsigned char *image_recv_data, int image_len) {
-  int recv_image_num;
-  int remain_size = image_len;
-  int point = 0;
-  unsigned char image_recv_buff[image_len];
-  //分段接收
-  while (remain_size &gt; 0) {
-    recv_image_num = recv(sock, image_recv_buff, remain_size, 0);
-    for (int i = 0; i &lt; recv_image_num; ++i) {
-      image_recv_data[point + i] = image_recv_buff[i];
-    }
-    remain_size = remain_size - recv_image_num;
-    point += recv_image_num;
-    printf("recv %d bytes data, remain %d bytes data\n", recv_image_num,
-           remain_size);
-  }
-  return point;
-}
-
-
-int SendAll(int &amp;sock, unsigned char *data_sent, int data_len) {
-  int sent_data_num;
-  int remain_size = data_len;
-  int point = 0;
-  while (remain_size &gt; 0) {
-    sent_data_num = send(sock, data_sent, data_len, 0);
-    remain_size = remain_size - sent_data_num;
-    point += sent_data_num;
-    printf("recv %d bytes data, remain %d bytes data\n", sent_data_num,
-           remain_size);
-  }
-  return point;
-}
-</code></pre><script>
+<ol start="3">
+<li>对于发送/接收不完全的数据，需要特别的处理，这里给出两个比较通用的函数实现。</li>
+</ol>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">RecvAll</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>sock<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>image_recv_data<span class="token punctuation">,</span> <span class="token keyword">int</span> image_len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> recv_image_num<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> remain_size <span class="token operator">=</span> image_len<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> point <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">char</span> image_recv_buff<span class="token punctuation">[</span>image_len<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//分段接收</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>remain_size <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    recv_image_num <span class="token operator">=</span> <span class="token function">recv</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> image_recv_buff<span class="token punctuation">,</span> remain_size<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> recv_image_num<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      image_recv_data<span class="token punctuation">[</span>point <span class="token operator">+</span> i<span class="token punctuation">]</span> <span class="token operator">=</span> image_recv_buff<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    remain_size <span class="token operator">=</span> remain_size <span class="token operator">-</span> recv_image_num<span class="token punctuation">;</span>
+    point <span class="token operator">+</span><span class="token operator">=</span> recv_image_num<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"recv %d bytes data, remain %d bytes data\n"</span><span class="token punctuation">,</span> recv_image_num<span class="token punctuation">,</span>
+           remain_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> point<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">SendAll</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>sock<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>data_sent<span class="token punctuation">,</span> <span class="token keyword">int</span> data_len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> sent_data_num<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> remain_size <span class="token operator">=</span> data_len<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> point <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>remain_size <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sent_data_num <span class="token operator">=</span> <span class="token function">send</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> data_sent<span class="token punctuation">,</span> data_len<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    remain_size <span class="token operator">=</span> remain_size <span class="token operator">-</span> sent_data_num<span class="token punctuation">;</span>
+    point <span class="token operator">+</span><span class="token operator">=</span> sent_data_num<span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"recv %d bytes data, remain %d bytes data\n"</span><span class="token punctuation">,</span> sent_data_num<span class="token punctuation">,</span>
+           remain_size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> point<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1543,7 +1545,7 @@ sock
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1608374209532')
+  navigator.serviceWorker.register('/sw.js?t=1608385918117')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
