@@ -603,7 +603,7 @@ ULLURLLRDU
 RDLULLRDDD
 UUDDUDUDLL
 ULRDLUURRR
-请你计算一下，最后，有多少玩家会走出迷宫?而不是在里边兜圈子。请提交该整数，表示走出迷宫的玩家数目，不要填写任何多余的内容。如果你还没明白游戏规则，可以参看一个简化的4x4迷宫的解说图：</code></pre><p><img src="D:%5Cblog%5Chexo-matery-modified%5Csource_posts%5Cwrite-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp1-1.png" alt="p1-1"></p>
+请你计算一下，最后，有多少玩家会走出迷宫?而不是在里边兜圈子。请提交该整数，表示走出迷宫的玩家数目，不要填写任何多余的内容。如果你还没明白游戏规则，可以参看一个简化的4x4迷宫的解说图：</code></pre><p><img src="/posts/D:%5Cblog%5Chexo-matery-modified%5Csource_posts%5Cwrite-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp1-1.png" alt="p1-1"></p>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这是一个经典的dfs问题，没有什么太多的技巧，只需要对每个节点进行dfs搜索即可,同时用一个vis数组来记录遍历过的地方，避免重复。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-python"><code class="language-python">vis <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">10</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
 maze <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'UDDLUULRUL'</span><span class="token punctuation">,</span>
@@ -649,7 +649,7 @@ ans <span class="token operator">=</span> <span class="token number">0</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>一拿到这道题，我的第一想法就是dfs，也是一个很常见的dfs问题。但是为了降低时间复杂度，我突然想到了利用动态规划来解决这个问题（💩最近做多了有点上头），最后一顿分析+瞎写代码成功的未解决问题。仔细一想其实根本不是动态规划问题，并没有出现明显的递推关系。</p>
 <h2 id="2-跳蚱蜢"><a href="#2-跳蚱蜢" class="headerlink" title="2. 跳蚱蜢"></a>2. 跳蚱蜢</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><pre><code>有9只盘子，排成1个圆圈。其中8只盘子内装着8只蚱蜢，有一个是空盘。我们把这些蚱蜢顺时针编号为 1~8每只蚱蜢都可以跳到相邻的空盘中，也可以再用点力，越过一个相邻的蚱蜢跳到空盘中。请你计算一下，如果要使得蚱蜢们的队形改为按照逆时针排列，并且保持空盘的位置不变（也就是1-8换位，2-7换位,...），至少要经过多少次跳跃？
-注意：要求提交的是一个整数，请不要填写任何多余内容或说明文字。</code></pre><p><img src="write-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp2-1.png" alt="p2-1"></p>
+注意：要求提交的是一个整数，请不要填写任何多余内容或说明文字。</code></pre><p><img src="/posts/write-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp2-1.png" alt="p2-1"></p>
 <h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>这道题是一个bfs的问题，乍一看，这个问题好像dfs也可以解决，但是由于求的是最小的跳跃次数，所以最终来说还是要用bfs来解决。将空白处记为0号点，我们每次都可以选择其相邻的左右各两位。如图，也就是0号可以和1， 2， 7， 8号互换位置。我们的初始状态记为“012345678”，目标状态记为“087654321”，只要有一个情况达到了目标状态，返回当前步数即可。</p>
 <p>另外，因为题目给出的是一个圆环，也就意味着0和8是相邻的，这里只要用取余的技巧处理一下即可。</p>
 <h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-python"><code class="language-python">start <span class="token operator">=</span> <span class="token string">'012345678'</span>
@@ -700,7 +700,7 @@ vis <span class="token operator">=</span> set<span class="token punctuation">(</
 左面：绿色
 下面：橙色
 后面：黄色
-请你计算一下，这样的魔方被打乱后，一共有多少种不同的状态。如果两个状态经过魔方的整体旋转后，各个面的颜色都一致，则认为是同一状态。请提交表示状态数的整数，不要填写任何多余内容或说明文字。</code></pre><p><img src="D:%5Cblog%5Chexo-matery-modified%5Csource_posts%5Cwrite-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp3-1.png" alt="p3-1"></p>
+请你计算一下，这样的魔方被打乱后，一共有多少种不同的状态。如果两个状态经过魔方的整体旋转后，各个面的颜色都一致，则认为是同一状态。请提交表示状态数的整数，不要填写任何多余内容或说明文字。</code></pre><p><img src="/posts/D:%5Cblog%5Chexo-matery-modified%5Csource_posts%5Cwrite-up-%E8%93%9D%E6%A1%A5%E6%9D%AF2017%E7%9C%81%E8%B5%9B%E7%9C%9F%E9%A2%98%5Cp3-1.png" alt="p3-1"></p>
 <h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>本题的描述很简单，就是求魔方有多少种状态，一种很浓烈的dfs的味道。但是仔细一想其实问题其实还挺复杂。</p>
 <p>魔方的变化方式总共只有三种方式，每种选择方式都对应着4个小面的变化：</p>
 <ol>
@@ -708,7 +708,7 @@ vis <span class="token operator">=</span> set<span class="token punctuation">(</
 <li>上面旋转</li>
 <li>侧面旋转</li>
 </ol>
-<h2 id="4-方块分割"><a href="#4-方块分割" class="headerlink" title="4. 方块分割"></a>4. 方块分割</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><pre><code>6x6的方格，沿着格子的边线剪开成两部分。要求这两部分的形状完全相同。如图4-1,4-2,4-3：就是可行的分割法。试计算：包括这3种分法在内，一共有多少种不同的分割方法。注意：旋转对称的属于同一种分割法。请提交该整数，不要填写任何多余的内容或说明文字。</code></pre><p><img src="D:\blog\hexo-matery-modified\source\_posts\write-up-蓝桥杯2017省赛真题\p4-1-1584605627591.png" alt="p4-1" style="zoom:67%;">![p4-2](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-2.png)<img src="D:\blog\hexo-matery-modified\source\_posts\write-up-蓝桥杯2017省赛真题\p4-1-1584605627591.png" alt="p4-1" style="zoom:67%;">![p4-2](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-2.png)![p4-3](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-3.png)<img src="D:\blog\hexo-matery-modified\source\_posts\write-up-蓝桥杯2017省赛真题\p4-1-1584605627591.png" alt="p4-1" style="zoom:67%;">![p4-2](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-2.png)![p4-3](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-3.png)</p>
+<h2 id="4-方块分割"><a href="#4-方块分割" class="headerlink" title="4. 方块分割"></a>4. 方块分割</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><pre><code>6x6的方格，沿着格子的边线剪开成两部分。要求这两部分的形状完全相同。如图4-1,4-2,4-3：就是可行的分割法。试计算：包括这3种分法在内，一共有多少种不同的分割方法。注意：旋转对称的属于同一种分割法。请提交该整数，不要填写任何多余的内容或说明文字。</code></pre><p><img src="/posts/blog\hexo-matery-modified\source\_posts\write-up-蓝桥杯2017省赛真题\p4-1-1584605627591.png" alt="p4-1" style="zoom:67%;">![p4-2](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-2.png)<img src="/posts/blog\hexo-matery-modified\source\_posts\write-up-蓝桥杯2017省赛真题\p4-1-1584605627591.png" alt="p4-1" style="zoom:67%;">![p4-2](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-2.png)![p4-3](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-3.png)<img src="/posts/blog\hexo-matery-modified\source\_posts\write-up-蓝桥杯2017省赛真题\p4-1-1584605627591.png" alt="p4-1" style="zoom:67%;">![p4-2](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-2.png)![p4-3](D:\OneDrive\蓝桥\C  A\2017CA\2017_C_A\p4-3.png)</p>
 <h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>本题其实还是一道dfs的题目，只不过需要一定的技巧来构造。</p>
 <p>仔细观察图片的分割线，我们可以发现所有分割线都要经过图片的中心，即分割线都是关于图片中心对称的。因此，我们只要构造一条经过图片中心的分割线，就一定是对称的，符合题意的。因此，本题的dfs出发点就是这个图的中心点。只要我们从中心点出发，那么就一定会经过中心点，这样相当于极大的缩小了解空间。然后，根据题意排除重复情况即可（最终情况/4即可）。</p>
 <h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-python"><code class="language-python">dire <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
@@ -1807,7 +1807,7 @@ f <span class="token operator">=</span> <span class="token punctuation">[</span>
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1625465793905')
+  navigator.serviceWorker.register('/sw.js?t=1625466694616')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
