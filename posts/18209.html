@@ -583,7 +583,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="ROS入门之核心概念和系统安装"><a href="#ROS入门之核心概念和系统安装" class="headerlink" title="ROS入门之核心概念和系统安装"></a>ROS入门之核心概念和系统安装</h1><h2 id="ROS简介"><a href="#ROS简介" class="headerlink" title="ROS简介"></a>ROS简介</h2><p>ROS(robot operating system)是一个开源的机器人操作系统，最早起源于2007年斯坦福大学willow garage的个人项目。ROS提供机器人硬件抽象描述，底层驱动，节点间的消息传递，程序包管理等功能，用于构建一个完整的机器人系统。ROS系统主要由node， topic，service等结构构成。</p>
-<p>ROS每两年更新一个大版本，每个版本对应一个ubuntu版本，如图所示：<img src="/Users/mastercai/Desktop/blog/source/_posts/ROS入门之核心概念和系统安装/image-20210704220605246.png" alt="image-20210704220605246" style="zoom:67%;">其中kinetic版本对应ubuntu16， melodic对应ubuntu18（最新版本为2020年5月发布的noetic）。ROS目前已经发展到ROS 2版本，但是ROS 2并不是对ROS 1的取代，而是对ROS 1的进一步完善，目前主流应用还是基于ROS 1版本构建。目前，ROS相关的资料也非常多，主要参考<a href="http://wiki.ros.org/cn" target="_blank" rel="noopener">ROS wiki</a>即可解决大部分问题。</p>
+<p>ROS每两年更新一个大版本，每个版本对应一个ubuntu版本，如图所示：<img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-05-image-20210704220605246.png?token=AI5S4MN6QN3NRQVE2UL37NTA4KYCM" alt="07-05-image-20210704220605246">其中kinetic版本对应ubuntu16， melodic对应ubuntu18（最新版本为2020年5月发布的noetic）。ROS目前已经发展到ROS 2版本，但是ROS 2并不是对ROS 1的取代，而是对ROS 1的进一步完善，目前主流应用还是基于ROS 1版本构建。目前，ROS相关的资料也非常多，主要参考<a href="http://wiki.ros.org/cn" target="_blank" rel="noopener">ROS wiki</a>即可解决大部分问题。</p>
 <h2 id="ROS-melodic安装（ubuntu-18）"><a href="#ROS-melodic安装（ubuntu-18）" class="headerlink" title="ROS melodic安装（ubuntu 18）"></a>ROS melodic安装（ubuntu 18）</h2><p>ROS的安装过程在ros的wiki上写的非常清楚，按照步骤执行就可以，这里简要贴一下命令。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置ROS软件源</span>
 <span class="token function">sudo</span> sh -c <span class="token string">'echo "deb http://packages.ros.org/ros/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -sc<span class="token variable">)</span></span> main" > /etc/apt/sources.list.d/ros-latest.list'</span>
@@ -1493,7 +1493,7 @@ sock
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1625466694616')
+  navigator.serviceWorker.register('/sw.js?t=1625468945988')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
