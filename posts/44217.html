@@ -566,14 +566,14 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        3k
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        12 分
                     </div>
                 
 
@@ -647,9 +647,7 @@ gggg.
 ggggg
 .ggg.
 【评测用例规模与约定】
-对于 30% 的评测用例，2 <= n, m <= 20。
-对于 70% 的评测用例，2 <= n, m <= 100。
-对于所有评测用例，2 <= n, m <= 1000，1 <= k <= 1000。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+对于 30% 的评测用例，2 <= n, m <="20。" 对于 70% 的评测用例，2 对于所有评测用例，2 aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></code></pre>
 <h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>这个题其实已经很经典了，在leetcode中也有这样的题目，其实就是bfs的一种变形，就是一种多源bfs搜索。一般的bfs只有一个起始原点，多源bfs就是将多个起始原点看作是一个超级原点，然后再进行扩散即可。大体过程和一般的bfs差异不大，也算是一个模版题。</p>
 <h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
     tmp <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -1178,57 +1176,36 @@ log <span class="token operator">=</span> <span class="token punctuation">[</spa
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/37450.html">
+                    <a href="/posts/32294.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="mac环境下下载并播放blob视频">
+                                <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="十大排序算法整理">
                             
-                            <span class="card-title">mac环境下下载并播放blob视频</span>
+                            <span class="card-title">十大排序算法整理</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                今天想下载一个tx的视频，像往常一样，在chrome下打开，f12调出控制台，定位到视频所在位置，复制url，跳转到url..结果404 not found。仔细一看，这个视频url是这样的blob:https://xxxx。摸鱼20年，从
+                                十大排序算法整理总体分类首先解释一个概念，算法的稳定性：指序列中两相同的相邻元素在两趟排序的过程中相对位置是否发生改变，不改变为稳定的排序算法。
+根据这个概念，我们可以对排序算法进行分类：
+
+稳定的排序算法：插入排序，冒泡排序， 归并排序，
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-16
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-17
                             </span>
                             <span class="publish-author">
                                 
-                                    <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                    
-                                        <a href="/categories/%E6%8A%80%E5%B7%A7/" class="post-category">
-                                    技巧
-                                </a>
-                                    
+                                    <i class="fa fa-user fa-fw"></i>
+                                    Master-cai
                                 
                             </span>
                         </div>
                     </div>
-                    
-                        <div class="card-action article-tags">
-                            
-                                <a href="/tags/Mac/">
-                                    <span class="chip bg-color">Mac</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%91%B8%E9%B1%BC/">
-                                    <span class="chip bg-color">摸鱼</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%88%AC%E8%99%AB/">
-                                    <span class="chip bg-color">爬虫</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%8A%80%E5%B7%A7/">
-                                    <span class="chip bg-color">技巧</span>
-                                </a>
-                            
-                        </div>
                     
                 </div>
             </div>
@@ -1433,7 +1410,7 @@ log <span class="token operator">=</span> <span class="token punctuation">[</spa
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">47.6k</span>&nbsp;字
+                class="white-color">49.6k</span>&nbsp;字
             
             
             <script>
@@ -1625,7 +1602,7 @@ log <span class="token operator">=</span> <span class="token punctuation">[</spa
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1626223593500')
+  navigator.serviceWorker.register('/sw.js?t=1628560159818')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
