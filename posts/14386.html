@@ -695,9 +695,9 @@ ans <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">while</span> i <span class="token operator">&lt;</span> r <span class="token operator">and</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> x<span class="token punctuation">:</span>
             i <span class="token operator">+=</span> <span class="token number">1</span>
         j <span class="token operator">-=</span> <span class="token number">1</span>
-        <span class="token keyword">while</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> x <span class="token operator">and</span> j <span class="token operator">&gt;=</span> i<span class="token punctuation">:</span>
+        <span class="token keyword">while</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> x <span class="token operator">and</span> j <span class="token operator">>=</span> i<span class="token punctuation">:</span>
             j <span class="token operator">-=</span> <span class="token number">1</span>
-        <span class="token keyword">if</span> i <span class="token operator">&gt;=</span> j<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> i <span class="token operator">>=</span> j<span class="token punctuation">:</span>
             <span class="token keyword">break</span>
         swap<span class="token punctuation">(</span>a<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
     swap<span class="token punctuation">(</span>a<span class="token punctuation">,</span> l<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
@@ -774,11 +774,11 @@ vis <span class="token operator">=</span> <span class="token punctuation">[</spa
 
 <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>g<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 检查连通性</span>
     g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment" spellcheck="true"># 该点被遍历</span>
-    <span class="token keyword">if</span> i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">and</span> g<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> g<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
         dfs<span class="token punctuation">(</span>g<span class="token punctuation">,</span> i<span class="token number">-1</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span>
     <span class="token keyword">if</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> <span class="token number">2</span> <span class="token operator">and</span> g<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
         dfs<span class="token punctuation">(</span>g<span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> j <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">and</span> g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> j <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
         dfs<span class="token punctuation">(</span>g<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token number">-1</span><span class="token punctuation">)</span>
     <span class="token keyword">if</span> j <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;=</span> <span class="token number">3</span> <span class="token operator">and</span> g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
         dfs<span class="token punctuation">(</span>g<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
@@ -806,7 +806,7 @@ vis <span class="token operator">=</span> <span class="token punctuation">[</spa
         ans <span class="token operator">+=</span> <span class="token number">1</span>
         <span class="token keyword">return</span>
     <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 枚举 全排列</span>
-        <span class="token keyword">if</span> i <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">and</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> a<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">and</span> <span class="token operator">not</span> vis<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 去重</span>
+        <span class="token keyword">if</span> i <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">and</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> a<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">and</span> <span class="token operator">not</span> vis<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 去重</span>
             <span class="token keyword">continue</span>
           <span class="token keyword">if</span> <span class="token operator">not</span> vis<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 没有选取过 选取并遍历</span>
             <span class="token comment" spellcheck="true"># 记录当前选择</span>
@@ -1571,7 +1571,7 @@ ABECDCBABC
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.4k</span>&nbsp;字
+                class="white-color">48.1k</span>&nbsp;字
             
             
             <script>
@@ -1763,7 +1763,7 @@ ABECDCBABC
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628731609586')
+  navigator.serviceWorker.register('/sw.js?t=1628732008534')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

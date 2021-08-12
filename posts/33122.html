@@ -4,8 +4,11 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="1154-vertex-coloring, 博客 计算机 算法 python">
-    <meta name="description" content="1154_vertex_coloring前言最近开始做pat的题目了，题目感觉和leetcode还是区别比较大的，和蓝桥杯有一定的相似点。主要是对于输入输出的要求比较严格，我所报名的甲级是英文题目，其中部分单词还是不太熟悉，意思只能看靠猜测">
+    <meta name="keywords" content="ssh免密登陆连接配置, 博客 计算机 算法 python">
+    <meta name="description" content="ssh免密登陆连接配置1. 生成ssh key进入～/.ssh 目录，生成ssh key
+cd ~/.ssh
+ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
+# 也可以通过参数进行指定 ssh-keyge">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +18,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
     <meta name="referrer" content="no-referrer">
-    <title>1154-vertex-coloring | Master-cai</title>
+    <title>ssh免密登陆连接配置 | Master-cai</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -406,12 +409,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">1154-vertex-coloring</h1>
+                    <h1 class="description center-align post-title">ssh免密登陆连接配置</h1>
                 </div>
             </div>
         </div>
@@ -520,19 +523,7 @@
                 <div class="col s7">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
-                                </a>
-                            
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%9B%BE/">
-                                    <span class="chip bg-color">图</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -541,8 +532,8 @@
                         <div class="post-cate">
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/pat/" class="post-category">
-                                    pat
+                                <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    环境配置
                                 </a>
                             
                         </div>
@@ -554,28 +545,28 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2020-05-04
+                        2021-08-11
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-05-04
+                        2021-08-12
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        768
+                        513
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        2 分
                     </div>
                 
 
@@ -590,84 +581,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1154-vertex-coloring"><a href="#1154-vertex-coloring" class="headerlink" title="1154_vertex_coloring"></a>1154_vertex_coloring</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近开始做pat的题目了，题目感觉和leetcode还是区别比较大的，和蓝桥杯有一定的相似点。主要是对于输入输出的要求比较严格，我所报名的甲级是英文题目，其中部分单词还是不太熟悉，意思只能看靠猜测了，这方面还需要积累。关于语言方面，我觉得pat方面是有点坑的，它对于所有语言的时间要求是一样的，这对于用python（或者说非C++）选手来说很不友好。很简单的题目，用python语言实现和C++一样的算法，总是会有部分用例超时，所以我又被迫捡起了C++。但是好像目前各种机试的语言主要还是C++，也算是提前熟悉一下吧（有一般的报错是格式问题）。pat甲级目前题库一共有150+题目，感觉还是有希望熟悉一遍的（flag），其他的也不多说了，在家虽然没用那么舒服，还是要🐛🐛🐛。</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>A proper vertex coloring is a labeling of the graph's vertices with colors such that no two vertices sharing the same edge have the same color. A coloring using at most k colors is called a (proper) k-coloring.
-Now you are supposed to tell if a given coloring is a proper k-coloring.
-Input Specification:
-Each input file contains one test case. For each case, the first line gives two positive integers N and M (both no more than 10^4), being the total numbers of vertices and edges, respectively. Then M lines follow, each describes an edge by giving the indices (from 0 to N−1) of the two ends of the edge.
-After the graph, a positive integer K (≤ 100) is given, which is the number of colorings you are supposed to check. Then K lines follow, each contains N colors which are represented by non-negative integers in the range of int. The i-th color is the color of the i-th vertex.
-Output Specification:
-For each coloring, print in a line k-coloring if it is a proper k-coloring for some positive k, or No if not.
-Sample Input:
-10 11
-8 7
-6 8
-4 5
-8 4
-8 1
-1 2
-1 4
-9 8
-9 1
-1 0
-2 4
-4
-0 1 0 1 4 1 0 1 3 0
-0 1 0 1 4 1 0 1 0 0
-8 1 0 1 4 1 0 5 3 0
-1 2 3 4 5 6 7 8 8 9
-Sample Output:
-4-coloring
-No
-6-coloring
-No</code></pre><h3 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h3><p>Vertex: 顶点</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>刚读到这个题目，一开始以为是一个图色问题，这方面还是不太熟悉。但是仔细读了一下，发现只需要判断一下就好了。一开始按照我的思路，我是用邻接表来存每条边，最后总是时间超时。参考了一下题解，发现题解直接存储了每条边。。其实这样效率更高，还是我把问题复杂化了。对于算法题来说，其实还是只要能够达到效果即可，不必要一定要复杂化问题。</p>
-<p>本题的思路其实还是很简单，根据给出的每条边，对于其两个顶点，判断一下颜色是否相同即可。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-c++"><code class="language-c++">#include<iostream>
-#include<vector>
-#include<unordered_set>
-
-using namespace std;
-
-struct node{ //存储边
-    int x, y;
-};
-
-int main(){
-    int N, M;
-    cin >> N >> M; 
-    vector<node> v(M); //存储所有的边
-
-    for(int i=0; i<M; ++i){ // 输入所有边的信息
-        scanf("%d %d", &v[i].x, &v[i].y);
-    }
-    int n;
-    scanf("%d", &n); // n种情况
-    for(int i=0; i<n; ++i){
-        // 对于每一种情况
-        unordered_set<int> s; // 使用set统计颜色数量
-        vector<int> a(N); // 存储每种图色方案
-        for(int j=0; j<N; j++){
-            scanf("%d", &a[j]);
-            s.insert(a[j]);
-        }
-        bool flag = true; //判断是否符合条件
-        for(int j = 0; j<M; ++j){ 
-            // 对于每条边的端点，进行判断
-            if(a[v[j].x]==a[v[j].y]){
-                flag = false;
-                break;
-            }
-        }
-        if(flag){
-            printf("%d-coloring\n", s.size());
-        }else{
-            printf("No\n");
-        }
-    }
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在做题中，其实还有一些小技巧，比如，使用scanf替代cin（cout同理）；不需要排序的时候，可以使用unordered_set和unorderd_map代替；</p>
+                <h1 id="ssh免密登陆连接配置"><a href="#ssh免密登陆连接配置" class="headerlink" title="ssh免密登陆连接配置"></a>ssh免密登陆连接配置</h1><h2 id="1-生成ssh-key"><a href="#1-生成ssh-key" class="headerlink" title="1. 生成ssh key"></a>1. 生成ssh key</h2><p>进入～/.ssh 目录，生成ssh key</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> ~/.ssh
+ssh-keygen <span class="token comment" spellcheck="true">#生成默认密钥对 公钥id_rsa.pub 私钥id_rsa</span>
+<span class="token comment" spellcheck="true"># 也可以通过参数进行指定 ssh-keygen -t rsa -C xxx@xx.com</span>
+<span class="token comment" spellcheck="true"># 生成过程中可以指定密钥对的名称，否则默认为id_rsa</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>~/.ssh目录是用来存放ssh key的目录，目录下主要有密钥对，config文件和known_hosts文件。config文件主要用来给通过ssh连接的服务器配置别名，方便连接；known_hosts文件是为了验证连接服务器的安全性。当第一次通过ssh连接到服务器A时，A会传递一个公钥给host，host会将这个公钥保存到known_hosts中，以后每次连接，都会验证A的公钥是否和在known_hosts中的公钥是否匹配，以此防范DNS Hijack之类的攻击。known_hosts文件如图：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/08-12-SJVhch.png" alt=""></p>
+<h2 id="2-上传公钥到服务器"><a href="#2-上传公钥到服务器" class="headerlink" title="2.上传公钥到服务器"></a>2.上传公钥到服务器</h2><p>将生成的公钥上传到需要登陆的服务器上，完成配对。（配置多个服务器时不需要重复生成密钥，直接上传已有的公钥即可）</p>
+<pre class="line-numbers language-bash"><code class="language-bash">ssh-copy-id -i id_rsa.pub user@host
+<span class="token comment" spellcheck="true"># 使用命令自动在服务器端部署公钥，无需手动注册 id_rsa.pub为默认公钥名称，可根据情况修改</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>完成这一步就可以免密登陆了。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> user@host<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>但是为了更方便，可以使用config文件给服务器配置别名</p>
+<h2 id="3-配置服务器别名"><a href="#3-配置服务器别名" class="headerlink" title="3.配置服务器别名"></a>3.配置服务器别名</h2><p>使用config文件给服务器配置别名，config文件配置格式如下：</p>
+<pre><code>Host alias # 服务器的别名
+  HostName 192.168.2.8 # 服务器地址
+  User parallels # 登陆用户名
+  Port 22 # ssh默认端口
+  IdentityFile ~/.ssh/id_rsa # 使用的私钥文件
+Host alias2
+...</code></pre><p>配置完成后，即可使用<code>ssh alias</code>命令直接登陆服务器了。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -698,19 +631,7 @@ int main(){
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
-                                </a>
-                            
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%9B%BE/">
-                                    <span class="chip bg-color">图</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -1017,61 +938,46 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
-                    <a href="/posts/26286.html">
+                    <a href="/posts/33122.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="1155_Heap_Paths">
+                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="ssh免密登陆连接配置">
                             
-                            <span class="card-title">1155_Heap_Paths</span>
+                            <span class="card-title">ssh免密登陆连接配置</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1155:Heap Paths题目In computer science, a heap is a specialized tree-based data structure that satisfies the heap property
+                                ssh免密登陆连接配置1. 生成ssh key进入～/.ssh 目录，生成ssh key
+cd ~/.ssh
+ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
+# 也可以通过参数进行指定 ssh-keyge
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-11
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/pat/" class="post-category">
-                                    pat
+                                        <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    环境配置
                                 </a>
                                     
                                 
                             </span>
                         </div>
                     </div>
-                    
-                        <div class="card-action article-tags">
-                            
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
-                                </a>
-                            
-                                <a href="/tags/algorithm/">
-                                    <span class="chip bg-color">algorithm</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%A0%86/">
-                                    <span class="chip bg-color">堆</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E6%90%9C%E7%B4%A2/">
-                                    <span class="chip bg-color">深度搜索</span>
-                                </a>
-                            
-                        </div>
+
                     
                 </div>
             </div>
@@ -1082,36 +988,48 @@ int main(){
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/2547.html">
+                    <a href="/posts/34444.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="write-up 蓝桥杯2018省赛真题">
+                                <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="ROS入门之Topic和Server编程">
                             
-                            <span class="card-title">write-up 蓝桥杯2018省赛真题</span>
+                            <span class="card-title">ROS入门之Topic和Server编程</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return
+                                ROS入门之Topic和Server编程Topic和Server是ROS中非常重要的两种通信机制，下面分别对其进行介绍。
+TopicPublisher和SubscriberTopic的结构如图所示：
+
+Publisher节点按照规定格式发布
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-24
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-05
                             </span>
                             <span class="publish-author">
                                 
-                                    <i class="fa fa-user fa-fw"></i>
-                                    master-cai
+                                    <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                    
+                                        <a href="/categories/ROS/" class="post-category">
+                                    ROS
+                                </a>
+                                    
                                 
                             </span>
                         </div>
                     </div>
+                    
+                        <div class="card-action article-tags">
+                            
+                                <a href="/tags/ROS/">
+                                    <span class="chip bg-color">ROS</span>
+                                </a>
+                            
+                        </div>
                     
                 </div>
             </div>

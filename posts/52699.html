@@ -560,7 +560,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        827
+                        797
                     </div>
                 
 
@@ -635,27 +635,27 @@ struct ins{
 
 bool cmp(ins a, ins b){
     if(a.TWS != b.TWS){
-        return a.TWS &gt; b.TWS;
+        return a.TWS > b.TWS;
     } else if(a.Ns != b.Ns){
-        return a.Ns &lt; b.Ns;
+        return a.Ns < b.Ns;
     } else{
-        return a.school &lt; b.school;
+        return a.school < b.school;
     }
 }
 
 int main(){
     int n;
-    cin &gt;&gt; n;
-    unordered_map<string, int=""> cnt; //school-&gt; Ns
-    unordered_map<string, double=""> sum; // school-&gt; TWS
-    for (int i = 0; i &lt; n; ++i) {
+    cin >> n;
+    unordered_map<string, int> cnt; //school-> Ns
+    unordered_map<string, double> sum; // school-> TWS
+    for (int i = 0; i < n; ++i) {
         ins* in = new ins();
         string ID;
         double score;
         string school;
-//        scanf("%s %lf %s", &amp;ID, &amp;score, &amp;school);
-        cin &gt;&gt; ID &gt;&gt; score &gt;&gt; school;
-        for (int j = 0; j &lt; school.length(); ++j) {
+//        scanf("%s %lf %s", &ID, &score, &school);
+        cin >> ID >> score >> school;
+        for (int j = 0; j < school.length(); ++j) {
             school[j] = tolower(school[j]);
         }
         switch (ID[0]) {
@@ -669,22 +669,22 @@ int main(){
     }
     vector<ins> ans;
     for(auto it = cnt.begin(); it != cnt.end(); it++){
-        ans.push_back(ins{it-&gt;first, (int)sum[it-&gt;first], cnt[it-&gt;first]});
+        ans.push_back(ins{it->first, (int)sum[it->first], cnt[it->first]});
     }
     sort(ans.begin(), ans.end(), cmp);
     int rank = 0, pres=-1;
     printf("%d\n", (int)ans.size());
-    for (int i = 0; i &lt; ans.size(); ++i) {
+    for (int i = 0; i < ans.size(); ++i) {
         if(pres != ans[i].TWS){ //判断排名是否一致
             rank = i+1;
         }
         pres = ans[i].TWS;
         printf("%d ", rank);
-        cout &lt;&lt; ans[i].school;
+        cout << ans[i].school;
         printf(" %d %d\n", ans[i].TWS, ans[i].Ns);
     }
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></ins></string,></string,></unordered_map></cctype></algorithm></vector></iostream></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1334,7 +1334,7 @@ int main(){
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.4k</span>&nbsp;字
+                class="white-color">48.1k</span>&nbsp;字
             
             
             <script>
@@ -1526,7 +1526,7 @@ int main(){
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628731609586')
+  navigator.serviceWorker.register('/sw.js?t=1628732008534')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

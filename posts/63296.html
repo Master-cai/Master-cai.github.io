@@ -568,7 +568,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        845
+                        834
                     </div>
                 
 
@@ -620,17 +620,17 @@ ERROR: 99 and 99 are not found.</code></pre><h2 id="分析"><a href="#分析" cl
 <span class="token comment" spellcheck="true">// Created by masterCai on 2020/5/14.</span>
 <span class="token comment" spellcheck="true">//</span>
 
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unordered_map></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">int</span> M<span class="token punctuation">,</span> N<span class="token punctuation">;</span>
-    cin <span class="token operator">&gt;&gt;</span> M <span class="token operator">&gt;&gt;</span> N<span class="token punctuation">;</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">pre</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">&gt;</span> m<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> M <span class="token operator">>></span> N<span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">pre</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    unordered_map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token operator">></span> m<span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>pre<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         m<span class="token punctuation">[</span>pre<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
@@ -641,7 +641,7 @@ ERROR: 99 and 99 are not found.</code></pre><h2 id="分析"><a href="#分析" cl
         <span class="token keyword">int</span> a<span class="token punctuation">;</span>
         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> N<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             a <span class="token operator">=</span> pre<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token operator">&gt;=</span>x <span class="token operator">&amp;&amp;</span> a <span class="token operator">&lt;=</span> y<span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span>a<span class="token operator">&gt;=</span>y <span class="token operator">&amp;&amp;</span> a<span class="token operator">&lt;=</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token operator">>=</span>x <span class="token operator">&amp;&amp;</span> a <span class="token operator">&lt;=</span> y<span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span>a<span class="token operator">>=</span>y <span class="token operator">&amp;&amp;</span> a<span class="token operator">&lt;=</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
                 <span class="token keyword">break</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
@@ -1306,7 +1306,7 @@ ERROR: 99 and 99 are not found.</code></pre><h2 id="分析"><a href="#分析" cl
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.4k</span>&nbsp;字
+                class="white-color">48.1k</span>&nbsp;字
             
             
             <script>
@@ -1498,7 +1498,7 @@ ERROR: 99 and 99 are not found.</code></pre><h2 id="分析"><a href="#分析" cl
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628731609586')
+  navigator.serviceWorker.register('/sw.js?t=1628732008534')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

@@ -624,7 +624,7 @@
         root<span class="token punctuation">.</span>sum <span class="token operator">=</span> val <span class="token comment" spellcheck="true"># 更新节点值</span>
         <span class="token keyword">return</span>
     mid <span class="token operator">=</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>start<span class="token operator">+</span>root<span class="token punctuation">.</span>end<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span> <span class="token comment" spellcheck="true"># 二分</span>
-    <span class="token keyword">if</span> index <span class="token operator">&gt;</span> mid<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># index在右子树</span>
+    <span class="token keyword">if</span> index <span class="token operator">></span> mid<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># index在右子树</span>
         update_tree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> index<span class="token punctuation">,</span> val<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 递归更新右子树</span>
     <span class="token keyword">else</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 在左子树</span>
         update_tree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> index<span class="token punctuation">,</span> val<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 递归更新左子树</span>
@@ -634,7 +634,7 @@
     <span class="token keyword">if</span> root<span class="token punctuation">.</span>start <span class="token operator">==</span> i <span class="token operator">and</span> root<span class="token punctuation">.</span>end <span class="token operator">==</span> j<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 查询区间等于当前节点区间</span>
         <span class="token keyword">return</span> root<span class="token punctuation">.</span>sum
     mid <span class="token operator">=</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>start<span class="token operator">+</span>root<span class="token punctuation">.</span>end<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span> <span class="token comment" spellcheck="true"># 二分</span>
-    <span class="token keyword">if</span>  i<span class="token operator">&gt;</span>mid<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 查询区间左端点大于 mid 直接查询右子树</span>
+    <span class="token keyword">if</span>  i<span class="token operator">></span>mid<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 查询区间左端点大于 mid 直接查询右子树</span>
         <span class="token keyword">return</span> query_sum<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
     <span class="token keyword">elif</span> j <span class="token operator">&lt;=</span> mid<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 同理</span>
         <span class="token keyword">return</span> query_sum<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
@@ -698,14 +698,14 @@ lines <span class="token operator">=</span> <span class="token punctuation">[</s
         <span class="token keyword">return</span>
     tl <span class="token operator">=</span> tree<span class="token punctuation">.</span>pl <span class="token comment" spellcheck="true"># 当前树节点的左端点</span>
     tr <span class="token operator">=</span> tree<span class="token punctuation">.</span>pr <span class="token comment" spellcheck="true"># 右端点</span>
-    <span class="token keyword">if</span> pl <span class="token operator">&lt;=</span> tl <span class="token operator">and</span> pr <span class="token operator">&gt;=</span> tr<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 要更新的区间（pl，pr）整好在该节点的范围内 即属于该节点</span>
+    <span class="token keyword">if</span> pl <span class="token operator">&lt;=</span> tl <span class="token operator">and</span> pr <span class="token operator">>=</span> tr<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 要更新的区间（pl，pr）整好在该节点的范围内 即属于该节点</span>
         tree<span class="token punctuation">.</span>cnt <span class="token operator">+=</span> value <span class="token comment" spellcheck="true"># 更新cnt value是f即出入边 与cnt相加为覆盖次数</span>
         update_length<span class="token punctuation">(</span>tree<span class="token punctuation">,</span> tl<span class="token punctuation">,</span> tr<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 更新区间长度</span>
         <span class="token keyword">return</span>
     m <span class="token operator">=</span> <span class="token punctuation">(</span>tl <span class="token operator">+</span> tr<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span> 
     <span class="token keyword">if</span> pl <span class="token operator">&lt;=</span> m<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 更新其左子树</span>
         update<span class="token punctuation">(</span>tree<span class="token punctuation">.</span>lson<span class="token punctuation">,</span> pl<span class="token punctuation">,</span> pr<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
-    <span class="token keyword">if</span> pr <span class="token operator">&gt;</span> m<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 更新其右子树</span>
+    <span class="token keyword">if</span> pr <span class="token operator">></span> m<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 更新其右子树</span>
         update<span class="token punctuation">(</span>tree<span class="token punctuation">.</span>rson<span class="token punctuation">,</span> pl<span class="token punctuation">,</span> pr<span class="token punctuation">,</span> value<span class="token punctuation">)</span>
 
     update_length<span class="token punctuation">(</span>tree<span class="token punctuation">,</span> tl<span class="token punctuation">,</span> tr<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 更新长度</span>
@@ -1400,7 +1400,7 @@ ps: 最近被win折磨的不行，动不动explorer.exe cpu
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.4k</span>&nbsp;字
+                class="white-color">48.1k</span>&nbsp;字
             
             
             <script>
@@ -1592,7 +1592,7 @@ ps: 最近被win折磨的不行，动不动explorer.exe cpu
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628731609586')
+  navigator.serviceWorker.register('/sw.js?t=1628732008534')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
