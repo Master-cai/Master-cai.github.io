@@ -565,7 +565,7 @@ sock">
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.2k
+                        2.3k
                     </div>
                 
 
@@ -591,13 +591,13 @@ sock">
 <h2 id="socket简介"><a href="#socket简介" class="headerlink" title="socket简介"></a>socket简介</h2><p>socket英文直译为“插座，插孔”，可能意思是网络编程就是一个封闭的系统上和外部交互的那个“插孔”吧。但是中文翻译为套接字，感觉不是非常好理解，初学的时候甚至因此产生了一些误解。简而言之，socket就是进程之间进行通信的一种约定，或者说是在程序中对TCP和UDP协议的一种封装。</p>
 <h2 id="一个最简单的socket示例"><a href="#一个最简单的socket示例" class="headerlink" title="一个最简单的socket示例"></a>一个最简单的socket示例</h2><p>先看完整代码：</p>
 <ul>
-<li>发送端sender.cpp:<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;netinet/in.h></span></span>
+<li>发送端sender.cpp:<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;netinet/in.h&gt;</span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
   <span class="token keyword">int</span> serv_sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> IPPROTO_TCP<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">struct</span> sockaddr_in serv_addr<span class="token punctuation">;</span>
@@ -634,12 +634,12 @@ sock">
     <span class="token function">close</span><span class="token punctuation">(</span>serv_sock<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>建立连接之后，通过send()函数发送消息即可。第一个参数为目的socket的文件描述符；第二个参数为要发送的消息，即消息存放的地址；第三个参数为要发送的数据的大小；第四个参数为flag，用于设置一些特殊的操作，一般设置为0；返回值为实际发送的数据的大小，如果发送失败返回-1。<br>    需要注意的是，send()函数只是把要发送的数据存放到发送缓冲区，最终的发送是由协议完成的。因此如果数据过大就可能存在一次发送不完的情况，需要单独处理一下。<br>    最后，使用close()函数将socket关闭即可。</p>
 <ul>
-<li>接收端receiver.cpp<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h></span></span>
+<li>接收端receiver.cpp<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdlib.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;arpa/inet.h&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;sys/socket.h&gt;</span></span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
   <span class="token keyword">int</span> sock <span class="token operator">=</span> <span class="token function">socket</span><span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span> SOCK_STREAM<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">struct</span> sockaddr_in serv_addr<span class="token punctuation">;</span>
@@ -672,7 +672,7 @@ sock">
   <span class="token keyword">int</span> point <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
   <span class="token keyword">unsigned</span> <span class="token keyword">char</span> image_recv_buff<span class="token punctuation">[</span>image_len<span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">//分段接收</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>remain_size <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>remain_size <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     recv_image_num <span class="token operator">=</span> <span class="token function">recv</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> image_recv_buff<span class="token punctuation">,</span> remain_size<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> recv_image_num<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       image_recv_data<span class="token punctuation">[</span>point <span class="token operator">+</span> i<span class="token punctuation">]</span> <span class="token operator">=</span> image_recv_buff<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -688,7 +688,7 @@ sock">
   <span class="token keyword">int</span> sent_data_num<span class="token punctuation">;</span>
   <span class="token keyword">int</span> remain_size <span class="token operator">=</span> data_len<span class="token punctuation">;</span>
   <span class="token keyword">int</span> point <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>remain_size <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>remain_size <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     sent_data_num <span class="token operator">=</span> <span class="token function">send</span><span class="token punctuation">(</span>sock<span class="token punctuation">,</span> data_sent<span class="token punctuation">,</span> data_len<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     remain_size <span class="token operator">=</span> remain_size <span class="token operator">-</span> sent_data_num<span class="token punctuation">;</span>
     point <span class="token operator">+</span><span class="token operator">=</span> sent_data_num<span class="token punctuation">;</span>
@@ -1346,7 +1346,7 @@ sock">
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.6k</span>&nbsp;字
+                class="white-color">50.4k</span>&nbsp;字
             
             
             <script>
@@ -1538,7 +1538,7 @@ sock">
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628560159818')
+  navigator.serviceWorker.register('/sw.js?t=1628731609586')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

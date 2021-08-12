@@ -619,20 +619,20 @@ Sample Output:
 <li>重复上述操作，直到全部顶点被删除，或者不存在入度为0的节点。此时如果还有节点存在，说明该图非拓扑有序（存在环）。</li>
 </ol>
 <p>根据题意，我们不需要构建一个图的拓扑排序，我们只需要判断给出的排序是否是拓扑有序即可。那么判断的方法也很简单，对于序列的每个点，我们都判断它的入度是否为0，如果为0，删除其节点和相应的边；如果最后还有节点存在，则说明这不是一个拓扑排序。当然这里也存在技巧，即我们可以单独记录一个indegree数组来记录每个点的入度，将删除边的操作转化为将对应定点入度减一即可。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;vector></span></span>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;vector&gt;</span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">int</span> N<span class="token punctuation">,</span> M<span class="token punctuation">;</span>
-    cin <span class="token operator">>></span> N <span class="token operator">>></span> M<span class="token punctuation">;</span>
+    cin <span class="token operator">&gt;&gt;</span> N <span class="token operator">&gt;&gt;</span> M<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 这里需要注意一下 这里声明的是一个二维数组</span>
-    <span class="token comment" spellcheck="true">// 另一种比较直观的二维数组声明方法是vector&lt;vector&lt;int> > g(n, vector&lt;int>(n, 0)) 声明一个nXn的全0数组</span>
+    <span class="token comment" spellcheck="true">// 另一种比较直观的二维数组声明方法是vector&lt;vector&lt;int&gt; &gt; g(n, vector&lt;int&gt;(n, 0)) 声明一个nXn的全0数组</span>
     <span class="token comment" spellcheck="true">//但是这种方式速度较慢 代码中这种方式声明速度上会快一些。（因为这个原因代码超时</span>
     <span class="token comment" spellcheck="true">//同时作为邻接表，由于只需要用到以这个点为起点有哪些边 所以不需要完整建出二维矩阵</span>
     <span class="token comment" spellcheck="true">//只需要按需讲需要的点push_back</span>
-    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> g<span class="token punctuation">[</span><span class="token number">1001</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> g<span class="token punctuation">[</span><span class="token number">1001</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">int</span> in<span class="token punctuation">[</span><span class="token number">1001</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 存每个点的入度</span>
     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>M<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">int</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
@@ -641,11 +641,11 @@ Sample Output:
         in<span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">int</span> k<span class="token punctuation">;</span>
-    cin <span class="token operator">>></span> k<span class="token punctuation">;</span>
+    cin <span class="token operator">&gt;&gt;</span> k<span class="token punctuation">;</span>
     <span class="token keyword">int</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 用于判断是否加空格</span>
        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>k<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">int</span> judge <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 用于判断是否为拓扑排序</span>
-        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">tmp_in</span><span class="token punctuation">(</span>in<span class="token punctuation">,</span> in<span class="token operator">+</span>N<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 复制一个in数组</span>
+        vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> <span class="token function">tmp_in</span><span class="token punctuation">(</span>in<span class="token punctuation">,</span> in<span class="token operator">+</span>N<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 复制一个in数组</span>
         <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>N<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">int</span> a<span class="token punctuation">;</span>
             <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1313,7 +1313,7 @@ Sample Output:
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.6k</span>&nbsp;字
+                class="white-color">50.4k</span>&nbsp;字
             
             
             <script>
@@ -1505,7 +1505,7 @@ Sample Output:
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628560159818')
+  navigator.serviceWorker.register('/sw.js?t=1628731609586')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

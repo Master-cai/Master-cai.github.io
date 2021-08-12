@@ -609,7 +609,7 @@
 <li>即使元素的值相同，不同位置的元素也被认为是不同的。如果元素值都不同，每个排列中的元素值不会重复。即 <code>permutations('000', 3)</code> 输出为<code>[('0', '0', '0'), ('0', '0', '0'), ('0', '0', '0'), ('0', '0', '0'), ('0', '0', '0'), ('0', '0', '0')]</code>。</li>
 </ol>
 <p>既然谈到了permutation，那就顺便说一下同一个库中的combination。</p>
-<pre class="line-numbers language-python"><code class="language-python">combinations<span class="token punctuation">(</span><span class="token string">'ABCD'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">></span> AB AC AD BC BD CD<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">combinations<span class="token punctuation">(</span><span class="token string">'ABCD'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">-</span><span class="token operator">&gt;</span> AB AC AD BC BD CD<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>参数用法同上，即<code>combinations(x, y)</code> -&gt; $C_x^y$。</p>
 <p>注意事项：</p>
 <ol>
@@ -650,7 +650,7 @@ ans <span class="token operator">=</span> <span class="token number">0</span>
     <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 枚举抓取序列中的每个元素</span>
         <span class="token comment" spellcheck="true">#用于排除重复情况 即将不同位置的相同元素示为同一种情况</span>
         <span class="token comment" spellcheck="true"># 如果a[i]与a[i-1]相同并且a[i-1]还未被抓取，则这种情况会产生重复，直接跳过</span>
-        <span class="token keyword">if</span> i <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">and</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> a<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">and</span> <span class="token operator">not</span> vis<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> 
+        <span class="token keyword">if</span> i <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">and</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> a<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">and</span> <span class="token operator">not</span> vis<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> 
             <span class="token keyword">continue</span>
         <span class="token comment" spellcheck="true"># 如果a[i] 还未被抓取，则可以进行枚举</span>
         <span class="token keyword">if</span> <span class="token operator">not</span> vis<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
@@ -1311,7 +1311,7 @@ ps: 最近被win折磨的不行，动不动explorer.exe cpu
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.6k</span>&nbsp;字
+                class="white-color">50.4k</span>&nbsp;字
             
             
             <script>
@@ -1503,7 +1503,7 @@ ps: 最近被win折磨的不行，动不动explorer.exe cpu
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628560159818')
+  navigator.serviceWorker.register('/sw.js?t=1628731609586')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

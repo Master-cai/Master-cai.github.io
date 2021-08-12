@@ -587,11 +587,11 @@ Publisher节点按照规定格式发布">
             <div id="articleContent">
                 <h1 id="ROS入门之Topic和Server编程"><a href="#ROS入门之Topic和Server编程" class="headerlink" title="ROS入门之Topic和Server编程"></a>ROS入门之Topic和Server编程</h1><p>Topic和Server是ROS中非常重要的两种通信机制，下面分别对其进行介绍。</p>
 <h2 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h2><h3 id="Publisher和Subscriber"><a href="#Publisher和Subscriber" class="headerlink" title="Publisher和Subscriber"></a>Publisher和Subscriber</h3><p>Topic的结构如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-05-ymBvxr.png?token=AI5S4MM7Q4WVMDL4EPOC5PTA4LOFA" alt></p>
+<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-05-ymBvxr.png?token=AI5S4MM7Q4WVMDL4EPOC5PTA4LOFA" alt=""></p>
 <p>Publisher节点按照规定格式发布消息到Topic中，Subscriber通过订阅Topic来获取数据。</p>
 <p>下面是使用Publisher来控制turtle速度的例子：</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#include<ros ros.h>
-#include<geometry_msgs twist.h>
+<pre class="line-numbers language-c++"><code class="language-c++">#include<ros ros.h="">
+#include<geometry_msgs twist.h="">
 
 int main(int argc, char **argv)
 {
@@ -603,7 +603,7 @@ int main(int argc, char **argv)
     # Publisher由NodeHandle.advertise函数进行创建，模版中确定该
     # Publisher定义的topic中的消息结构，函数参数为Topic名称和消息
     # 队列的长度
-    ros::Publisher turtle_vel_pub = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 10);
+    ros::Publisher turtle_vel_pub = n.advertise<geometry_msgs::twist>("/turtle1/cmd_vel", 10);
     # 定义循环的频率
     ros::Rate loop_rate(10);
     # 配合loop_rate控制程序执行的频率
@@ -624,7 +624,7 @@ int main(int argc, char **argv)
     }
     return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></geometry_msgs::Twist></geometry_msgs></ros></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></geometry_msgs::twist></geometry_msgs></ros></code></pre>
 <p>实现一个Publisher主要流程为：</p>
 <ol>
 <li>初始化ROS节点并生成一个句柄</li>
@@ -633,14 +633,14 @@ int main(int argc, char **argv)
 <li>按照一定频率发布消息</li>
 </ol>
 <p>在控制turtlesim的运动之后，我们还可以实时接收turtle的位置信息，具体代码如下：</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#include<ros ros.h>
+<pre class="line-numbers language-c++"><code class="language-c++">#include<ros ros.h="">
 #include "turtlesim/Pose.h"
 
 # 回调函数
-void poseCallback(const turtlesim::Pose::ConstPtr& msg)
+void poseCallback(const turtlesim::Pose::ConstPtr&amp; msg)
 {
     # 向控制台输出log信息
-    ROS_INFO("turtle pose: x:%0.6f, y:%0.6f", msg->x, msg->y);
+    ROS_INFO("turtle pose: x:%0.6f, y:%0.6f", msg-&gt;x, msg-&gt;y);
 }
 
 int main(int argc, char **argv)
@@ -667,7 +667,7 @@ int main(int argc, char **argv)
 <pre class="line-numbers language-cmake"><code class="language-cmake">add_executable(pose_subscriber src/pose_subscriber.cpp)
 target_link_libraries(pose_subscriber ${catkin_LIBRARIES})<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>修改好CMake配置之后，再进入catkin_ws文件夹执行<code>catkin_make</code>命令进行编译。编译完成后，使用<code>rosrun</code>命令运行Node，如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-06-XKS0wZ.png?token=AI5S4ML2XTGJ42ML3FQRONLA4PF32" alt></p>
+<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-06-XKS0wZ.png?token=AI5S4ML2XTGJ42ML3FQRONLA4PF32" alt=""></p>
 <p>同样，Publisher和Subscriber也可以用python代码实现，ROS中默认使用的是python2.7，一般在package下新建一个script文件夹存放python文件。Publisher和Subscriber的python代码如下：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
 <span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
@@ -1364,7 +1364,7 @@ Publisher节点按照规定格式发布
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.6k</span>&nbsp;字
+                class="white-color">50.4k</span>&nbsp;字
             
             
             <script>
@@ -1556,7 +1556,7 @@ Publisher节点按照规定格式发布
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1628560159818')
+  navigator.serviceWorker.register('/sw.js?t=1628731609586')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
