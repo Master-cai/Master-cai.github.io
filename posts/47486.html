@@ -4,8 +4,8 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="1141 PAT Ranking of Institutions, 博客 计算机 算法 python">
-    <meta name="description" content="1141 PAT Ranking of Institutions题目After each PAT, the PAT Center will announce the ranking of institutions based on thei">
+    <meta name="keywords" content="macos通过ssh连接服务器调用GUI程序, 博客 计算机 算法 python">
+    <meta name="description" content="macos通过ssh连接服务器调用GUI程序在Windows上远程连接服务器，如果想调用服务器上的图形化应用，可以使用mobaxterm这样的第三方工具实现，可以开箱即用，不用过多配置；但由于macos上没有类似的集成好的软件，所以需要额外">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
     <meta name="referrer" content="no-referrer">
-    <title>1141 PAT Ranking of Institutions | Master-cai</title>
+    <title>macos通过ssh连接服务器调用GUI程序 | Master-cai</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -406,12 +406,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">1141 PAT Ranking of Institutions</h1>
+                    <h1 class="description center-align post-title">macos通过ssh连接服务器调用GUI程序</h1>
                 </div>
             </div>
         </div>
@@ -521,8 +521,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
+                                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">环境配置</span>
                                 </a>
                             
                         </div>
@@ -533,8 +533,8 @@
                         <div class="post-cate">
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/pat/" class="post-category">
-                                    pat
+                                <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    环境配置
                                 </a>
                             
                         </div>
@@ -546,28 +546,28 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2020-05-14
+                        2021-09-12
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2020-05-17
+                        2021-09-12
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        797
+                        770
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        3 分
                     </div>
                 
 
@@ -582,109 +582,47 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1141-PAT-Ranking-of-Institutions"><a href="#1141-PAT-Ranking-of-Institutions" class="headerlink" title="1141 PAT Ranking of Institutions"></a><strong>1141</strong> <strong>PAT Ranking of Institutions</strong></h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><pre><code>After each PAT, the PAT Center will announce the ranking of institutions based on their students' performances. Now you are asked to generate the ranklist.
-Input Specification:
-Each input file contains one test case. For each case, the first line gives a positive integer N (≤10^ID Score School where ID is a string of 6 characters with the first one representing the test level: B stands for the basic level, A the advanced level and T the top level; Score is an integer in [0, 100]; and School is the institution code which is a string of no more than 6 English letters (case insensitive). Note: it is guaranteed that ID is unique for each testee.
-Output Specification:
-For each case, first print in a line the total number of institutions. Then output the ranklist of institutions in nondecreasing order of their ranks in the following format:
-Rank School TWS Ns
-where Rank is the rank (start from 1) of the institution; School is the institution code (all in lower case); ; TWS is the total weighted score which is defined to be the integer part of ScoreB/1.5 + ScoreA + ScoreT*1.5, where ScoreX is the total score of the testees belong to this institution on level X; and Ns is the total number of testees who belong to this institution.
-The institutions are ranked according to their TWS. If there is a tie, the institutions are supposed to have the same rank, and they shall be printed in ascending order of Ns. If there is still a tie, they shall be printed in alphabetical order of their codes.
-Sample Input:
-10
-A57908 85 Au
-B57908 54 LanX
-A37487 60 au
-T28374 67 CMU
-T32486 24 hypu
-A66734 92 cmu
-B76378 71 AU
-A47780 45 lanx
-A72809 100 pku
-A03274 45 hypu
-Sample Output:
-5
-1 cmu 192 2
-1 au 192 3
-3 pku 100 1
-4 hypu 81 2
-4 lanx 81 2</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题其实没有什么难度，只是在做的时候，将问题想复杂了，导致卡壳。还是有两个点需要注意一下：</p>
-<ol>
-<li>scanf不能对string类型进行赋值，如果一点需要，需要先分配string空间（s.resize(100))</li>
-<li>对于问题中的多个统计要求，其实大可不必集成在一个数据结构中，因为这是算法题而不是工程，不需要考虑其他方面，做出答案即可，可以用空间换时间即可。</li>
-<li>cctype 这个头文件很好用 直接转换大小写</li>
-<li>本题中要求只保留整数部分，但是需要全部累计后再截取，而不是每个结果都截取一次</li>
-<li>c++中map的遍历，类型是pair</li>
+                <h1 id="macos通过ssh连接服务器调用GUI程序"><a href="#macos通过ssh连接服务器调用GUI程序" class="headerlink" title="macos通过ssh连接服务器调用GUI程序"></a>macos通过ssh连接服务器调用GUI程序</h1><p>在Windows上远程连接服务器，如果想调用服务器上的图形化应用，可以使用mobaxterm这样的第三方工具实现，可以开箱即用，不用过多配置；但由于macos上没有类似的集成好的软件，所以需要额外配置一下。</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>原理是基于 X11 Forwarding 技术 + XQuartz第三方工具来实现的(转载自<a href="https://www.macrjy.com/t/3654)。" target="_blank" rel="noopener">https://www.macrjy.com/t/3654)。</a></p>
+<p>原生的Linux系统本来就是没有图形化界面的，图形化界面只是Linux系统中的一个应用程序。Linux系统中的图形化界面，都是基于X协议。</p>
+<p>X 协议由 X server 和 X client 组成：</p>
+<ul>
+<li>X server 管理主机上与显示相关的硬件设置（如显卡、硬盘、鼠标等），它负责屏幕画面的绘制与显示，以及将输入设置（如键盘、鼠标）的动作告知 X client。</li>
+<li>X client (即 X 应用程序) 则主要负责事件的处理（即程序的逻辑）。</li>
+</ul>
+<p>举个例子，如果用户点击了鼠标左键，因为鼠标归 X server 管理，于是 X server 就捕捉到了鼠标点击这个动作，然后它将这个动作告诉 X client，因为 X client 负责程序逻辑，于是 X client 就根据程序预先设定的逻辑（例如画一个圆），告诉 X server 说：“请在鼠标点击的位置，画一个圆”。最后，X server 就响应 X client 的请求，在鼠标点击的位置，绘制并显示出一个圆。</p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-HxES4t.jpg" alt=""></p>
+<p>许多时候 X server 和 X client 在同一台主机上，这看起来没什么。但是， X server 和 X client 完全可以运行在不同的机器上，只要彼此通过 X 协议通信即可。于是，我们就可以做一些 “神奇” 的事情，比如像本文开头谈到的，在本地显示 (X server)，运行在服务器上的 GUI 程序 (X client)。这样的操作可以通过 SSH X11 Forwarding (转发) 来实现。</p>
+<p>X11 中的 X 指的就是 X 协议，11 指的是采用 X 协议的第 11 个版本。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
+<li>修改ssh配置文件(/etc/ssh/sshd_config)</li>
 </ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-c++"><code class="language-c++">//
-// Created by masterCai on 2020/5/13.
-//
-
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cctype>
-#include <unordered_map>
-
-using namespace std;
-
-struct ins{
-    string school;
-    int TWS, Ns;
-};
-
-bool cmp(ins a, ins b){
-    if(a.TWS != b.TWS){
-        return a.TWS > b.TWS;
-    } else if(a.Ns != b.Ns){
-        return a.Ns < b.Ns;
-    } else{
-        return a.school < b.school;
-    }
-}
-
-int main(){
-    int n;
-    cin >> n;
-    unordered_map<string, int> cnt; //school-> Ns
-    unordered_map<string, double> sum; // school-> TWS
-    for (int i = 0; i < n; ++i) {
-        ins* in = new ins();
-        string ID;
-        double score;
-        string school;
-//        scanf("%s %lf %s", &ID, &score, &school);
-        cin >> ID >> score >> school;
-        for (int j = 0; j < school.length(); ++j) {
-            school[j] = tolower(school[j]);
-        }
-        switch (ID[0]) {
-            case 'B': score = score/1.5;
-                break;
-            case 'T': score = score*1.5;
-                break;
-        }
-        sum[school] += score;
-        cnt[school] += 1;
-    }
-    vector<ins> ans;
-    for(auto it = cnt.begin(); it != cnt.end(); it++){
-        ans.push_back(ins{it->first, (int)sum[it->first], cnt[it->first]});
-    }
-    sort(ans.begin(), ans.end(), cmp);
-    int rank = 0, pres=-1;
-    printf("%d\n", (int)ans.size());
-    for (int i = 0; i < ans.size(); ++i) {
-        if(pres != ans[i].TWS){ //判断排名是否一致
-            rank = i+1;
-        }
-        pres = ans[i].TWS;
-        printf("%d ", rank);
-        cout << ans[i].school;
-        printf(" %d %d\n", ans[i].TWS, ans[i].Ns);
-    }
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>添加或取消下面两条代码的注释：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">X11Forwarding <span class="token function">yes</span>
+X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-1ivEZ8.png" alt=""></p>
+<ol start="2">
+<li>安装xauth</li>
+</ol>
+<p>在系统中安装xauth（以ubuntu系统为例）</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> xauth<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>至此，服务器端配置完成</p>
+<h3 id="Macos端"><a href="#Macos端" class="headerlink" title="Macos端"></a>Macos端</h3><ol>
+<li>安装XQuartz</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> xquartz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="2">
+<li>在终端中输入如下命令：</li>
+</ol>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">export</span> DISPLAY<span class="token operator">=</span>:0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Ps: 如果使用XQuartz自带的terminal里使用，无需此命令；如果要在iterm等其他terminal中使用，需要输入此命令。</p>
+<ol start="2">
+<li>ssh连接</li>
+</ol>
+<p>使用ssh进行连接前，需要保持XQuartz处于开启状态</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> -Y user@IP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Ps: 在XQuartz自带的terminal里使用时可以使用-X参数，其他terminal中只能使用-Y参数。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -716,8 +654,8 @@ int main(){
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
+                                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">环境配置</span>
                                 </a>
                             
                         </div>
@@ -1026,54 +964,48 @@ int main(){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
-                    <a href="/posts/63296.html">
+                    <a href="/posts/47486.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="1143 Lowest Common Ancestor">
+                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="macos通过ssh连接服务器调用GUI程序">
                             
-                            <span class="card-title">1143 Lowest Common Ancestor</span>
+                            <span class="card-title">macos通过ssh连接服务器调用GUI程序</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1143 Lowest Common Ancestor题目The lowest common ancestor (LCA) of two nodes U and V in a tree is the deepest node that ha
+                                macos通过ssh连接服务器调用GUI程序在Windows上远程连接服务器，如果想调用服务器上的图形化应用，可以使用mobaxterm这样的第三方工具实现，可以开箱即用，不用过多配置；但由于macos上没有类似的集成好的软件，所以需要额外
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-12
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/pat/" class="post-category">
-                                    pat
+                                        <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    环境配置
                                 </a>
                                     
                                 
                             </span>
                         </div>
                     </div>
+
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
-                                </a>
-                            
-                                <a href="/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">
-                                    <span class="chip bg-color">二叉搜索树</span>
-                                </a>
-                            
-                                <a href="/tags/LCA/">
-                                    <span class="chip bg-color">LCA</span>
+                                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">环境配置</span>
                                 </a>
                             
                         </div>
@@ -1087,31 +1019,34 @@ int main(){
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/63733.html">
+                    <a href="/posts/33122.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="1146 Topological Order">
+                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="ssh免密登陆连接配置">
                             
-                            <span class="card-title">1146 Topological Order</span>
+                            <span class="card-title">ssh免密登陆连接配置</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                1146 Topological Order题目This is a problem given in the Graduate Entrance Exam in 2018: Which of the following is NOT a t
+                                ssh免密登陆连接配置1. 生成ssh key进入～/.ssh 目录，生成ssh key
+cd ~/.ssh
+ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
+# 也可以通过参数进行指定 ssh-keyge
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-11
                             </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                                     
-                                        <a href="/categories/pat/" class="post-category">
-                                    pat
+                                        <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-category">
+                                    环境配置
                                 </a>
                                     
                                 
@@ -1121,12 +1056,8 @@ int main(){
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/pat/">
-                                    <span class="chip bg-color">pat</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/">
-                                    <span class="chip bg-color">拓扑排序</span>
+                                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                                    <span class="chip bg-color">环境配置</span>
                                 </a>
                             
                         </div>
