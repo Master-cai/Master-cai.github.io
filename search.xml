@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>paper_test</title>
+      <link href="/posts/48165.html"/>
+      <url>/posts/48165.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="title-one"><a href="#title-one" class="headerlink" title="title one"></a>title one</h1><h2 id="title-two"><a href="#title-two" class="headerlink" title="title two"></a>title two</h2><p>content</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> paper阅读 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>macos通过ssh连接服务器调用GUI程序</title>
       <link href="/posts/47486.html"/>
       <url>/posts/47486.html</url>

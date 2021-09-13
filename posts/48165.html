@@ -4,8 +4,12 @@
 
 <head><link rel=manifest href=/manifest.json>
     <meta charset="utf-8">
-    <meta name="keywords" content="macos通过ssh连接服务器调用GUI程序, 博客 计算机 算法 python">
-    <meta name="description" content="macos通过ssh连接服务器调用GUI程序在Windows上远程连接服务器，如果想调用服务器上的图形化应用，可以使用mobaxterm这样的第三方工具实现，可以开箱即用，不用过多配置；但由于macos上没有类似的集成好的软件，所以需要额外">
+    <meta name="keywords" content="paper_test, 博客 计算机 算法 python">
+    <meta name="description" content="title onetitle twocontent
+
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +19,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="white"/>
     <meta name="referrer" content="no-referrer">
-    <title>macos通过ssh连接服务器调用GUI程序 | Master-cai</title>
+    <title>paper_test | Master-cai</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -406,12 +410,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">macos通过ssh连接服务器调用GUI程序</h1>
+                    <h1 class="description center-align post-title">paper_test</h1>
                 </div>
             </div>
         </div>
@@ -520,11 +524,7 @@
                 <div class="col s7">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-                                    <span class="chip bg-color">环境配置</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -533,8 +533,8 @@
                         <div class="post-cate">
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                                <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-category">
-                                    环境配置
+                                <a href="/categories/paper%E9%98%85%E8%AF%BB/" class="post-category">
+                                    paper阅读
                                 </a>
                             
                         </div>
@@ -546,28 +546,28 @@
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                        2021-09-12
+                        2021-09-13
                     </div>
                 
 
                 
                     <div class="post-date info-break-policy">
                         <i class="fa fa-calendar-check-o fa-fw"></i>更新日期:&nbsp;&nbsp;
-                        2021-09-12
+                        2021-09-13
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        770
+                        55
                     </div>
                 
 
                 
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        1 分
                     </div>
                 
 
@@ -582,47 +582,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="macos通过ssh连接服务器调用GUI程序"><a href="#macos通过ssh连接服务器调用GUI程序" class="headerlink" title="macos通过ssh连接服务器调用GUI程序"></a>macos通过ssh连接服务器调用GUI程序</h1><p>在Windows上远程连接服务器，如果想调用服务器上的图形化应用，可以使用mobaxterm这样的第三方工具实现，可以开箱即用，不用过多配置；但由于macos上没有类似的集成好的软件，所以需要额外配置一下。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>原理是基于 X11 Forwarding 技术 + XQuartz第三方工具来实现的(转载自<a href="https://www.macrjy.com/t/3654)。" target="_blank" rel="noopener">https://www.macrjy.com/t/3654)。</a></p>
-<p>原生的Linux系统本来就是没有图形化界面的，图形化界面只是Linux系统中的一个应用程序。Linux系统中的图形化界面，都是基于X协议。</p>
-<p>X 协议由 X server 和 X client 组成：</p>
-<ul>
-<li>X server 管理主机上与显示相关的硬件设置（如显卡、硬盘、鼠标等），它负责屏幕画面的绘制与显示，以及将输入设置（如键盘、鼠标）的动作告知 X client。</li>
-<li>X client (即 X 应用程序) 则主要负责事件的处理（即程序的逻辑）。</li>
-</ul>
-<p>举个例子，如果用户点击了鼠标左键，因为鼠标归 X server 管理，于是 X server 就捕捉到了鼠标点击这个动作，然后它将这个动作告诉 X client，因为 X client 负责程序逻辑，于是 X client 就根据程序预先设定的逻辑（例如画一个圆），告诉 X server 说：“请在鼠标点击的位置，画一个圆”。最后，X server 就响应 X client 的请求，在鼠标点击的位置，绘制并显示出一个圆。</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-HxES4t.jpg" alt=""></p>
-<p>许多时候 X server 和 X client 在同一台主机上，这看起来没什么。但是， X server 和 X client 完全可以运行在不同的机器上，只要彼此通过 X 协议通信即可。于是，我们就可以做一些 “神奇” 的事情，比如像本文开头谈到的，在本地显示 (X server)，运行在服务器上的 GUI 程序 (X client)。这样的操作可以通过 SSH X11 Forwarding (转发) 来实现。</p>
-<p>X11 中的 X 指的就是 X 协议，11 指的是采用 X 协议的第 11 个版本。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
-<li>修改ssh配置文件(/etc/ssh/sshd_config)</li>
-</ol>
-<p>添加或取消下面两条代码的注释：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">X11Forwarding <span class="token function">yes</span>
-X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-1ivEZ8.png" alt=""></p>
-<ol start="2">
-<li>安装xauth</li>
-</ol>
-<p>在系统中安装xauth（以ubuntu系统为例）</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> xauth<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>至此，服务器端配置完成</p>
-<h3 id="Macos端"><a href="#Macos端" class="headerlink" title="Macos端"></a>Macos端</h3><ol>
-<li>安装XQuartz</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> xquartz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ol start="2">
-<li>在终端中输入如下命令：</li>
-</ol>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">export</span> DISPLAY<span class="token operator">=</span>:0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Ps: 如果使用XQuartz自带的terminal里使用，无需此命令；如果要在iterm等其他terminal中使用，需要输入此命令。</p>
-<ol start="2">
-<li>ssh连接</li>
-</ol>
-<p>使用ssh进行连接前，需要保持XQuartz处于开启状态</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> -Y user@IP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Ps: 在XQuartz自带的terminal里使用时可以使用-X参数，其他terminal中只能使用-Y参数。</p>
+                <h1 id="title-one"><a href="#title-one" class="headerlink" title="title one"></a>title one</h1><h2 id="title-two"><a href="#title-two" class="headerlink" title="title two"></a>title two</h2><p>content</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -653,11 +613,7 @@ X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></sp
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-                                    <span class="chip bg-color">环境配置</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -964,9 +920,10 @@ X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-            <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
                 <div class="article-badge left-badge text-color">
-                    <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                    <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                </div>
                 <div class="card">
                     <a href="/posts/48165.html">
                         <div class="card-image">
@@ -988,9 +945,9 @@ X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></sp
                             
                         </div>
                         <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-13
+                            </span>
                             <span class="publish-author">
                                 
                                     <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -1003,6 +960,7 @@ X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></sp
                             </span>
                         </div>
                     </div>
+
                     
                 </div>
             </div>
@@ -1013,27 +971,24 @@ X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></sp
                     下一篇&nbsp;<i class="fa fa-chevron-right"></i>
                 </div>
                 <div class="card">
-                    <a href="/posts/33122.html">
+                    <a href="/posts/47486.html">
                         <div class="card-image">
                             
                                 
-                                <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="ssh免密登陆连接配置">
+                                <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="macos通过ssh连接服务器调用GUI程序">
                             
-                            <span class="card-title">ssh免密登陆连接配置</span>
+                            <span class="card-title">macos通过ssh连接服务器调用GUI程序</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                ssh免密登陆连接配置1. 生成ssh key进入～/.ssh 目录，生成ssh key
-cd ~/.ssh
-ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
-# 也可以通过参数进行指定 ssh-keyge
+                                macos通过ssh连接服务器调用GUI程序在Windows上远程连接服务器，如果想调用服务器上的图形化应用，可以使用mobaxterm这样的第三方工具实现，可以开箱即用，不用过多配置；但由于macos上没有类似的集成好的软件，所以需要额外
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-12
                             </span>
                             <span class="publish-author">
                                 
