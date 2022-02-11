@@ -643,37 +643,8 @@ void dfs(int pos){ // 回溯
         return;
     }
     if (pos >= n/2){ // 在数组堆中 大于n/2一定是叶子结点 打印结果即可
-        for(int i = 0; i<path.size(); i++){
-            printf("%d%c", path[i], i==path.size()-1?'\n': ' ');
-        }
-    } else{ // 不是叶子结点 继续遍历
-        int left = i*2+1;
-        int right = i*2+2;
-
-        // 下面是回溯 对于每一种可做的选择都进行尝试 相当于 for
-        path.push_back(heap[right]);
-        dfs(right);
-        path.pop_back();
-        path.push_back(heap[left]);
-        dfs(left);
-        path.pop_back();
-    }
-}
-
-int main(){
-    cin >> n;
-    for(int i=0; i<n; i++){
-        scanf("%d", &heap[i]);
-    }
-    path.push_back(heap[0]); // 根据dfs函数的逻辑 需要进行初始化
-    dfs(0);
-    bool min = true;
-    bool max = true;
-    for(int i = 0; i<n/2; i++){ //单独再判断是否符合条件
-        if ((i*2+1<n && heap[i]<heap[i*2+1]) || (i*2+2 < n && heap[i] < heap[i*2+2])){
-            max = false;
-        }
-        if ((i*2+1<n && heap[i]>heap[i*2+1]) || (i*2+2 < n && heap[i] > heap[i*2+2])){
+        for(int i = 0; i<path.size(); i++){ printf("%d%c", path[i], i="=path.size()-1?'\n':" ' '); } else{ 不是叶子结点 继续遍历 int left="i*2+1;" right="i*2+2;" 下面是回溯 对于每一种可做的选择都进行尝试 相当于 for path.push_back(heap[right]); dfs(right); path.pop_back(); path.push_back(heap[left]); dfs(left); main(){ cin>> n;
+    for(int i=0; i<n; i++){ scanf("%d", &heap[i]); } path.push_back(heap[0]); 根据dfs函数的逻辑 需要进行初始化 dfs(0); bool min="true;" max="true;" for(int i="0;" i<n 2; 单独再判断是否符合条件 if ((i*2+1<n && heap[i]<heap[i*2+1]) || (i*2+2 < n heap[i] heap[i*2+2])){>heap[i*2+1]) || (i*2+2 < n && heap[i] > heap[i*2+2])){
             min = false;
         }
     }
@@ -685,7 +656,7 @@ int main(){
         printf("Not Heap");
     }
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></n;></path.size();></int></int></vector></iostream></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1351,7 +1322,7 @@ int main(){
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">52k</span>&nbsp;字
+                class="white-color">55k</span>&nbsp;字
             
             
             <script>
@@ -1543,7 +1514,7 @@ int main(){
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1637844058988')
+  navigator.serviceWorker.register('/sw.js?t=1644589305400')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

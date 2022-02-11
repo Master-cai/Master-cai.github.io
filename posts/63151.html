@@ -654,31 +654,11 @@ int main(){
     int n;
     cin >> n;
     vector<int> v(n+1); // v中存储所有人的陈述
-    for (int i = 1; i <= n; ++i) {
-//        scanf("%d", &v[i]);
-        cin >> v[i];
+    for (int i = 1; i <= n; ++i) { scanf("%d", &v[i]); cin>> v[i];
     }
-    for(int i=1; i<=n; i++){
-        for(int j=i+1; j<=n; j++){ // i j 枚举 i和j为狼的情况
-            vector<int> lie, a(n+1, 1); // 将撒谎情况记录到lie中 a作为枚举的载体 初始化为全人
+    for(int i=1; i<=n; i++){ for(int j="i+1;" j<="n;" j++){ i 枚举 i和j为狼的情况 vector<int> lie, a(n+1, 1); // 将撒谎情况记录到lie中 a作为枚举的载体 初始化为全人
             a[i] = a[j] = -1; // 开始枚举 -1为狼 1为人
-            for(int k = 1; k <= n; k++){
-                // 这里判断撒谎情况很巧妙
-                // 之前设定的-1为狼 如果玩家说i号为狼，则陈述为负，若实际情况为狼 为-1，负负得正 没有撒谎 以此类推
-                if(v[k] * a[abs(v[k])]<0){
-                    lie.push_back(k);// 将撒谎情况记录下来
-                }
-            }
-            if (lie.size() == 2 && a[lie[0]] + a[lie[1]] == 0){
-                // 判断是否为题中要求的一狼一人
-                cout << i << ' ' << j;
-                return 0;
-            }
-        }
-    }
-    cout << "No Solution";
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+            for(int k = 1; k <= 2 n; k++){ 这里判断撒谎情况很巧妙 之前设定的-1为狼 如果玩家说i号为狼，则陈述为负，若实际情况为狼 为-1，负负得正 没有撒谎 以此类推 if(v[k] * a[abs(v[k])]<0){ lie.push_back(k); 将撒谎情况记录下来 } if (lie.size()="=" && a[lie[0]] + a[lie[1]]="=" 0){ 判断是否为题中要求的一狼一人 cout << i ' j; return 0; "no solution"; }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=></=n;></=></int></cstring></algorithm></vector></iostream></code></pre>
 <ol start="2">
 <li>next_permutation实现版本</li>
 </ol>
@@ -696,35 +676,9 @@ int main(){
     int n;
     cin >> n;
     vector<int> statement(n+1); // 从1开始
-    for(int i = 1; i<=n; i++){
-        scanf("%d", &statement[i]);
-    }
-    vector<int> status = {-1, -1}; //从0开始
-    for(int i = 2; i<n; i++){
-        status.push_back(1);
-    }
-
-    do {
-        vector<int> lie;
-        for(int i = 1; i<=n; i++){
-            if(statement[i] * status[abs(statement[i])-1] < 0){
-                lie.push_back(i-1);
-            }
-        }
-        if (lie.size() == 2 && status[lie[0]]+status[lie[1]] == 0){
-            int cnt = 0;
-            for (int i = 0; i < n + 1; ++i) {
-                if(status[i] == -1){
-                    cnt == 0? printf("%d ", i+1):printf("%d", i+1);
-                    cnt += 1;
-                }
-            }
-            return 0;
-        }
-    } while (next_permutation(status.begin(), status.end()));
-    printf("No Solution");
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    for(int i = 1; i<=n; i++){ scanf("%d", &statement[i]); } vector<int> status = {-1, -1}; //从0开始
+    for(int i = 2; i<n; i++){ status.push_back(1); } do { vector<int> lie;
+        for(int i = 1; i<=n; 2 i++){ if(statement[i] * status[abs(statement[i])-1] < 0){ lie.push_back(i-1); } if (lie.size()="=" && status[lie[0]]+status[lie[1]]="=" int cnt="0;" for (int i="0;" n + 1; ++i) { if(status[i]="=" -1){ 0? printf("%d ", i+1):printf("%d", i+1); return 0; while (next_permutation(status.begin(), status.end())); printf("no solution"); }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></=n;></n;></=n;></int></algorithm></vector></iostream></code></pre>
 <p>这道题其实做了好久。。还只是第一题。。这个check函数在考试还是不太容易想出来，还是继续锤吧</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1399,7 +1353,7 @@ int main(){
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">52k</span>&nbsp;字
+                class="white-color">55k</span>&nbsp;字
             
             
             <script>
@@ -1591,7 +1545,7 @@ int main(){
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1637844058988')
+  navigator.serviceWorker.register('/sw.js?t=1644589305400')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

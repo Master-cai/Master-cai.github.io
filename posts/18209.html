@@ -583,7 +583,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="ROS入门之核心概念和系统安装"><a href="#ROS入门之核心概念和系统安装" class="headerlink" title="ROS入门之核心概念和系统安装"></a>ROS入门之核心概念和系统安装</h1><h2 id="ROS简介"><a href="#ROS简介" class="headerlink" title="ROS简介"></a>ROS简介</h2><p>ROS(robot operating system)是一个开源的机器人操作系统，最早起源于2007年斯坦福大学willow garage的个人项目。ROS提供机器人硬件抽象描述，底层驱动，节点间的消息传递，程序包管理等功能，用于构建一个完整的机器人系统。ROS系统主要由node， topic，service等结构构成。</p>
-<p>ROS每两年更新一个大版本，每个版本对应一个ubuntu版本，如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-HuwjZm.png" alt="">其中kinetic版本对应ubuntu16， melodic对应ubuntu18（最新版本为2020年5月发布的noetic）。ROS目前已经发展到ROS 2版本，但是ROS 2并不是对ROS 1的取代，而是对ROS 1的进一步完善，目前主流应用还是基于ROS 1版本构建。目前，ROS相关的资料也非常多，主要参考<a href="http://wiki.ros.org/cn" target="_blank" rel="noopener">ROS wiki</a>即可解决大部分问题。</p>
+<p>ROS每两年更新一个大版本，每个版本对应一个ubuntu版本，如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-HuwjZm.png" alt>其中kinetic版本对应ubuntu16， melodic对应ubuntu18（最新版本为2020年5月发布的noetic）。ROS目前已经发展到ROS 2版本，但是ROS 2并不是对ROS 1的取代，而是对ROS 1的进一步完善，目前主流应用还是基于ROS 1版本构建。目前，ROS相关的资料也非常多，主要参考<a href="http://wiki.ros.org/cn" target="_blank" rel="noopener">ROS wiki</a>即可解决大部分问题。</p>
 <h2 id="ROS-melodic安装（ubuntu-18）"><a href="#ROS-melodic安装（ubuntu-18）" class="headerlink" title="ROS melodic安装（ubuntu 18）"></a>ROS melodic安装（ubuntu 18）</h2><p>ROS的安装过程在ros的wiki上写的非常清楚，按照步骤执行就可以，这里简要贴一下命令。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置ROS软件源</span>
 <span class="token function">sudo</span> sh -c <span class="token string">'echo "deb http://packages.ros.org/ros/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -sc<span class="token variable">)</span></span> main" > /etc/apt/sources.list.d/ros-latest.list'</span>
@@ -601,14 +601,14 @@ rosdep update
 <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> python-rosinstall python-rosinstall-generator python-wstool build-essential<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里初始化rosdep这一步中，rosdep update命令经常由于网络问题无法正常执行（修改host无效），将会影响到后续的操作，可以通过修改20-default.list文件使用gitee备份源来解决问题，具体操作见<a href="https://mp.weixin.qq.com/s/mghnF4sesImHpg4ScZ-bRA" target="_blank" rel="noopener">链接</a>。</p>
 <p>安装完成之后，执行一下<code>roscore</code>测试一下安装是否成功，效果如图：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-iKIHLu.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-iKIHLu.png" alt></p>
 <h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>ROS的核心概念主要有 Node, Topic, Service和ROS Master，下面先分别对每个概念进行解释。</p>
 <h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>ROS 中每个执行具体任务的单元都成为一个Node，一个Node通常为一个可执行文件，不同的节点可以用不同的语言编写，也可以运行在不同机器上，但是每个Node的名称必须唯一。</p>
-<h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>Topic是节点之间传输消息的一种多对多的方式。在Topic模型中，消息的发送者被称为Publisher，接受者被称为Subscriber，Publisher将消息发送到Topic中，然后Subscriber订阅这个Topic来收取消息，这个过程是异步进行的，比较类似于操作系统中的消费者和生产者的模型，Topic就充当了buffer的角色。Publisher发布消息时需要遵守一定的规则，其发出的消息结构需要提前在.msg格式的文件中进行定义。这三者的关系如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-BJsupT.png" alt=""></p>
+<h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>Topic是节点之间传输消息的一种多对多的方式。在Topic模型中，消息的发送者被称为Publisher，接受者被称为Subscriber，Publisher将消息发送到Topic中，然后Subscriber订阅这个Topic来收取消息，这个过程是异步进行的，比较类似于操作系统中的消费者和生产者的模型，Topic就充当了buffer的角色。Publisher发布消息时需要遵守一定的规则，其发出的消息结构需要提前在.msg格式的文件中进行定义。这三者的关系如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-BJsupT.png" alt></p>
 <h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-Avkt2p.png" style="zoom:50%; float: right">Service是C/S架构的同步消息通信模型，传递消息时，首先由client对server发出请求，当server处理完成后，再给client返回数据，这个过程是同步进行的，一个server可以被多个client请求。和Topic类似，service模型在通信时传递的消息结构也是提前定义好的，需要在.srv文件中进行声明。service示意图如图所示：</p>
 <h3 id="ROS-Master"><a href="#ROS-Master" class="headerlink" title="ROS Master"></a>ROS Master</h3><p>ROS Master是整个ROS系统的控制中心，所有的node节点都需要注册到ROS Master中才能正常在整个系统中使用。ROS Master负责连接所有Topic/Service之间的通信，同时还提供一个参数服务器，可以在运行时提供一些参数。ROS Master示意图如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-vORlbc.png" style="zoom:50%;"></p>
-<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>ROS的工作空间一般为～/catkin_ws（自行创建），一般包括build, devel, install, src和param.yaml文件。build 文件夹下主要存放编译过程中的中间文件，和普通cmake编译中的build文件夹功能类似；devel文件夹中存放有编译出来的可执行文件以及对应几大主流shell系统的环境变量更新命令。install文件夹下主要存放用于install的命令脚本，src存放所有功能包，param.yaml中配置ROS系统的参数，ROS系统启动时将读取这个文件。<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-RGA9qm.png" alt=""></p>
-<p>源代码就放在catkin_ws/src目录下。src目录下每个文件夹都是一个功能包（使用命令创建功能包），每个功能包里一般包括源代码（src和script），Package manifest，消息/服务定义文件，如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-udk2x0.png" alt=""></p>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p>ROS的工作空间一般为～/catkin_ws（自行创建），一般包括build, devel, install, src和param.yaml文件。build 文件夹下主要存放编译过程中的中间文件，和普通cmake编译中的build文件夹功能类似；devel文件夹中存放有编译出来的可执行文件以及对应几大主流shell系统的环境变量更新命令。install文件夹下主要存放用于install的命令脚本，src存放所有功能包，param.yaml中配置ROS系统的参数，ROS系统启动时将读取这个文件。<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-RGA9qm.png" alt></p>
+<p>源代码就放在catkin_ws/src目录下。src目录下每个文件夹都是一个功能包（使用命令创建功能包），每个功能包里一般包括源代码（src和script），Package manifest，消息/服务定义文件，如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-udk2x0.png" alt></p>
 <p>多个功能包又可以组成一个元功能包，最终构成一个完整的ROS 系统。</p>
 <h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><h3 id="创建workspace"><a href="#创建workspace" class="headerlink" title="创建workspace"></a>创建workspace</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">mkdir</span> -p ~/catkin_ws/src
 <span class="token function">cd</span> ~/catkin_ws/src
@@ -631,7 +631,7 @@ catkin_create_pkg test_pkg std_msgs rospy roscpp<span aria-hidden="true" class="
 <ol start="2">
 <li><code>rostopic</code></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-vydWSz.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-vydWSz.png" alt></p>
 <p>rostopic 命令可跟不同参数，最常用命令为<code>rostopic list</code>，用于查看当前ROS Master中存在的所有topic；<code>rostopic pub</code>可以向指定的topic中发布数据，例如向turtlesim中发布数据改变turtle的位置，在发布数据时，当确定需要发布的topic后，可以双击“tab”键自动补全消息格式：</p>
 <img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-QnfypQ.png" style="zoom:80%;">
 
@@ -639,18 +639,18 @@ catkin_create_pkg test_pkg std_msgs rospy roscpp<span aria-hidden="true" class="
 <li><code>rosservice</code></li>
 </ol>
 <p>和rostopic命令类似，可以用于操作service相关的内容。</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-cYgHri.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-cYgHri.png" alt></p>
 <p>其中，<code>rosservice list</code>用于查看当前ROS Master中所有service的名称；<code>rosservice call</code>可以调用某个特定的service，如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-6mOFnJ.png" style="zoom:67%;"></p>
 <p>图中命令调用 /spawn服务，产生了一个新的turtle。</p>
 <ol start="4">
 <li><code>rosnode</code></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-BEVJVu.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-BEVJVu.png" alt></p>
 <p>主要使用<code>rosnode list</code>命令查看当然ROS Master中存在的所有node。</p>
 <ol start="5">
 <li><code>rosparam</code></li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-JdlIMX.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-JdlIMX.png" alt></p>
 <p>rosparam命令主要用于对ROS Master中的参数进行各种操作</p>
 <ol start="6">
 <li><code>rosmsg</code>和<code>rossrv</code></li>
@@ -1301,7 +1301,7 @@ sock
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">52k</span>&nbsp;字
+                class="white-color">55k</span>&nbsp;字
             
             
             <script>
@@ -1493,7 +1493,7 @@ sock
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1637844058988')
+  navigator.serviceWorker.register('/sw.js?t=1644589305400')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
