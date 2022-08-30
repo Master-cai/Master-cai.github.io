@@ -521,12 +521,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
                                     <span class="chip bg-color">动态规划</span>
+                                </a>
+                            
+                                <a href="/tags/leetcode/">
+                                    <span class="chip bg-color">leetcode</span>
                                 </a>
                             
                         </div>
@@ -587,7 +587,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="最长递增子序列之动态规划解法"><a href="#最长递增子序列之动态规划解法" class="headerlink" title="最长递增子序列之动态规划解法"></a>最长递增子序列之动态规划解法</h1><p>最近在leetcode 做了这样一道动态规划的题目，看了答案以后发现并不是非常的困难，但是也困扰了我好久（属实垃圾。。）。过了几天以后再次看这道题，虽说有了一定思路，但是依然没有解决出来（垃圾实锤），特此记录一下这道题的解决过程，应用一下前文所述的框架。</p>
-<p>先看题目：<img src="/posts/1.png" alt=""></p>
+<p>先看题目：<img src="/posts/1.png" alt></p>
 <p>题目描述本身并没有什么坑点，也算是一道很典型的动态规划问题（子序列+最大值）。</p>
 <h2 id="1-确定问题的状态和dp数组"><a href="#1-确定问题的状态和dp数组" class="headerlink" title="1. 确定问题的状态和dp数组"></a>1. 确定问题的状态和dp数组</h2><p>首先由于这道题目只是求自身的最长递增子序列，并没有设计到和其他序列进行比较，所以暂时可以确定dp数组是一个一维数组。在这个问题中，没有特别明显的状态，不太方便从这个角度分析。接下来就是考虑dp数据的含义了，既然是一维数组，那么最直接的想法就是dp[i]就表示从nums[0…i]的最大长度（不是说一定从0开始），因为最终的答案肯定是在dp数组中，再结合题目，很容易得出这个定义。带入尝试一下发现没有问题，继续分析。</p>
 <h2 id="2-确定当前的选择"><a href="#2-确定当前的选择" class="headerlink" title="2. 确定当前的选择"></a>2. 确定当前的选择</h2><p>我们假设这样一种情况：现在我们通过某种方式已经求出了dp[i-1]的值，现在我们想要求dp[i]的值。面对这样的情况，我们可以有哪几种选择或者说操作呢？</p>
@@ -639,12 +639,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
                                     <span class="chip bg-color">动态规划</span>
+                                </a>
+                            
+                                <a href="/tags/leetcode/">
+                                    <span class="chip bg-color">leetcode</span>
                                 </a>
                             
                         </div>
@@ -992,12 +992,12 @@
                     
                         <div class="card-action article-tags">
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
                                     <span class="chip bg-color">动态规划</span>
+                                </a>
+                            
+                                <a href="/tags/leetcode/">
+                                    <span class="chip bg-color">leetcode</span>
                                 </a>
                             
                                 <a href="/tags/%E5%A4%87%E5%BF%98%E5%BD%95%E9%80%92%E5%BD%92/">
@@ -1053,12 +1053,12 @@
                                     <span class="chip bg-color">总结</span>
                                 </a>
                             
-                                <a href="/tags/leetcode/">
-                                    <span class="chip bg-color">leetcode</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
                                     <span class="chip bg-color">动态规划</span>
+                                </a>
+                            
+                                <a href="/tags/leetcode/">
+                                    <span class="chip bg-color">leetcode</span>
                                 </a>
                             
                         </div>
@@ -1266,7 +1266,7 @@
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">53.2k</span>&nbsp;字
+                class="white-color">55.4k</span>&nbsp;字
             
             
             <script>
@@ -1458,7 +1458,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1658284485854')
+  navigator.serviceWorker.register('/sw.js?t=1661846924698')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
