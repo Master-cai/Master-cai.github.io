@@ -611,7 +611,7 @@
 <ul>
 <li>字符串相关的问题：<br>一般是定义一个二维数组，dp[i][j] 为s1[0…i] 到s2[0…j]的最大值（示具体情况而定）<br>定义完dp table，动态规划问题就解决了一半，最终答案一般为dp[n]。</li>
 </ul>
-<h3 id="3-明确当前选择"><a href="#3-明确当前选择" class="headerlink" title="3.明确当前选择"></a>3.明确当前选择</h3><p>什么又是选择？选择是在当前状态下，可以做出的改变，是状态转移方程的基础。动态规划问题就是在当前状态下，在可选的选择中择优选择。越来越发现动态规划问题和有限状态机有一定的相似之处：<img src="/posts/1.png" alt><br>这个图明确了状态和选择之间的关系，状态转移方程只不过是将这个图用数学方式描述出来，仅此而已。</p>
+<h3 id="3-明确当前选择"><a href="#3-明确当前选择" class="headerlink" title="3.明确当前选择"></a>3.明确当前选择</h3><p>什么又是选择？选择是在当前状态下，可以做出的改变，是状态转移方程的基础。动态规划问题就是在当前状态下，在可选的选择中择优选择。越来越发现动态规划问题和有限状态机有一定的相似之处：<img src="/posts/1.png" alt=""><br>这个图明确了状态和选择之间的关系，状态转移方程只不过是将这个图用数学方式描述出来，仅此而已。</p>
 <h3 id="4-写出状态转移方程"><a href="#4-写出状态转移方程" class="headerlink" title="4.写出状态转移方程"></a>4.写出状态转移方程</h3><p>有了上面的工作做铺垫，写出状态方程则是水到渠成的事情。其实前面4步没有特别严格的顺序。通常情况下不能直接看出问题的状态转移方程，可以先写出问题的暴力解法，然后一步步的从中分析出问题的状态方程。<br>另一个角度，在定义了dp table后，可以考虑一下如何推导出dp[i] [j]，这也就是状态转移方程的另一种表现形式，也就是数学归纳法。</p>
 <h3 id="5-初始化base-case"><a href="#5-初始化base-case" class="headerlink" title="5. 初始化base case"></a>5. 初始化base case</h3><p>可以说这一步是整个动态规划解题过程中最简单的一步了，但也是同样重要的一步。这一步只需要根据dp table的定义，确定base case即可</p>
 <h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><h3 id="dp数组的遍历顺序问题"><a href="#dp数组的遍历顺序问题" class="headerlink" title="dp数组的遍历顺序问题"></a>dp数组的遍历顺序问题</h3><p>如何遍历一个dp数组？到底是正着遍历还是反着遍历？其实只要遵循一个原则：只要能够从base case根据状态转移方程推导到最终答案即可。<br>再次记录一下斜着遍历数组的实现：</p>
@@ -1279,7 +1279,7 @@
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1471,7 +1471,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1661846924698')
+  navigator.serviceWorker.register('/sw.js?t=1662555067257')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

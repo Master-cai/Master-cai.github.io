@@ -590,7 +590,7 @@ ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
 ssh-keygen <span class="token comment" spellcheck="true">#生成默认密钥对 公钥id_rsa.pub 私钥id_rsa</span>
 <span class="token comment" spellcheck="true"># 也可以通过参数进行指定 ssh-keygen -t rsa -C xxx@xx.com</span>
 <span class="token comment" spellcheck="true"># 生成过程中可以指定密钥对的名称，否则默认为id_rsa</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>~/.ssh目录是用来存放ssh key的目录，目录下主要有密钥对，config文件和known_hosts文件。config文件主要用来给通过ssh连接的服务器配置别名，方便连接；known_hosts文件是为了验证连接服务器的安全性。当第一次通过ssh连接到服务器A时，A会传递一个公钥给host，host会将这个公钥保存到known_hosts中，以后每次连接，都会验证A的公钥是否和在known_hosts中的公钥是否匹配，以此防范DNS Hijack之类的攻击。known_hosts文件如图：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/08-12-SJVhch.png" alt></p>
+<p>~/.ssh目录是用来存放ssh key的目录，目录下主要有密钥对，config文件和known_hosts文件。config文件主要用来给通过ssh连接的服务器配置别名，方便连接；known_hosts文件是为了验证连接服务器的安全性。当第一次通过ssh连接到服务器A时，A会传递一个公钥给host，host会将这个公钥保存到known_hosts中，以后每次连接，都会验证A的公钥是否和在known_hosts中的公钥是否匹配，以此防范DNS Hijack之类的攻击。known_hosts文件如图：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/08-12-SJVhch.png" alt=""></p>
 <h2 id="2-上传公钥到服务器"><a href="#2-上传公钥到服务器" class="headerlink" title="2.上传公钥到服务器"></a>2.上传公钥到服务器</h2><p>将生成的公钥上传到需要登陆的服务器上，完成配对。（配置多个服务器时不需要重复生成密钥，直接上传已有的公钥即可）</p>
 <pre class="line-numbers language-bash"><code class="language-bash">ssh-copy-id -i id_rsa.pub user@host
 <span class="token comment" spellcheck="true"># 使用命令自动在服务器端部署公钥，无需手动注册 id_rsa.pub为默认公钥名称，可根据情况修改</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -1245,7 +1245,7 @@ Publisher节点按照规定格式发布
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1437,7 +1437,7 @@ Publisher节点按照规定格式发布
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1661846924698')
+  navigator.serviceWorker.register('/sw.js?t=1662555067257')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

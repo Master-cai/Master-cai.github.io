@@ -587,7 +587,7 @@ Publisher节点按照规定格式发布">
             <div id="articleContent">
                 <h1 id="ROS入门之Topic和Server编程"><a href="#ROS入门之Topic和Server编程" class="headerlink" title="ROS入门之Topic和Server编程"></a>ROS入门之Topic和Server编程</h1><p>Topic和Server是ROS中非常重要的两种通信机制，下面分别对其进行介绍。</p>
 <h2 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h2><h3 id="Publisher和Subscriber"><a href="#Publisher和Subscriber" class="headerlink" title="Publisher和Subscriber"></a>Publisher和Subscriber</h3><p>Topic的结构如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-05-ymBvxr.png?token=AI5S4MM7Q4WVMDL4EPOC5PTA4LOFA" alt></p>
+<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-05-ymBvxr.png?token=AI5S4MM7Q4WVMDL4EPOC5PTA4LOFA" alt=""></p>
 <p>Publisher节点按照规定格式发布消息到Topic中，Subscriber通过订阅Topic来获取数据。</p>
 <p>下面是使用Publisher来控制turtle速度的例子：</p>
 <pre class="line-numbers language-c++"><code class="language-c++">#include<ros/ros.h>
@@ -667,7 +667,7 @@ int main(int argc, char **argv)
 <pre class="line-numbers language-cmake"><code class="language-cmake">add_executable(pose_subscriber src/pose_subscriber.cpp)
 target_link_libraries(pose_subscriber ${catkin_LIBRARIES})<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>修改好CMake配置之后，再进入catkin_ws文件夹执行<code>catkin_make</code>命令进行编译。编译完成后，使用<code>rosrun</code>命令运行Node，如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-06-XKS0wZ.png?token=AI5S4ML2XTGJ42ML3FQRONLA4PF32" alt></p>
+<p><img src="https://raw.githubusercontent.com/Master-cai/oss/master/blog/2021/07-06-XKS0wZ.png?token=AI5S4ML2XTGJ42ML3FQRONLA4PF32" alt=""></p>
 <p>同样，Publisher和Subscriber也可以用python代码实现，ROS中默认使用的是python2.7，一般在package下新建一个script文件夹存放python文件。Publisher和Subscriber的python代码如下：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#!/usr/bin/env python</span>
 <span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
@@ -1362,7 +1362,7 @@ ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1554,7 +1554,7 @@ ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1661846924698')
+  navigator.serviceWorker.register('/sw.js?t=1662555067257')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
