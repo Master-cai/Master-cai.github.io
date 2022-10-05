@@ -596,10 +596,10 @@ python import原理要想用根本上解决这">
 <li>执行新的 module 中对应的代码。</li>
 </ol>
 <p>import会出错问题就在于第三步。首先会找到module所在的位置，其搜索顺序是：</p>
-<p>sys.path -&gt; PATHONPATH -&gt; python默认路径。我们最主要使用的就是sys.path了。sys.path是一个list，是import的搜索路径， python程序运行时会自动将该入口程序的所在目录添加到sys.path的首位；然后就是python的第三方库的安装路径。如图所示：<img src="/posts/image-20200227102200604.png" alt="sys.path"></p>
+<p>sys.path -&gt; PATHONPATH -&gt; python默认路径。我们最主要使用的就是sys.path了。sys.path是一个list，是import的搜索路径， python程序运行时会自动将该入口程序的所在目录添加到sys.path的首位；然后就是python的第三方库的安装路径。如图所示：<img src="/Users/xudong/Desktop/blog/source/_posts/python-import%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/image-20200227102200604.png" alt="image-20200227102200604"></p>
 <p>因为这个机制，就产生了很多的问题。当程序比较大的时候，因此import只关心入口程序的path以及第三方库，所以在使用一些自定义的package时就会出现无法找到的错误。</p>
 <h1 id="import的几种不同的使用情况"><a href="#import的几种不同的使用情况" class="headerlink" title="import的几种不同的使用情况"></a>import的几种不同的使用情况</h1><h2 id="同级目录-不在包内"><a href="#同级目录-不在包内" class="headerlink" title="同级目录 不在包内"></a>同级目录 不在包内</h2><p>项目结构如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227102753355.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227102753355.png" alt></p>
 <p>这里file0.py和file01.py是在项目的根目录，也就是最简单的情况</p>
 <p>代码分别如下：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># file0.py</span>
@@ -610,7 +610,7 @@ a <span class="token operator">=</span> <span class="token number">1</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>代码非常简单，两个文件在同级根目录下，运行成功。</p>
 <h2 id="同级目录下的包"><a href="#同级目录下的包" class="headerlink" title="同级目录下的包"></a>同级目录下的包</h2><p>结构如图：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227111328629.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227111328629.png" alt></p>
 <p>代码如下：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># file0.py</span>
 <span class="token keyword">from</span> test1 <span class="token keyword">import</span> file1
@@ -621,7 +621,7 @@ file1<span class="token punctuation">.</span>pr<span class="token punctuation">(
     <span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这种情况是比较常用的情况，file0.py作为入口函数，调用其子目录的包里的module。代码运行成功</p>
 <h2 id="隔壁目录下的包文件"><a href="#隔壁目录下的包文件" class="headerlink" title="隔壁目录下的包文件"></a>隔壁目录下的包文件</h2><p>结构如图：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227111734521.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227111734521.png" alt></p>
 <p>代码如下：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># test1/file1.py</span>
 <span class="token keyword">def</span> <span class="token function">pr</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -631,9 +631,9 @@ file1<span class="token punctuation">.</span>pr<span class="token punctuation">(
 <span class="token keyword">from</span> test1 <span class="token keyword">import</span> file1
 file1<span class="token punctuation">.</span>pr<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>运行代码发生错误：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227113131442.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227113131442.png" alt></p>
 <p>分析一下原因，由于import是根据sys.path来搜索的，而sys.path添加的又是入口程序的目录，在当前目录下当然找不到同级文件夹了。在入口代码加上输出sys.path的代码，结果如下：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227113807211.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227113807211.png" alt></p>
 <p>我们看到第一个路径就是当前入口程序的所在目录，与之前分析符合。</p>
 <p>如何解决这个问题？既然知道了import的工作原理，最直接的想法就是把test1的路径加到sys.path里，但是不太好实现；退一步，我们只要把test2和test1的父目录加到sys.path里就可以了。修改代码：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># test1/file1.py</span>
@@ -647,7 +647,7 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
 file1<span class="token punctuation">.</span>pr<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>代码运行成功。</p>
 <h2 id="复杂情况"><a href="#复杂情况" class="headerlink" title="复杂情况"></a>复杂情况</h2><p>文件结构不变：</p>
-<p><img src="/Users/xudong/Desktop/blog/source/_posts/python-import%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/image-20200227111734521.png" alt=""></p>
+<p><img src="/Users/xudong/Desktop/blog/source/_posts/python-import%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/image-20200227111734521.png" alt></p>
 <p>代码如下：</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># test2/file2.py</span>
 <span class="token keyword">import</span> sys
@@ -664,7 +664,7 @@ file1<span class="token punctuation">.</span>pr<span class="token punctuation">(
 <span class="token comment" spellcheck="true"># test1/file11.py</span>
 <span class="token keyword">def</span> <span class="token function">add</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">return</span> x<span class="token operator">+</span>y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行代码，出现错误:<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227120531593.png" alt=""></p>
+<p>运行代码，出现错误:<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2022/10-05-image-20200227120531593.png" alt></p>
 <p>在这里上一个方法就行不通了，分析一下：</p>
 <p>入口文件还是file2.py，因此sys.path里应该有test2文件夹，我们又手动加入了’..’，因此还包括了test2的父文件夹。因此，我们<code>from test1 import file1</code>成功了；接下来，在file1里，我们想要import同级module file11.py 。我们直接使用<code>import file11</code>，看起来是没有问题的，但是程序也就是在这里报了错。分析一下，因为我们是直接使用的<code>import file11</code>操作，也就是直接在sys.path中搜索file11，当然是搜索不到的。想要使用到file11，sys.path必须要包含test1路径。</p>
 <p>找到了问题的所在，我们只要对症下药即可。我们再把test1的路径加入sys.path不就可以了。</p>
@@ -1532,7 +1532,7 @@ sys<span class="token punctuation">.</span>path<span class="token punctuation">.
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1664969757646')
+  navigator.serviceWorker.register('/sw.js?t=1664969963610')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
