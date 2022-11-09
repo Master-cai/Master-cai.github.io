@@ -572,7 +572,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        585
+                        588
                     </div>
                 
 
@@ -639,12 +639,12 @@ vector<int> heap; // 数组形式存储堆
 vector<int> path; // 存储路径 用于回溯
 
 void dfs(int pos){ // 回溯
-    if(pos >= n){
+    if(pos &gt;= n){
         return;
     }
-    if (pos >= n/2){ // 在数组堆中 大于n/2一定是叶子结点 打印结果即可
-        for(int i = 0; i<path.size(); i++){ printf("%d%c", path[i], i="=path.size()-1?'\n':" ' '); } else{ 不是叶子结点 继续遍历 int left="i*2+1;" right="i*2+2;" 下面是回溯 对于每一种可做的选择都进行尝试 相当于 for path.push_back(heap[right]); dfs(right); path.pop_back(); path.push_back(heap[left]); dfs(left); main(){ cin>> n;
-    for(int i=0; i<n; i++){ scanf("%d", &heap[i]); } path.push_back(heap[0]); 根据dfs函数的逻辑 需要进行初始化 dfs(0); bool min="true;" max="true;" for(int i="0;" i<n 2; 单独再判断是否符合条件 if ((i*2+1<n && heap[i]<heap[i*2+1]) || (i*2+2 < n heap[i] heap[i*2+2])){>heap[i*2+1]) || (i*2+2 < n && heap[i] > heap[i*2+2])){
+    if (pos &gt;= n/2){ // 在数组堆中 大于n/2一定是叶子结点 打印结果即可
+        for(int i = 0; i<path.size(); i++){="" printf("%d%c",="" path[i],="" i="=path.size()-1?'\n':" '="" ');="" }="" else{="" 不是叶子结点="" 继续遍历="" int="" left="i*2+1;" right="i*2+2;" 下面是回溯="" 对于每一种可做的选择都进行尝试="" 相当于="" for="" path.push_back(heap[right]);="" dfs(right);="" path.pop_back();="" path.push_back(heap[left]);="" dfs(left);="" main(){="" cin="">&gt; n;
+    for(int i=0; i<n; i++){="" scanf("%d",="" &heap[i]);="" }="" path.push_back(heap[0]);="" 根据dfs函数的逻辑="" 需要进行初始化="" dfs(0);="" bool="" min="true;" max="true;" for(int="" i="0;" i<n="" 2;="" 单独再判断是否符合条件="" if="" ((i*2+1<n="" &&="" heap[i]<heap[i*2+1])="" ||="" (i*2+2="" <="" n="" heap[i]="" heap[i*2+2])){="">heap[i*2+1]) || (i*2+2 &lt; n &amp;&amp; heap[i] &gt; heap[i*2+2])){
             min = false;
         }
     }
@@ -1322,7 +1322,7 @@ void dfs(int pos){ // 回溯
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">57.5k</span>&nbsp;字
+                class="white-color">58.3k</span>&nbsp;字
             
             
             <script>
@@ -1514,7 +1514,7 @@ void dfs(int pos){ // 回溯
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966282877')
+  navigator.serviceWorker.register('/sw.js?t=1667966472402')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

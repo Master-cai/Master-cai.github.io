@@ -592,7 +592,7 @@
     <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
         max_idx <span class="token operator">=</span> <span class="token number">0</span>
         <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>max_idx<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>max_idx<span class="token punctuation">]</span><span class="token punctuation">:</span>
                 max_idx <span class="token operator">=</span> j
         arr<span class="token punctuation">[</span>max_idx<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>n<span class="token operator">-</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>n<span class="token operator">-</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>max_idx<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><p>插入排序的思路也很直观，将序列分为排序和未排序的部分，每次从未排序的部分中选择一个，插入到已排序的序列中的合适的位置即可。</p>
@@ -609,11 +609,11 @@
     n <span class="token operator">=</span> len<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
     <span class="token keyword">while</span> gap <span class="token operator">&lt;</span> n<span class="token operator">//</span><span class="token number">3</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 动态生成间隔序列</span>
         gap <span class="token operator">=</span> gap<span class="token operator">*</span><span class="token number">3</span><span class="token operator">+</span><span class="token number">1</span>
-    <span class="token keyword">while</span> gap <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 间隔为1即为对整体进行插入排序</span>
+    <span class="token keyword">while</span> gap <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 间隔为1即为对整体进行插入排序</span>
         <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>gap<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 将arr[0,gap,gap*2,..]分为一组 开始元素分别为0,1,gap-1</span>
             tmp <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token comment" spellcheck="true"># 当前分组第i//gap个元素</span>
             j <span class="token operator">=</span> i<span class="token operator">-</span>gap <span class="token comment" spellcheck="true"># 当前序列的逻辑索引 gap在逻辑上等于‘1’ 即 j=i-1 即j为arr[i]的上个元素 </span>
-            <span class="token keyword">while</span> j <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> tmp<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 升序排列 尽量将小元素向前排列</span>
+            <span class="token keyword">while</span> j <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">and</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> tmp<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 升序排列 尽量将小元素向前排列</span>
             <span class="token comment" spellcheck="true"># 插入排序 当tmp较小时，需要向前插入 这里是将arr[j]向后移动一位，为tmp插入做准备 </span>
                 arr<span class="token punctuation">[</span>j<span class="token operator">+</span>gap<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
                 j <span class="token operator">-=</span> gap <span class="token comment" spellcheck="true"># 此处的插入排序为倒序遍历</span>
@@ -625,7 +625,7 @@
     n <span class="token operator">=</span> len<span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
     <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token operator">-</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">></span>arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">&gt;</span>arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
                 arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h4 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h4><p>归并排序是使用分治思想的一个经典的算法。算法的主要思想就是将长序列化短，短序列化元，元序列（单个元素）自身看作有序，然后再进行合并即可。</p>
 <h4 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">merge_sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -665,7 +665,7 @@
     i <span class="token operator">=</span> l
     j <span class="token operator">=</span> r
     <span class="token keyword">while</span> i <span class="token operator">&lt;</span> j<span class="token punctuation">:</span>
-        <span class="token keyword">while</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">>=</span> x <span class="token operator">and</span> i<span class="token operator">&lt;</span>j<span class="token punctuation">:</span>
+        <span class="token keyword">while</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;=</span> x <span class="token operator">and</span> i<span class="token operator">&lt;</span>j<span class="token punctuation">:</span>
             j <span class="token operator">-=</span> <span class="token number">1</span>
         <span class="token keyword">while</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> x <span class="token operator">and</span> i<span class="token operator">&lt;</span>j<span class="token punctuation">:</span>
             i <span class="token operator">+=</span> <span class="token number">1</span>
@@ -683,9 +683,9 @@
     left <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">1</span>
     right <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">2</span>
     largest <span class="token operator">=</span> i
-    <span class="token keyword">if</span> left <span class="token operator">&lt;</span> arrLen <span class="token operator">and</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> left <span class="token operator">&lt;</span> arrLen <span class="token operator">and</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span><span class="token punctuation">:</span>
         largest <span class="token operator">=</span> left
-    <span class="token keyword">if</span> right <span class="token operator">&lt;</span> arrLen <span class="token operator">and</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">></span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> right <span class="token operator">&lt;</span> arrLen <span class="token operator">and</span> arr<span class="token punctuation">[</span>right<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span><span class="token punctuation">:</span>
         largest <span class="token operator">=</span> right
     <span class="token keyword">if</span> largest <span class="token operator">!=</span> i<span class="token punctuation">:</span>
         arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>largest<span class="token punctuation">]</span><span class="token punctuation">,</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
@@ -1402,7 +1402,7 @@
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">57.5k</span>&nbsp;字
+                class="white-color">58.3k</span>&nbsp;字
             
             
             <script>
@@ -1594,7 +1594,7 @@
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966282877')
+  navigator.serviceWorker.register('/sw.js?t=1667966472402')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
