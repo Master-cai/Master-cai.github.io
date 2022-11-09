@@ -638,35 +638,9 @@ int main(){
     cin >> N >> M; 
     vector<node> v(M); //存储所有的边
 
-    for(int i=0; i<M; ++i){ // 输入所有边的信息
-        scanf("%d %d", &v[i].x, &v[i].y);
-    }
-    int n;
-    scanf("%d", &n); // n种情况
-    for(int i=0; i<n; ++i){
-        // 对于每一种情况
-        unordered_set<int> s; // 使用set统计颜色数量
+    for(int i=0; i<M; ++i){ 输入所有边的信息 scanf("%d %d", &v[i].x, &v[i].y); } int n; scanf("%d", &n); n种情况 for(int i="0;" i<n; 对于每一种情况 unordered_set<int> s; // 使用set统计颜色数量
         vector<int> a(N); // 存储每种图色方案
-        for(int j=0; j<N; j++){
-            scanf("%d", &a[j]);
-            s.insert(a[j]);
-        }
-        bool flag = true; //判断是否符合条件
-        for(int j = 0; j<M; ++j){ 
-            // 对于每条边的端点，进行判断
-            if(a[v[j].x]==a[v[j].y]){
-                flag = false;
-                break;
-            }
-        }
-        if(flag){
-            printf("%d-coloring\n", s.size());
-        }else{
-            printf("No\n");
-        }
-    }
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        for(int j=0; j<N; j++){ scanf("%d", &a[j]); s.insert(a[j]); } bool flag="true;" 判断是否符合条件 for(int j="0;" j<m; ++j){ 对于每条边的端点，进行判断 if(a[v[j].x]="=a[v[j].y]){" break; if(flag){ printf("%d-coloring\n", s.size()); }else{ printf("no\n"); return 0; }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></N;></int></M;></node></unordered_set></vector></iostream></code></pre>
 <p>在做题中，其实还有一些小技巧，比如，使用scanf替代cin（cout同理）；不需要排序的时候，可以使用unordered_set和unorderd_map代替；</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1316,7 +1290,7 @@ int main(){
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.5k</span>&nbsp;字
+                class="white-color">57.5k</span>&nbsp;字
             
             
             <script>
@@ -1508,7 +1482,7 @@ int main(){
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966115604')
+  navigator.serviceWorker.register('/sw.js?t=1667966282877')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
