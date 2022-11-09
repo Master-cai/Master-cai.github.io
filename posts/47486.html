@@ -591,7 +591,7 @@
 <li>X client (即 X 应用程序) 则主要负责事件的处理（即程序的逻辑）。</li>
 </ul>
 <p>举个例子，如果用户点击了鼠标左键，因为鼠标归 X server 管理，于是 X server 就捕捉到了鼠标点击这个动作，然后它将这个动作告诉 X client，因为 X client 负责程序逻辑，于是 X client 就根据程序预先设定的逻辑（例如画一个圆），告诉 X server 说：“请在鼠标点击的位置，画一个圆”。最后，X server 就响应 X client 的请求，在鼠标点击的位置，绘制并显示出一个圆。</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-HxES4t.jpg" alt></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-HxES4t.jpg" alt=""></p>
 <p>许多时候 X server 和 X client 在同一台主机上，这看起来没什么。但是， X server 和 X client 完全可以运行在不同的机器上，只要彼此通过 X 协议通信即可。于是，我们就可以做一些 “神奇” 的事情，比如像本文开头谈到的，在本地显示 (X server)，运行在服务器上的 GUI 程序 (X client)。这样的操作可以通过 SSH X11 Forwarding (转发) 来实现。</p>
 <p>X11 中的 X 指的就是 X 协议，11 指的是采用 X 协议的第 11 个版本。</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
@@ -601,7 +601,7 @@
 <pre class="line-numbers language-bash"><code class="language-bash">X11Forwarding <span class="token function">yes</span>
 X11DisplayOffset 10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-1ivEZ8.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/09-12-1ivEZ8.png" alt=""></p>
 <ol start="2">
 <li>安装xauth</li>
 </ol>
@@ -1455,7 +1455,7 @@ ssh-keygen #生成默认密钥对 公钥id_rsa.pub 私钥id_rsa
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1664969963610')
+  navigator.serviceWorker.register('/sw.js?t=1667966115604')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
