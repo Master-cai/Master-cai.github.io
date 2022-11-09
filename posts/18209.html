@@ -586,7 +586,7 @@
 <p>ROS每两年更新一个大版本，每个版本对应一个ubuntu版本，如图所示：<img src="https://raw.githubusercontent.com/mastercaiOSS/OSS/master/blog/2021/07-14-HuwjZm.png" alt="">其中kinetic版本对应ubuntu16， melodic对应ubuntu18（最新版本为2020年5月发布的noetic）。ROS目前已经发展到ROS 2版本，但是ROS 2并不是对ROS 1的取代，而是对ROS 1的进一步完善，目前主流应用还是基于ROS 1版本构建。目前，ROS相关的资料也非常多，主要参考<a href="http://wiki.ros.org/cn" target="_blank" rel="noopener">ROS wiki</a>即可解决大部分问题。</p>
 <h2 id="ROS-melodic安装（ubuntu-18）"><a href="#ROS-melodic安装（ubuntu-18）" class="headerlink" title="ROS melodic安装（ubuntu 18）"></a>ROS melodic安装（ubuntu 18）</h2><p>ROS的安装过程在ros的wiki上写的非常清楚，按照步骤执行就可以，这里简要贴一下命令。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 设置ROS软件源</span>
-<span class="token function">sudo</span> sh -c <span class="token string">'echo "deb http://packages.ros.org/ros/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -sc<span class="token variable">)</span></span> main" &gt; /etc/apt/sources.list.d/ros-latest.list'</span>
+<span class="token function">sudo</span> sh -c <span class="token string">'echo "deb http://packages.ros.org/ros/ubuntu <span class="token variable"><span class="token variable">$(</span>lsb_release -sc<span class="token variable">)</span></span> main" > /etc/apt/sources.list.d/ros-latest.list'</span>
 <span class="token comment" spellcheck="true"># 添加密钥</span>
 <span class="token function">sudo</span> apt-key adv --keyserver <span class="token string">'hkp://keyserver.ubuntu.com:80'</span> --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 <span class="token comment" spellcheck="true"># 安装ROS</span>
@@ -595,7 +595,7 @@
 <span class="token function">sudo</span> rosdep init
 rosdep update
 <span class="token comment" spellcheck="true"># 设置环境变量</span>
-<span class="token keyword">echo</span> <span class="token string">"source /opt/ros/melodic/setup.bash"</span> <span class="token operator">&gt;&gt;</span> ~/.bashrc
+<span class="token keyword">echo</span> <span class="token string">"source /opt/ros/melodic/setup.bash"</span> <span class="token operator">>></span> ~/.bashrc
 <span class="token function">source</span> ~/.bashrc
 <span class="token comment" spellcheck="true"># 安装rosinstall</span>
 <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> python-rosinstall python-rosinstall-generator python-wstool build-essential<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1301,7 +1301,7 @@ sock
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">58.3k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1493,7 +1493,7 @@ sock
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966472402')
+  navigator.serviceWorker.register('/sw.js?t=1667966669091')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

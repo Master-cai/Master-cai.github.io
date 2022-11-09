@@ -564,7 +564,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        958
+                        953
                     </div>
                 
 
@@ -596,15 +596,15 @@ Swap(0, 4) =&gt; {0, 1, 2, 3, 4}</code></pre><p>Now you are asked to find the mi
 3 5 7 2 6 4 9 0 8 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><pre class="line-numbers language-out"><code class="language-out">9<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题的主要思路就是贪心算法，即每次交换的时候，都尽可能的使一个元素正确的归位。最直接的想法就是，用一个数组记录原始数据，然后用一个hash map记录元素所在位置。每次都从0元素开始，当0元素不在正确的位置时，将其和0所在的位置应该放置的元素进行交换，这样就完成了一个元素的归位。当出现0元素已经归位但是整体序列还不是有序的情况时，我们选择序列中的一个还处于无序状态的元素，将其和0元素交换位置，然后再重复上述过程。最初的想法就是，没交换一次，就对整体的序列进行一次扫描判断是否全部有序，但是有两个样例无法通过。后来对这个判断是否有序的方法进行了改进，在最开始录入原始数据的时候，记录一下一共有多少个元素是无序的，然后循环的退出条件就变成了判断当前归位的元素数是否达到要求即可。这样优化了以后还是无法通过样例。。最后参考了一下题解，发现问题出在了寻找一个处于无序状态的元素这一步。题解给出的方法是再维护一个变量，记录当前未复位的位置最小的一个元素的位置。这样整体程序就显得比较复杂了。然后我又发现了一种更加巧妙的解法，整体思路是：使用a[t]=i记录t在i位置，依次遍历每个位置，如果当前位置不正确，则让0号来执行下列操作使其回到正确位置：如果0号现在不在有序位置（0位），那就让0号和此数字交换位置，直到0号回到有序位置。然后再次检查此位置是否是正确的，如果不是，就让0号和其交换位置，如果是，那就直接跳过。这里这一步就是此算法中最巧妙的一步，用这种方式完成了“维护一个未归位的元素的最小位置”这一操作。到达最后一个位置的时候，如果0号和最后一个数字都有序就正确，否则交换位置即可。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream&gt;</span></span>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">int</span> n<span class="token punctuation">,</span> t<span class="token punctuation">,</span> cnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> a<span class="token punctuation">[</span><span class="token number">10010</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    cin <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        cin <span class="token operator">&gt;&gt;</span> t<span class="token punctuation">;</span>
+        cin <span class="token operator">>></span> t<span class="token punctuation">;</span>
         a<span class="token punctuation">[</span>t<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -1271,7 +1271,7 @@ Swap(0, 4) =&gt; {0, 1, 2, 3, 4}</code></pre><p>Now you are asked to find the mi
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">58.3k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1463,7 +1463,7 @@ Swap(0, 4) =&gt; {0, 1, 2, 3, 4}</code></pre><p>Now you are asked to find the mi
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966472402')
+  navigator.serviceWorker.register('/sw.js?t=1667966669091')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

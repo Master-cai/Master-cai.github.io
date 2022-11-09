@@ -568,7 +568,7 @@
                 
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        648
+                        635
                     </div>
                 
 
@@ -600,10 +600,10 @@
 <h3 id="Sample-Input-2"><a href="#Sample-Input-2" class="headerlink" title="Sample Input 2:"></a>Sample Input 2:</h3><pre class="line-numbers language-in"><code class="language-in">1 ab 1 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="Sample-Output-2"><a href="#Sample-Output-2" class="headerlink" title="Sample Output 2:"></a>Sample Output 2:</h3><pre class="line-numbers language-out"><code class="language-out">Impossible<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>本题大体上的思路比较简单，就是使用二分查找的思想，找到合适的那个radix。但是细节上的东西非常多。首先一个坑的点就是题目中没有给出radix等数据的范围，必须要使用long long类型才行，其转化过程中还可能产生溢出。下面结合代码分析</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cctype&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cmath&gt;</span></span>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cctype></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cmath></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
@@ -626,7 +626,7 @@
     <span class="token keyword">while</span><span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">long</span> <span class="token keyword">long</span> mid <span class="token operator">=</span> <span class="token punctuation">(</span>low<span class="token operator">+</span>high<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
         <span class="token keyword">long</span> <span class="token keyword">long</span> t <span class="token operator">=</span> <span class="token function">convert</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> mid<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 根据mid进制转换的结果</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>t <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token operator">||</span> t<span class="token operator">&gt;</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>t <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token operator">||</span> t<span class="token operator">></span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
             high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>t <span class="token operator">==</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
             <span class="token keyword">return</span> mid<span class="token punctuation">;</span>
@@ -640,7 +640,7 @@
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     string n1<span class="token punctuation">,</span> n2<span class="token punctuation">;</span>
     <span class="token keyword">long</span> <span class="token keyword">long</span> tag<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> radix<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> result_radix<span class="token punctuation">;</span>
-    cin <span class="token operator">&gt;&gt;</span> n1 <span class="token operator">&gt;&gt;</span> n2 <span class="token operator">&gt;&gt;</span> tag <span class="token operator">&gt;&gt;</span> radix<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> n1 <span class="token operator">>></span> n2 <span class="token operator">>></span> tag <span class="token operator">>></span> radix<span class="token punctuation">;</span>
     result_radix <span class="token operator">=</span> tag<span class="token operator">==</span><span class="token number">1</span> <span class="token operator">?</span> <span class="token function">find_radix</span><span class="token punctuation">(</span>n2<span class="token punctuation">,</span> <span class="token function">convert</span><span class="token punctuation">(</span>n1<span class="token punctuation">,</span> radix<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">find_radix</span><span class="token punctuation">(</span>n1<span class="token punctuation">,</span> <span class="token function">convert</span><span class="token punctuation">(</span>n2<span class="token punctuation">,</span> radix<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>result_radix <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld"</span><span class="token punctuation">,</span> result_radix<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1307,7 +1307,7 @@ sock
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">58.3k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1499,7 +1499,7 @@ sock
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966472402')
+  navigator.serviceWorker.register('/sw.js?t=1667966669091')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

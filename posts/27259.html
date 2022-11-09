@@ -625,28 +625,28 @@ ERROR: 99 and 99 are not found.</code></pre><h2 id="分析"><a href="#分析" cl
 <span class="token comment" spellcheck="true">// Created by masterCai on 2020/5/7.</span>
 <span class="token comment" spellcheck="true">//</span>
 
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map></span></span>
 
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">// 因c++中不能直接找到元素对应下标，因此用map映射一下方便后续查找元素对应位置</span>
-map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span> pos<span class="token punctuation">;</span> 
-vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> in<span class="token punctuation">,</span> pre<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//存储中序，前序序列</span>
+map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> pos<span class="token punctuation">;</span> 
+vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> in<span class="token punctuation">,</span> pre<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//存储中序，前序序列</span>
 
 <span class="token keyword">void</span> <span class="token function">lca</span><span class="token punctuation">(</span><span class="token keyword">int</span> inl<span class="token punctuation">,</span> <span class="token keyword">int</span> inr<span class="token punctuation">,</span> <span class="token keyword">int</span> preRoot<span class="token punctuation">,</span> <span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//inl：中序left inr中序right preroot：当前的root a，b：待查询的数据</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>inl <span class="token operator">&gt;</span> inr<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 中序全部遍历完 退出</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>inl <span class="token operator">></span> inr<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 中序全部遍历完 退出</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token comment" spellcheck="true">//从pos中找到当前的root的位置 查找a，b在中序中的位置</span>
     <span class="token keyword">int</span> inRoot <span class="token operator">=</span> pos<span class="token punctuation">[</span>pre<span class="token punctuation">[</span>preRoot<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> aIn <span class="token operator">=</span> pos<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">,</span> bIn <span class="token operator">=</span> pos<span class="token punctuation">[</span>b<span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>aIn <span class="token operator">&lt;</span> inRoot <span class="token operator">&amp;&amp;</span> bIn <span class="token operator">&lt;</span> inRoot<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// a，b都在左边 搜索左子树即可</span>
         <span class="token function">lca</span><span class="token punctuation">(</span>inl<span class="token punctuation">,</span> inRoot <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> preRoot <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>aIn <span class="token operator">&lt;</span> inRoot <span class="token operator">&amp;&amp;</span> bIn<span class="token operator">&gt;</span>inRoot<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>aIn <span class="token operator">&gt;</span> inRoot <span class="token operator">&amp;&amp;</span> bIn <span class="token operator">&lt;</span> inRoot<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 若a，b在两边 则找到答案了</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>aIn <span class="token operator">&lt;</span> inRoot <span class="token operator">&amp;&amp;</span> bIn<span class="token operator">></span>inRoot<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>aIn <span class="token operator">></span> inRoot <span class="token operator">&amp;&amp;</span> bIn <span class="token operator">&lt;</span> inRoot<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">// 若a，b在两边 则找到答案了</span>
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"LCA of %d and %d is %d.\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> in<span class="token punctuation">[</span>inRoot<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>aIn <span class="token operator">&gt;</span> inRoot <span class="token operator">&amp;&amp;</span> bIn<span class="token operator">&gt;</span>inRoot<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 都在右边 搜索右子树</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>aIn <span class="token operator">></span> inRoot <span class="token operator">&amp;&amp;</span> bIn<span class="token operator">></span>inRoot<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 都在右边 搜索右子树</span>
         <span class="token function">lca</span><span class="token punctuation">(</span>inRoot<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> inr<span class="token punctuation">,</span> preRoot<span class="token operator">+</span><span class="token number">1</span><span class="token operator">+</span><span class="token punctuation">(</span>inRoot<span class="token operator">-</span>inl<span class="token punctuation">)</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>aIn <span class="token operator">==</span> inRoot<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// a或b是根，则找到答案</span>
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d is an ancestor of %d.\n"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -658,10 +658,10 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">int</span> m<span class="token punctuation">,</span> n<span class="token punctuation">;</span>
-    cin <span class="token operator">&gt;&gt;</span> m <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span>
+    cin <span class="token operator">>></span> m <span class="token operator">>></span> n<span class="token punctuation">;</span>
     in<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> pre<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 这里小技巧：在全局声明没有大小的vector，然后在得到大小后resize</span>
-    <span class="token comment" spellcheck="true">//（直接全局声明vector&lt;int&gt; a(n)）这个意思。</span>
+    <span class="token comment" spellcheck="true">//（直接全局声明vector&lt;int> a(n)）这个意思。</span>
 
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>in<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1353,7 +1353,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
             
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">58.3k</span>&nbsp;字
+                class="white-color">55.5k</span>&nbsp;字
             
             
             <script>
@@ -1545,7 +1545,7 @@ vector<span class="token operator">&lt;</span><span class="token keyword">int</s
 
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1667966472402')
+  navigator.serviceWorker.register('/sw.js?t=1667966669091')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
