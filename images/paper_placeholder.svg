@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3f4f6" />
+      <stop offset="1" stop-color="#e5e7eb" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" rx="24" fill="url(#bg)" />
+  <rect x="56" y="56" width="528" height="368" rx="18" fill="#ffffff" stroke="#d1d5db" stroke-width="4" />
+  <rect x="96" y="120" width="448" height="24" rx="12" fill="#e5e7eb" />
+  <rect x="96" y="172" width="360" height="18" rx="9" fill="#e5e7eb" />
+  <rect x="96" y="210" width="420" height="18" rx="9" fill="#e5e7eb" />
+  <rect x="96" y="248" width="300" height="18" rx="9" fill="#e5e7eb" />
+  <text x="320" y="342" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+    font-size="20" font-weight="600" fill="#6b7280">Thumbnail placeholder</text>
+</svg>

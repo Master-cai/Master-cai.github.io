@@ -1,1 +1,9 @@
-This is the source code to Jon Barron's public academic website: https://jonbarron.info/. Feel free to clone this code for your own personal use.
+Source for Xudong Cai's personal website: https://master-cai.github.io/
+
+Local preview:
+
+```sh
+python3 -m http.server 8000
+```
+
+Then open http://localhost:8000/
